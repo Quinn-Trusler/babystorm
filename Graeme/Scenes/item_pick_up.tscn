@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl2o6eyu8beo4"]
+
+[ext_resource type="Script" path="res://Graeme/Scripts/item_pick_up.gd" id="1_i5wsc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d5ay1"]
+
+[node name="ItemPickUp" type="Node2D"]
+script = ExtResource("1_i5wsc")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_d5ay1")
