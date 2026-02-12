@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://clexcbmer7hsj"]
+[gd_scene load_steps=5 format=3 uid="uid://clexcbmer7hsj"]
+
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/someScript.gd" id="1_jwhiv"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/FireBallAbility.gd" id="2_3e61s"]
+[ext_resource type="Texture2D" uid="uid://csc3o1qqltf1n" path="res://icon.svg" id="3_bqmpb"]
+
+[sub_resource type="Resource" id="Resource_4ysrn"]
+script = ExtResource("2_3e61s")
 
 [node name="Node2D" type="Node2D"]
+
+[node name="QuickNode" type="Node" parent="." node_paths=PackedStringArray("ballNode")]
+script = ExtResource("1_jwhiv")
+ballNode = NodePath("../Sprite2D")
+fireballAbility = SubResource("Resource_4ysrn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_bqmpb")

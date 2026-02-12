@@ -1,0 +1,38 @@
+extends Resource
+class_name Ability
+
+signal onExecutionComplete;
+
+func CanTrigger() -> bool:
+	return true
+	
+func Trigger() -> void:
+	pass
+
+func TryTrigger() -> void:
+	if CanTrigger():
+		Trigger()
+
+func ExecutionCancel() -> void:
+	pass
+
+func External_Ready() -> void:
+	pass
+
+func External_Process() -> void:
+	pass
+
+func External_PhysicsProcess() -> void:
+	pass
+
+func External_BodyEntered(body) -> void:
+	pass
+	
+func External_BodyExited(body) -> void:
+	pass
+	
+func External_AreaEntered(body) -> void:
+	pass
+	
+func External_AreaExited(body) -> void:
+	pass
