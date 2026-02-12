@@ -1,22 +1,86 @@
-[gd_scene load_steps=11 format=3 uid="uid://ulp6peon4ldn"]
+[gd_scene load_steps=23 format=3 uid="uid://ulp6peon4ldn"]
 
 [ext_resource type="Script" path="res://Graeme/Scripts/Baby/the_baby.gd" id="1_rd01h"]
-[ext_resource type="Texture2D" uid="uid://csc3o1qqltf1n" path="res://icon.svg" id="2_03jyb"]
 [ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_head.gd" id="2_ej0j6"]
 [ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_torso.gd" id="3_e2hms"]
+[ext_resource type="Texture2D" uid="uid://cjokroqrnot71" path="res://assets/sprites/baby/baby_head.png" id="3_odic7"]
+[ext_resource type="Texture2D" uid="uid://dl74xbgugm08v" path="res://assets/sprites/baby/baby_torso.png" id="5_iuxol"]
 [ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_main_arm.gd" id="5_jwkfu"]
 [ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_secondary_arm.gd" id="6_5en4v"]
+[ext_resource type="Texture2D" uid="uid://cxdcx3flhx4ca" path="res://assets/sprites/baby/baby_arm_l.png" id="7_2gqkr"]
 [ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_legs.gd" id="7_euptn"]
+[ext_resource type="Texture2D" uid="uid://b42wudt3grsod" path="res://assets/sprites/baby/baby_arm_r.png" id="9_gbud1"]
+[ext_resource type="Texture2D" uid="uid://dfaj8w8tvk2ff" path="res://assets/sprites/baby/baby_legs.png" id="11_eygqt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhxr2"]
-atlas = ExtResource("2_03jyb")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_th1fm"]
+atlas = ExtResource("3_odic7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yyjfj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th1fm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqr1o"]
+atlas = ExtResource("5_iuxol")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s6hnl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dhxr2")
+"texture": SubResource("AtlasTexture_tqr1o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i04ws"]
+atlas = ExtResource("7_2gqkr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1fl5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i04ws")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57gfm"]
+atlas = ExtResource("9_gbud1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_626s4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57gfm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri3u5"]
+atlas = ExtResource("11_eygqt")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qa4qn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri3u5")
 }],
 "loop": true,
 "name": &"default",
@@ -24,41 +88,49 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_paxpy"]
-radius = 64.0
-height = 128.0
+radius = 13.0
+height = 48.0
 
 [node name="TheBaby" type="CharacterBody2D"]
 script = ExtResource("1_rd01h")
 
 [node name="Head" type="Node2D" parent="."]
-position = Vector2(0, -12)
 script = ExtResource("2_ej0j6")
 
 [node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Head"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yyjfj")
 
 [node name="Torso" type="Node2D" parent="."]
 script = ExtResource("3_e2hms")
 
 [node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="Torso"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s6hnl")
 
 [node name="MainArm" type="Node2D" parent="."]
-position = Vector2(-4, -5)
 script = ExtResource("5_jwkfu")
 
 [node name="MainArmAnimatedSprite2D" type="AnimatedSprite2D" parent="MainArm"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_h1fl5")
 
 [node name="SecondaryArm" type="Node2D" parent="."]
-position = Vector2(4, -5)
 script = ExtResource("6_5en4v")
 
 [node name="SecondaryArmAnimatedSprite2D" type="AnimatedSprite2D" parent="SecondaryArm"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_626s4")
 
 [node name="Legs" type="Node2D" parent="."]
 position = Vector2(0, 6)
 script = ExtResource("7_euptn")
 
 [node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="Legs"]
+texture_filter = 1
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_qa4qn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_paxpy")
