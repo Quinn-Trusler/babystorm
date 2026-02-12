@@ -115,6 +115,11 @@ script = ExtResource("5_jwkfu")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h1fl5")
 
+[node name="AttackSpawnPoint" type="Node2D" parent="MainArm"]
+position = Vector2(-34, -6)
+
+[node name="AttackCoolDownTimer" type="Timer" parent="MainArm"]
+
 [node name="SecondaryArm" type="Node2D" parent="."]
 script = ExtResource("6_5en4v")
 
@@ -134,3 +139,5 @@ sprite_frames = SubResource("SpriteFrames_qa4qn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_paxpy")
+
+[connection signal="timeout" from="MainArm/AttackCoolDownTimer" to="MainArm" method="_on_attack_cool_down_timer_timeout"]

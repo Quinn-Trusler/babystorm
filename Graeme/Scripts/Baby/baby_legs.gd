@@ -23,7 +23,7 @@ const STROLLER_MOVING_ANIMATION_STRING: String = "stroller moving"
 @export var speed: float = 300
 @export var jump_velocity = -400.0
 
-var leg_type: int = 0
+var type: String = DEFAULT_NAME
 
 
 
