@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name TheBaby
 
 signal on_toggle_move(is_moving: bool)
 signal on_item_picked_up(body_part: String)
@@ -24,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func item_picked_up(body_part):
-	item_picked_up(body_part)
+	on_item_picked_up.emit(body_part)
 
 func _input(event):
 	if event.is_action_pressed("ui_left"):

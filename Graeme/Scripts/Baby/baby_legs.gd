@@ -33,7 +33,6 @@ func _ready() -> void:
 	the_baby.on_item_picked_up.connect(swap_part)
 	
 func swap_part(body_part: String):
-	print("part is being swapped")
 	if (body_part == DEFAULT_NAME):
 		speed = DEFAULT_SPEED
 		jump_velocity = DEFAULT_JUMP_VELOCITY
@@ -41,6 +40,7 @@ func swap_part(body_part: String):
 		speed = STROLLER_SPEED
 		jump_velocity = STROLLER_JUMP_VELOCITY
 	
+	print(speed)
 func toggle_movement(is_moving: bool):
 	
 	#TODO: add in once we have animation sprites

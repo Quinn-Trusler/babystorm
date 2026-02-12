@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://drai1vcre3702"]
+[gd_scene load_steps=6 format=3 uid="uid://drai1vcre3702"]
 
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_qtyis"]
+[ext_resource type="PackedScene" uid="uid://bl2o6eyu8beo4" path="res://Graeme/Scenes/item_pick_up.tscn" id="2_8lkbj"]
+[ext_resource type="Resource" uid="uid://dr61e32pb2lch" path="res://Graeme/Resources/Items/stroller.tres" id="3_elam3"]
+[ext_resource type="Resource" uid="uid://umobhfywuqy4" path="res://Graeme/Resources/Items/default.tres" id="4_rubfk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eog2y"]
 size = Vector2(1209, 49)
@@ -17,3 +20,11 @@ shape = SubResource("RectangleShape2D_eog2y")
 position = Vector2(2, -109)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ItemPickUp" parent="." instance=ExtResource("2_8lkbj")]
+position = Vector2(333, -170)
+item = ExtResource("3_elam3")
+
+[node name="ItemPickUp2" parent="." instance=ExtResource("2_8lkbj")]
+position = Vector2(-143, -116)
+item = ExtResource("4_rubfk")
