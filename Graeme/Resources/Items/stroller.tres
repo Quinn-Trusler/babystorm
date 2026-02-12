@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dr61e32pb2lch"]
+
+[ext_resource type="Script" path="res://Graeme/Resources/Items/item.gd" id="1_8nc5g"]
+[ext_resource type="Texture2D" uid="uid://csc3o1qqltf1n" path="res://icon.svg" id="2_mn4hd"]
+
+[resource]
+script = ExtResource("1_8nc5g")
+name = "stroller"
+texture = ExtResource("2_mn4hd")
