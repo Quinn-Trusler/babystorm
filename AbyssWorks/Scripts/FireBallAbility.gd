@@ -1,9 +1,9 @@
-extends Ability
+extends ResourceBehaviour
 class_name FireBallAbility
 
-var ballNode : Node2D
+var ballNode : Node2D = null
 
 func Trigger():
-	if (ballNode):
+	if (ballNode != null):
 		ballNode.position.x += 1
 	pass

@@ -1,18 +1,92 @@
-[gd_scene load_steps=5 format=3 uid="uid://clexcbmer7hsj"]
+[gd_scene load_steps=13 format=3 uid="uid://clexcbmer7hsj"]
 
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/someScript.gd" id="1_jwhiv"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/FireBallAbility.gd" id="2_3e61s"]
 [ext_resource type="Texture2D" uid="uid://csc3o1qqltf1n" path="res://icon.svg" id="3_bqmpb"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/ControlledBoss.gd" id="4_7lxlt"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/CustomForce2D.gd" id="5_k41iv"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/Bullet.gd" id="6_gjnwp"]
 
-[sub_resource type="Resource" id="Resource_4ysrn"]
+[sub_resource type="Resource" id="Resource_qryff"]
 script = ExtResource("2_3e61s")
+
+[sub_resource type="Resource" id="Resource_84n5a"]
+script = ExtResource("5_k41iv")
+mass = 1.0
+gravity_scale = 0.4
+gravity = 980.0
+ground_friction = 8.0
+air_drag = 0.1
+static_gravity = 200.0
+max_terminal_velocity = 4000.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12a5l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pj5y"]
+size = Vector2(1209, 49)
+
+[sub_resource type="Resource" id="Resource_524qu"]
+script = ExtResource("5_k41iv")
+mass = 1.0
+gravity_scale = 0.0
+gravity = 980.0
+ground_friction = 0.0
+air_drag = 0.0
+static_gravity = 50.0
+max_terminal_velocity = 4000.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vao0r"]
+size = Vector2(120, 120)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="QuickNode" type="Node" parent="." node_paths=PackedStringArray("ballNode")]
 script = ExtResource("1_jwhiv")
-ballNode = NodePath("../Sprite2D")
-fireballAbility = SubResource("Resource_4ysrn")
+ballNode = NodePath("../BulletArea2D/BallSprite2D")
+fireballAbility = SubResource("Resource_qryff")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(290, 229)
+script = ExtResource("4_7lxlt")
+JUMP_VELOCITY = 180.0
+customForce2D = SubResource("Resource_84n5a")
+
+[node name="BossSprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture = ExtResource("3_bqmpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(6.5, 6.5)
+shape = SubResource("RectangleShape2D_12a5l")
+
+[node name="Dummy" type="CharacterBody2D" parent="."]
+position = Vector2(1018, 489)
+
+[node name="BossSprite2D" type="Sprite2D" parent="Dummy"]
+texture = ExtResource("3_bqmpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy"]
+scale = Vector2(6.5, 6.5)
+shape = SubResource("RectangleShape2D_12a5l")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(569, 569)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(11.5, 14.5)
+shape = SubResource("RectangleShape2D_7pj5y")
+
+[node name="BulletArea2D" type="Area2D" parent="."]
+visible = false
+position = Vector2(354, 455)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("6_gjnwp")
+force = 10.0
+customForce2D = SubResource("Resource_524qu")
+
+[node name="BallSprite2D" type="Sprite2D" parent="BulletArea2D"]
+texture = ExtResource("3_bqmpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea2D"]
+shape = SubResource("RectangleShape2D_vao0r")
+
+[connection signal="body_entered" from="BulletArea2D" to="BulletArea2D" method="_on_body_entered"]

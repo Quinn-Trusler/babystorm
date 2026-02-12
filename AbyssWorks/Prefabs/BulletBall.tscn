@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://6n2ae4kdkanc"]
+
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/Bullet.gd" id="1_unqs7"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/CustomForce2D.gd" id="2_4l514"]
+[ext_resource type="Texture2D" uid="uid://csc3o1qqltf1n" path="res://icon.svg" id="2_jhwtu"]
+
+[sub_resource type="Resource" id="Resource_ur7bj"]
+script = ExtResource("2_4l514")
+mass = 1.0
+gravity_scale = 0.0
+gravity = 980.0
+ground_friction = 0.0
+air_drag = 0.0
+static_gravity = 50.0
+max_terminal_velocity = 4000.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c50dy"]
+size = Vector2(120, 120)
+
+[node name="BulletBall" type="Area2D"]
+script = ExtResource("1_unqs7")
+force = 10.0
+customForce2D = SubResource("Resource_ur7bj")
+
+[node name="BallSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jhwtu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c50dy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

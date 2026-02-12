@@ -1,5 +1,5 @@
 extends Resource
-class_name Ability
+class_name ResourceBehaviour
 
 signal onExecutionComplete;
 
@@ -19,10 +19,10 @@ func ExecutionCancel() -> void:
 func External_Ready() -> void:
 	pass
 
-func External_Process() -> void:
+func External_Process(delta: float) -> void:
 	pass
 
-func External_PhysicsProcess() -> void:
+func External_PhysicsProcess(delta: float) -> void:
 	pass
 
 func External_BodyEntered(body) -> void:
