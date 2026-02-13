@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://clexcbmer7hsj"]
+[gd_scene load_steps=14 format=3 uid="uid://clexcbmer7hsj"]
 
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/someScript.gd" id="1_jwhiv"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/FireBallAbility.gd" id="2_3e61s"]
 [ext_resource type="Texture2D" uid="uid://csc3o1qqltf1n" path="res://icon.svg" id="3_bqmpb"]
+[ext_resource type="Texture2D" uid="uid://dxtti3mn2t58j" path="res://AbyssWorks/Textures/ModSquare.png" id="4_gwwrj"]
 [ext_resource type="Resource" uid="uid://dvw5ane5ynyql" path="res://AbyssWorks/ResourceBehaviours/TweakedCustomForce.tres" id="4_p6kem"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/CustomForce2D.gd" id="5_k41iv"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Bullet.gd" id="6_gjnwp"]
@@ -52,6 +53,12 @@ position = Vector2(569, 569)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_7pj5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(0.0836291, 0.297798, 0.238199, 1)
+position = Vector2(12.5001, 17)
+scale = Vector2(11.8333, 0.509804)
+texture = ExtResource("4_gwwrj")
 
 [node name="BulletArea2D" type="Area2D" parent="."]
 visible = false

@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://rk7c1tc64sho"]
+[gd_scene load_steps=17 format=3 uid="uid://rk7c1tc64sho"]
 
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/ControlledBoss.gd" id="1_8kj1u"]
 [ext_resource type="Texture2D" uid="uid://dxtti3mn2t58j" path="res://AbyssWorks/Textures/ModSquare.png" id="1_227uj"]
 [ext_resource type="PackedScene" uid="uid://cc1v28suud5xx" path="res://AbyssWorks/Prefabs/BodyParts/damagePart.tscn" id="1_n8e1m"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/CustomForce2D.gd" id="2_bxg4c"]
 [ext_resource type="Texture2D" uid="uid://drc1jgmpq14kb" path="res://AbyssWorks/Textures/CircleNoBackground.png" id="3_i75mi"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/GigaPunchRushAbility.gd" id="3_xt2oh"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/AnimationSubscriber.gd" id="6_6evk3"]
 
 [sub_resource type="Resource" id="Resource_84n5a"]
@@ -16,6 +17,12 @@ ground_friction = 8.0
 air_drag = 0.1
 static_gravity = 200.0
 max_terminal_velocity = 4000.0
+
+[sub_resource type="Resource" id="Resource_8mgds"]
+script = ExtResource("3_xt2oh")
+gigaAnimName = "GigaPunch"
+dashTime = 0.25
+dashSpeed = 1200.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5psm1"]
 size = Vector2(97, 96)
@@ -187,6 +194,7 @@ script = ExtResource("1_8kj1u")
 customForce2D = SubResource("Resource_84n5a")
 idleAnim = "Idle"
 basicAttackAnims = Array[String](["LeftPunch", "RightPunch"])
+gigaPunchRushAbility = SubResource("Resource_8mgds")
 
 [node name="Area2D_LeftH" parent="." instance=ExtResource("1_n8e1m")]
 modulate = Color(0.103765, 0.175307, 0.470759, 1)

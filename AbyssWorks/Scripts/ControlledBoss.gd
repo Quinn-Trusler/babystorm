@@ -13,6 +13,9 @@ enum BossState { Idle, Move, Fall, Attack, Special }
 @export var fallAnim: String = ""
 @export var basicAttackAnims: Array[String] = []
 
+@export_group(("Abilities"))
+@export var gigaPunchRushAbility: GigaPunchRushAbility
+
 var bulletRes = preload("res://AbyssWorks/Prefabs/BulletBall.tscn")
 
 var isGrounded: bool;
@@ -21,9 +24,12 @@ var _customForce2D: CustomForce2D = null
 
 var _currentState: BossState = BossState.Idle
 var _inputDirection: float = 0
+var _dashDir: float = 1
 
 var _deltaTime: float = 0
 var _physicsDeltaTime: float = 0
+
+var _gigaPunchRush: GigaPunchRushAbility = null
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +37,14 @@ func _ready() -> void:
 	if (customForce2D):
 		_customForce2D = customForce2D.duplicate(true)
 		_customForce2D.node2D = self
+	
+	if (gigaPunchRushAbility):
+		_gigaPunchRush = gigaPunchRushAbility.duplicate(true)
+		_gigaPunchRush.animationSubscriber = anim_player as AnimationSubscriber
+		_gigaPunchRush.customForce2D = _customForce2D
+		_gigaPunchRush.characterBody2D = self
+		_gigaPunchRush.External_Ready()
+		
 	
 	ExecuteState(StateExecutionType.Enter)
 	
@@ -55,6 +69,8 @@ func _process(delta: float) -> void:
 		'''
 		SwitchState(BossState.Attack)
 		
+	if Input.is_action_just_pressed("Special"):
+		SwitchState(BossState.Special)
 		#print(bulletInstance.position, 'position', self)
 	ExecuteState(StateExecutionType.Update)
 	
@@ -72,7 +88,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	_inputDirection = Input.get_axis("ui_left", "ui_right")
 	
-	if _inputDirection != 0:
+	if _inputDirection != 0 and _currentState != BossState.Special:
 		rotateDirection = Vector2.RIGHT * _inputDirection
 		transform.x = Vector2(_inputDirection, 0.0)
 	else:
@@ -83,6 +99,8 @@ func _physics_process(delta: float) -> void:
 		velocity += _customForce2D.velocity
 	
 	ExecuteState(StateExecutionType.FixedUpdate)
+	
+	
 	
 	move_and_slide()
 	pass
@@ -170,8 +188,19 @@ func AttackState(stateExecutionType: StateExecutionType):
 func SpecialState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
+			if _gigaPunchRush:
+				_gigaPunchRush.dashDirection = rotateDirection.x
+				_gigaPunchRush.Trigger()
 			pass
 		StateExecutionType.Update:
+			if _gigaPunchRush:
+				if not _gigaPunchRush.IsExecuting():
+					SwitchState(BossState.Idle)
+			else:
+				SwitchState(BossState.Idle)
 			pass
+		StateExecutionType.FixedUpdate:
+			if _gigaPunchRush:
+				_gigaPunchRush.External_PhysicsProcess(_physicsDeltaTime)
 		_:
 			pass
