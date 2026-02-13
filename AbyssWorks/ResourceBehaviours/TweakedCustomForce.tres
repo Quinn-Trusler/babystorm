@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CustomForce2D" load_steps=2 format=3 uid="uid://dvw5ane5ynyql"]
 
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/CustomForce2D.gd" id="1_h5ggi"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/Misc/CustomForce2D.gd" id="1_h5ggi"]
 
 [resource]
 script = ExtResource("1_h5ggi")

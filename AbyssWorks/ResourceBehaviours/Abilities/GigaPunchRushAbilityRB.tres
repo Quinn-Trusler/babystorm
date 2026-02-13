@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GigaPunchRushAbility" load_steps=2 format=3 uid="uid://cls1bwlefnx3r"]
+
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/Abilities/GigaPunchRushAbility.gd" id="1_4sqbx"]
+
+[resource]
+script = ExtResource("1_4sqbx")
+gigaAnimName = "GigaPunch"
+dashTime = 0.25
+dashSpeed = 1200.0
