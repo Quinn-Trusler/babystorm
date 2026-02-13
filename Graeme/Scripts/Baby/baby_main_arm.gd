@@ -14,8 +14,9 @@ const PROJECTILE_NAME = "projectile"
 
 @export var attack_cooldown: float = 0.5
 
-var current_type = DEFAULT_NAME
+var current_type: String = DEFAULT_NAME
 var can_attack = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	the_baby.on_change_direction.connect(change_attack_direction)
@@ -36,7 +37,7 @@ func attack():
 		can_attack = false
 		attack_cool_down_timer.start()
 		
-		if DEFAULT_NAME:
+		if current_type == DEFAULT_NAME:
 			var default_attack_instance = DEFAULT_ATTACK.instantiate()
 			add_child(default_attack_instance)
 			default_attack_instance.global_position = attack_spawn_point.global_position

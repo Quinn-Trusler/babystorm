@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Babystorm"
 
+[global_group]
+
+projectile=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

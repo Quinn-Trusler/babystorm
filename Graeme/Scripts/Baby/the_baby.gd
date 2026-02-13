@@ -57,6 +57,7 @@ func _input(event):
 			main_arm.attack()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			print("Right mouse button pressed!")
+			secondary_arm.attack()
 		
 
 		
