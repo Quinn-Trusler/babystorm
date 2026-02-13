@@ -16,6 +16,9 @@ func TryTrigger() -> void:
 func ExecutionCancel() -> void:
 	pass
 
+func IsExecuting() -> bool:
+	return false
+
 func External_Ready() -> void:
 	pass
 

@@ -18,6 +18,7 @@ max_terminal_velocity = 4000.0
 size = Vector2(120, 120)
 
 [node name="BulletBall" type="Area2D"]
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_unqs7")
 force = 10.0
 customForce2D = SubResource("Resource_ur7bj")

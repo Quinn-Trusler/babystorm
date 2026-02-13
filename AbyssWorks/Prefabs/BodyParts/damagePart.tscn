@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc1v28suud5xx"]
+
+[ext_resource type="Texture2D" uid="uid://dxtti3mn2t58j" path="res://AbyssWorks/Textures/ModSquare.png" id="1_6ybo0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5psm1"]
+size = Vector2(97, 96)
+
+[node name="Area2D_Part" type="Area2D"]
+modulate = Color(0.8, 0, 0.00784314, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5psm1")
+
+[node name="Shape" type="Sprite2D" parent="."]
+texture = ExtResource("1_6ybo0")

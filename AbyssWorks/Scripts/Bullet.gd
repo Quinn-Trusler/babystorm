@@ -21,7 +21,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	position += _customForce2D.velocity
-	
 	_customForce2D._simulate_forces(false, delta)
 	pass
 	
