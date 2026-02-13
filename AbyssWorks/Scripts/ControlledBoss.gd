@@ -24,6 +24,7 @@ var _customForce2D: CustomForce2D = null
 
 var _currentState: BossState = BossState.Idle
 var _inputDirection: float = 0
+@warning_ignore("unused_private_class_variable")
 var _dashDir: float = 1
 
 var _deltaTime: float = 0
