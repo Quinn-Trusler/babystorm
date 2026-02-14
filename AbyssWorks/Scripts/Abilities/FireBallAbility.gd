@@ -1,4 +1,4 @@
-extends ResourceBehaviour
+extends Ability
 class_name FireBallAbility
 
 var ballNode : Node2D = null

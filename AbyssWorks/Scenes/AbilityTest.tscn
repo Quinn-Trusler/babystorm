@@ -8,11 +8,10 @@
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Misc/CustomForce2D.gd" id="5_k41iv"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Bullet.gd" id="6_gjnwp"]
 [ext_resource type="PackedScene" uid="uid://rk7c1tc64sho" path="res://AbyssWorks/Prefabs/SimpleBoss2D.tscn" id="8_p63bm"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/AutomatedBoss.gd" id="9_tufmu"]
 
 [sub_resource type="Resource" id="Resource_qryff"]
 script = ExtResource("2_3e61s")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_12a5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pj5y"]
 size = Vector2(1209, 49)
@@ -36,16 +35,6 @@ size = Vector2(120, 120)
 script = ExtResource("1_jwhiv")
 ballNode = NodePath("../BulletArea2D/BallSprite2D")
 fireballAbility = SubResource("Resource_qryff")
-
-[node name="Dummy" type="CharacterBody2D" parent="."]
-position = Vector2(1018, 489)
-
-[node name="BossSprite2D" type="Sprite2D" parent="Dummy"]
-texture = ExtResource("3_bqmpb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy"]
-scale = Vector2(6.5, 6.5)
-shape = SubResource("RectangleShape2D_12a5l")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(569, 569)
@@ -79,10 +68,13 @@ position = Vector2(160, 495)
 JUMP_VELOCITY = 180.0
 customForce2D = ExtResource("4_p6kem")
 
-[node name="SimpleBossAnim2" parent="." instance=ExtResource("8_p63bm")]
-position = Vector2(409, 495)
-JUMP_VELOCITY = 180.0
+[node name="AutomatedBossAnim" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_p63bm")]
+position = Vector2(898, 495)
+script = ExtResource("9_tufmu")
+attackTime = 10.0
 customForce2D = ExtResource("4_p6kem")
+target = NodePath("../SimpleBossAnim")
+nearDistanceToTarget = 300.0
 metadata/bodyColor = Color(0.0883331, 0.600824, 0.672148, 1)
 metadata/rhColor = Color(0, 0.579148, 0.176489, 1)
 metadata/lhColor = Color(0.375952, 0.369639, 0, 1)

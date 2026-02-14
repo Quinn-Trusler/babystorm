@@ -185,6 +185,7 @@ _data = {
 }
 
 [node name="SimpleBossAnim" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_8kj1u")
 customForce2D = SubResource("Resource_84n5a")
 idleAnim = "Idle"
