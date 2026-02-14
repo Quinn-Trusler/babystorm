@@ -55,22 +55,22 @@ func Trigger():
 func External_Process(delta):
 	if not isExecuting:
 		if not usePhysicsDelta:
-			_cooldownTimer -= delta
+			_cooldownTimer = maxf(_cooldownTimer - delta, 0)
 		return
-	else:
-		if not usePhysicsDelta:
-			_condition_cooldown(delta)
+	
+	if not usePhysicsDelta:
+		_condition_cooldown(delta)
 	
 	pass
 
 func External_PhysicsProcess(delta):
 	if not isExecuting:
 		if usePhysicsDelta:
-			_cooldownTimer -= delta
+			_cooldownTimer = maxf(_cooldownTimer - delta, 0)
 		return
-	else:
-		if usePhysicsDelta:
-			_condition_cooldown(delta)
+	
+	if usePhysicsDelta:
+		_condition_cooldown(delta)
 				
 	
 	if _dashTimer > 0:
@@ -93,6 +93,6 @@ func IsExecuting():
 
 func _condition_cooldown(delta):
 	if tickWhileExecuting:
-		_cooldownTimer -= delta
+		_cooldownTimer = maxf(_cooldownTimer - delta, 0)
 	else:
 		_cooldownTimer = cooldownTime

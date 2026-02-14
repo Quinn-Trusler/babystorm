@@ -14,6 +14,7 @@ enum BossState { Idle, Move, Fall, Attack, Special }
 @export var basicAttackAnims: Array[String] = []
 
 @export_group(("Abilities"))
+@export var basicPunchAbility: BasicPunchAbility
 @export var gigaPunchRushAbility: GigaPunchRushAbility
 
 var bulletRes = preload("res://AbyssWorks/Prefabs/BulletBall.tscn")
@@ -24,12 +25,11 @@ var _customForce2D: CustomForce2D = null
 
 var _currentState: BossState = BossState.Idle
 var _inputDirection: float = 0
-@warning_ignore("unused_private_class_variable")
-var _dashDir: float = 1
 
 var _deltaTime: float = 0
 var _physicsDeltaTime: float = 0
 
+var _basicPunch: BasicPunchAbility = null
 var _gigaPunchRush: GigaPunchRushAbility = null
 
 var _abilities: Array[Ability] = []
@@ -41,6 +41,11 @@ func _ready() -> void:
 		_customForce2D = customForce2D.duplicate(true)
 		_customForce2D.node2D = self
 	
+	if (basicPunchAbility):
+		_basicPunch = basicPunchAbility.duplicate(true)
+		_basicPunch.anim_player = anim_player
+		_basicPunch.External_Ready()
+	
 	if (gigaPunchRushAbility):
 		_gigaPunchRush = gigaPunchRushAbility.duplicate(true)
 		_gigaPunchRush.animationSubscriber = anim_player as AnimationSubscriber
@@ -48,6 +53,7 @@ func _ready() -> void:
 		_gigaPunchRush.characterBody2D = self
 		_gigaPunchRush.External_Ready()
 		
+	_abilities.append(_basicPunch)
 	_abilities.append(_gigaPunchRush)
 	
 	ExecuteState(StateExecutionType.Enter)
@@ -183,14 +189,17 @@ func FallState(stateExecutionType: StateExecutionType):
 func AttackState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
-			if (anim_player and basicAttackAnims.size() > 0):
-				anim_player.play(basicAttackAnims.pick_random())
+			if (_basicPunch and _basicPunch.CanTrigger()):
+				_basicPunch.Trigger()
 				pass
 			else:
 				SwitchState(BossState.Idle)
 			pass
 		StateExecutionType.Update:
-			if (!anim_player.is_playing()):
+			if (_basicPunch):
+				if not _basicPunch.IsExecuting():
+					SwitchState(BossState.Idle)
+			else:
 				SwitchState(BossState.Idle)
 			pass
 		_:
