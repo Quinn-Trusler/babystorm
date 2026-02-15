@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dn3iq6djy27ym" path="res://Quinn/art/Ice DNA.png" id="2_4hyr7"]
 [ext_resource type="FontFile" uid="uid://d0fml67pkspne" path="res://Quinn/font/yoster.ttf" id="3_f0yyg"]
 [ext_resource type="Texture2D" uid="uid://co7jxatl6trnd" path="res://Quinn/UI/continue_button.png" id="4_3lbym"]
-[ext_resource type="AudioStream" uid="uid://h8q4hj0x51me" path="res://music/Babystorm music 1.wav" id="4_usxru"]
 [ext_resource type="Texture2D" uid="uid://p53dfax5quuf" path="res://Quinn/UI/continue_button_hover.png" id="5_6i8ac"]
 [ext_resource type="Script" uid="uid://71h2qqc6so5i" path="res://Quinn/music.gd" id="5_f0yyg"]
+[ext_resource type="AudioStream" uid="uid://w6jd8lqbgyh3" path="res://music/Babystorm music short.wav" id="6_3lbym"]
 
 [sub_resource type="Animation" id="Animation_s4ft7"]
 length = 0.001
@@ -217,7 +217,7 @@ texture_normal = ExtResource("4_3lbym")
 texture_hover = ExtResource("5_6i8ac")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1073356526]
-stream = ExtResource("4_usxru")
+stream = ExtResource("6_3lbym")
 autoplay = true
 script = ExtResource("5_f0yyg")
 
