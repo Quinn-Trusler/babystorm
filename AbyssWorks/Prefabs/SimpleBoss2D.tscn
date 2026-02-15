@@ -23,6 +23,7 @@ max_terminal_velocity = 4000.0
 [sub_resource type="Resource" id="Resource_6adao"]
 script = ExtResource("3_h2uov")
 consecutiveHits = 1
+attackDistance = 180.0
 basicAttackAnims = Array[String](["LeftPunch", "RightPunch"])
 cooldownTime = 0.0
 allowFirst = false

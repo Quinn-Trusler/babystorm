@@ -4,12 +4,7 @@ class_name GigaPunchRushAbility
 @export var gigaAnimName: String = ""
 @export var dashTime: float = 3
 @export var dashSpeed: float = 4
-
-@export_group("Execution delay control")
-@export var cooldownTime: float = 0
-@export var allowFirst: bool = false
-@export var tickWhileExecuting: bool = false
-@export var usePhysicsDelta: bool = true
+@export var attackDistance: float = 400
 
 var characterBody2D: CharacterBody2D = null
 var customForce2D: CustomForce2D = null
@@ -55,6 +50,9 @@ func Trigger():
 	_cooldownTimer = cooldownTime
 	
 	pass
+	
+func CheckRequirements(distance: float) -> bool:
+	return distance <= attackDistance
 	
 func External_Process(delta):
 	if not isExecuting:

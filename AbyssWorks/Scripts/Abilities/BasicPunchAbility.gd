@@ -2,13 +2,8 @@ extends Ability
 class_name BasicPunchAbility
 
 @export_range(1, 100) var consecutiveHits: int = 1
+@export var attackDistance: float = 180
 @export var basicAttackAnims: Array[String] = []
-
-@export_group("Execution delay control")
-@export var cooldownTime: float = 0
-@export var allowFirst: bool = false
-@export var tickWhileExecuting: bool = false
-@export var usePhysicsDelta: bool = true
 
 var anim_player: AnimationPlayer = null
 
@@ -38,6 +33,9 @@ func Trigger():
 		_consecutiveCount = 1
 		anim_player.play(basicAttackAnims.pick_random())
 	pass
+	
+func CheckRequirements(distance: float) -> bool:
+	return distance <= attackDistance
 	
 func External_Process(delta):
 	if not isExecuting:

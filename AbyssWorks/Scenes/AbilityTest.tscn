@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://clexcbmer7hsj"]
+[gd_scene load_steps=19 format=3 uid="uid://clexcbmer7hsj"]
 
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/someScript.gd" id="1_jwhiv"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Abilities/FireBallAbility.gd" id="2_3e61s"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Misc/CustomForce2D.gd" id="5_k41iv"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Bullet.gd" id="6_gjnwp"]
 [ext_resource type="PackedScene" uid="uid://rk7c1tc64sho" path="res://AbyssWorks/Prefabs/SimpleBoss2D.tscn" id="8_p63bm"]
+[ext_resource type="Resource" uid="uid://cd5hf1lhvdt4w" path="res://AbyssWorks/ResourceBehaviours/Abilities/GigaPunchRushAbilityRB_ZeroC.tres" id="9_2mfi2"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/AutomatedBoss.gd" id="9_tufmu"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="10_ukbhy"]
 [ext_resource type="Resource" uid="uid://cls1bwlefnx3r" path="res://AbyssWorks/ResourceBehaviours/Abilities/GigaPunchRushAbilityRB.tres" id="11_w5cow"]
@@ -15,6 +16,10 @@
 
 [sub_resource type="Resource" id="Resource_qryff"]
 script = ExtResource("2_3e61s")
+cooldownTime = 0.0
+allowFirst = false
+tickWhileExecuting = false
+usePhysicsDelta = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pj5y"]
 size = Vector2(1209, 49)
@@ -35,6 +40,7 @@ size = Vector2(120, 120)
 [sub_resource type="Resource" id="Resource_6gfrr"]
 script = ExtResource("12_swjeh")
 consecutiveHits = 1
+attackDistance = 180.0
 basicAttackAnims = Array[String](["LeftPunch", "RightPunch"])
 cooldownTime = 2.0
 allowFirst = true
@@ -79,14 +85,16 @@ shape = SubResource("RectangleShape2D_vao0r")
 position = Vector2(160, 495)
 JUMP_VELOCITY = 180.0
 customForce2D = ExtResource("4_p6kem")
+gigaPunchRushAbility = ExtResource("9_2mfi2")
 
 [node name="AutomatedBossAnim" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_p63bm")]
 position = Vector2(898, 495)
 script = ExtResource("9_tufmu")
 attackTime = 10.0
+stamina = 100.0
 customForce2D = ExtResource("4_p6kem")
 target = NodePath("../SimpleBossAnim")
-nearDistanceToTarget = 300.0
+nearDistanceToTarget = 150.0
 abilities = Array[ExtResource("10_ukbhy")]([SubResource("Resource_6gfrr"), ExtResource("11_w5cow")])
 metadata/bodyColor = Color(0.0883331, 0.600824, 0.672148, 1)
 metadata/rhColor = Color(0, 0.579148, 0.176489, 1)

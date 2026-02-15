@@ -5,6 +5,7 @@ enum BossState { Idle, Move, Fall, Attack}
 
 @export var SPEED: float = 300.0
 @export var attackTime: float = 10
+@export var stamina: float = 100
 @export var customForce2D: CustomForce2D
 
 @export_group("Target")
@@ -82,6 +83,10 @@ func _process(delta: float) -> void:
 	
 	_cur_attack_time += delta
 	
+	if _cur_ability == null and _currentState != BossState.Attack:
+		#print(BossState.keys()[_currentState])
+		_cur_ability = _get_ability()
+	
 	ExecuteState(StateExecutionType.Update)
 	
 	for _ability in _abilities:
@@ -141,7 +146,7 @@ func _get_ability() -> Ability:
 	var index = null
 	for i in range(_abilities.size()):
 		var _ability: Ability = _abilities[i]
-		if _ability.CanTrigger():
+		if _ability.CanTrigger() and _ability.CheckRequirements(_target_direction.length()):
 			res_ability = _ability
 			index = i
 			break
@@ -180,13 +185,12 @@ func IdleState(stateExecutionType: StateExecutionType):
 				anim_player.play(idleAnim)
 			pass
 		StateExecutionType.Update:
-			if _target_direction.length() > nearDistanceToTarget:
-				SwitchState(BossState.Move)
-				return
-				
-			_cur_ability = _get_ability()
 			if _cur_ability:
 				SwitchState(BossState.Attack)
+				return
+				
+			if _target_direction.length() > nearDistanceToTarget:
+				SwitchState(BossState.Move)
 				return
 				
 			velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -201,6 +205,10 @@ func MoveState(stateExecutionType: StateExecutionType):
 				anim_player.play(moveAnim)
 			pass
 		StateExecutionType.Update:
+			if _cur_ability:
+				SwitchState(BossState.Attack)
+				return
+				
 			if _target_direction.length() <= nearDistanceToTarget:
 				SwitchState(BossState.Idle)
 				return
