@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjokroqrnot71"
-path="res://.godot/imported/baby_head.png-b87a2b3e4774a4bb41ffdca06694029d.ctex"
+uid="uid://ct7gk82o40167"
+path="res://.godot/imported/back_arm_small.png-e63883acfc6b8e353a6bbbf78a2bce7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/baby/baby_head.png"
-dest_files=["res://.godot/imported/baby_head.png-b87a2b3e4774a4bb41ffdca06694029d.ctex"]
+source_file="res://assets/sprites/baby/back_arm_small.png"
+dest_files=["res://.godot/imported/back_arm_small.png-e63883acfc6b8e353a6bbbf78a2bce7d.ctex"]
 
 [params]
 
