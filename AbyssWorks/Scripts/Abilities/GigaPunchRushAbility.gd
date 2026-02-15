@@ -26,6 +26,10 @@ var _canDash: bool = false
 var _cooldownTimer: float = 0
 
 func External_Ready():
+	characterBody2D = _variable_dict["char_body"]
+	customForce2D = _variable_dict["custom_force"]
+	animationSubscriber = _variable_dict["anim_subsc"]
+	
 	if animationSubscriber:
 		animationSubscriber.SubscribeCallable("PunchRush", self._start_dash)
 	
@@ -75,7 +79,7 @@ func External_PhysicsProcess(delta):
 	
 	if _dashTimer > 0:
 		if characterBody2D:
-			characterBody2D.velocity.x = dashDirection * dashSpeed
+			characterBody2D.velocity.x = sign(characterBody2D.transform.x.x) * dashSpeed
 			characterBody2D.velocity.y = 0
 		if customForce2D:
 			customForce2D.ResetForces()

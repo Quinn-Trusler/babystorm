@@ -33,24 +33,31 @@ var _basicPunch: BasicPunchAbility = null
 var _gigaPunchRush: GigaPunchRushAbility = null
 
 var _abilities: Array[Ability] = []
+var _variable_dict: Dictionary = {}
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+const FLIP_X = Transform2D(Vector2(-1, 0), Vector2(0, 1), Vector2(0, 0))
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if (customForce2D):
 		_customForce2D = customForce2D.duplicate(true)
 		_customForce2D.node2D = self
 	
+	_variable_dict["anim_player"] = anim_player
+	_variable_dict["anim_subsc"] = anim_player as AnimationSubscriber
+	_variable_dict["custom_force"] = _customForce2D
+	_variable_dict["char_body"] = self
+	_variable_dict["node2d"] = self as Node2D
+	
 	if (basicPunchAbility):
 		_basicPunch = basicPunchAbility.duplicate(true)
-		_basicPunch.anim_player = anim_player
+		_basicPunch._variable_dict = _variable_dict
 		_basicPunch.External_Ready()
 	
 	if (gigaPunchRushAbility):
 		_gigaPunchRush = gigaPunchRushAbility.duplicate(true)
-		_gigaPunchRush.animationSubscriber = anim_player as AnimationSubscriber
-		_gigaPunchRush.customForce2D = _customForce2D
-		_gigaPunchRush.characterBody2D = self
+		_gigaPunchRush._variable_dict = _variable_dict
 		_gigaPunchRush.External_Ready()
 		
 	_abilities.append(_basicPunch)
@@ -105,7 +112,8 @@ func _physics_process(delta: float) -> void:
 	
 	if _inputDirection != 0 and _currentState != BossState.Special:
 		rotateDirection = Vector2.RIGHT * _inputDirection
-		transform.x = Vector2(_inputDirection, 0.0)
+		#transform.x = Vector2(_inputDirection, 0.0)
+		_flip_horizontal(_inputDirection)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -120,6 +128,15 @@ func _physics_process(delta: float) -> void:
 			_ability.External_PhysicsProcess(_physicsDeltaTime)
 		
 	move_and_slide()
+	pass
+
+func _flip_horizontal(direction: float):
+	var signedDir = sign(direction)
+	var signedXTransform = sign(transform.x.x)
+	if signedDir == 0 or signedXTransform == 0:
+		return
+	if signedDir != signedXTransform:
+		transform = transform * FLIP_X
 	pass
 	
 func ExecuteState(stateExecutionType: StateExecutionType):
@@ -209,7 +226,6 @@ func SpecialState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
 			if _gigaPunchRush:
-				_gigaPunchRush.dashDirection = rotateDirection.x
 				_gigaPunchRush.Trigger()
 			pass
 		StateExecutionType.Update:

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 enum StateExecutionType { Enter, Update, FixedUpdate, Exit }
-enum BossState { Idle, Move, Fall, Attack, Special }
+enum BossState { Idle, Move, Fall, Attack}
 
 @export var SPEED: float = 300.0
 @export var attackTime: float = 10
@@ -15,10 +15,9 @@ enum BossState { Idle, Move, Fall, Attack, Special }
 @export var idleAnim: String = ""
 @export var moveAnim: String = ""
 @export var fallAnim: String = ""
-@export var basicAttackAnims: Array[String] = []
 
 @export_group(("Abilities"))
-@export var gigaPunchRushAbility: GigaPunchRushAbility
+@export var abilities: Array[Ability] = []
 
 var isGrounded: bool;
 var rotateDirection: Vector2 = Vector2.RIGHT
@@ -33,9 +32,15 @@ var _physicsDeltaTime: float = 0
 
 var _cur_attack_time: float = 0
 
-var _gigaPunchRush: GigaPunchRushAbility = null
+var _variable_dict: Dictionary = {}
+
+var _abilities: Array[Ability] = []
+
+var _cur_ability: Ability = null
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+const FLIP_X = Transform2D(Vector2(-1, 0), Vector2(0, 1), Vector2(0, 0))
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,12 +48,19 @@ func _ready() -> void:
 		_customForce2D = customForce2D.duplicate(true)
 		_customForce2D.node2D = self
 	
-	if (gigaPunchRushAbility):
-		_gigaPunchRush = gigaPunchRushAbility.duplicate(true)
-		_gigaPunchRush.animationSubscriber = anim_player as AnimationSubscriber
-		_gigaPunchRush.customForce2D = _customForce2D
-		_gigaPunchRush.characterBody2D = self
-		_gigaPunchRush.External_Ready()
+	_variable_dict["anim_player"] = anim_player
+	_variable_dict["anim_subsc"] = anim_player as AnimationSubscriber
+	_variable_dict["custom_force"] = _customForce2D
+	_variable_dict["char_body"] = self
+	_variable_dict["node2d"] = self as Node2D
+	
+	for ability in abilities:
+		if not ability:
+			continue
+		var _ability: Ability = ability.duplicate(true)
+		_ability._variable_dict = _variable_dict
+		_ability.External_Ready()
+		_abilities.append(_ability)
 	
 	if target:
 		_target_direction = target.global_position - global_position
@@ -72,6 +84,10 @@ func _process(delta: float) -> void:
 	
 	ExecuteState(StateExecutionType.Update)
 	
+	for _ability in _abilities:
+		if _ability:
+			_ability.External_Process(_deltaTime)
+	
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -80,9 +96,9 @@ func _physics_process(delta: float) -> void:
 	
 	_physicsDeltaTime = delta
 	
-	if _target_hori_direction != 0 and _currentState != BossState.Special:
+	if _target_hori_direction != 0 and _currentState != BossState.Attack:
 		rotateDirection = Vector2.RIGHT * _target_hori_direction
-		transform.x = Vector2(_target_hori_direction, 0.0)
+		_flip_horizontal(_target_hori_direction)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -103,11 +119,38 @@ func _physics_process(delta: float) -> void:
 	
 	ExecuteState(StateExecutionType.FixedUpdate)
 	
-	#print(_target_direction.length(), " ", nearDistanceToTarget)
+	for _ability in _abilities:
+		if _ability:
+			_ability.External_PhysicsProcess(_physicsDeltaTime)
 	
 	move_and_slide()
 	
 	pass
+	
+func _flip_horizontal(direction: float):
+	var signedDir = sign(direction)
+	var signedXTransform = sign(transform.x.x)
+	if signedDir == 0 or signedXTransform == 0:
+		return
+	if signedDir != signedXTransform:
+		transform = transform * FLIP_X
+	pass
+	
+func _get_ability() -> Ability:
+	var res_ability = null
+	var index = null
+	for i in range(_abilities.size()):
+		var _ability: Ability = _abilities[i]
+		if _ability.CanTrigger():
+			res_ability = _ability
+			index = i
+			break
+	
+	if index != null:
+		_abilities.remove_at(index)
+		_abilities.append(res_ability)
+	
+	return res_ability
 
 func ExecuteState(stateExecutionType: StateExecutionType):
 	match _currentState:
@@ -119,8 +162,6 @@ func ExecuteState(stateExecutionType: StateExecutionType):
 			FallState(stateExecutionType)
 		BossState.Attack:
 			AttackState(stateExecutionType)
-		BossState.Special:
-			SpecialState(stateExecutionType)
 		_:
 			pass
 	pass
@@ -143,8 +184,8 @@ func IdleState(stateExecutionType: StateExecutionType):
 				SwitchState(BossState.Move)
 				return
 				
-			if _cur_attack_time >= attackTime:
-				_cur_attack_time = 0
+			_cur_ability = _get_ability()
+			if _cur_ability:
 				SwitchState(BossState.Attack)
 				return
 				
@@ -182,35 +223,18 @@ func FallState(stateExecutionType: StateExecutionType):
 func AttackState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
-			if (anim_player and basicAttackAnims.size() > 0):
-				anim_player.play(basicAttackAnims.pick_random())
-				pass
-			else:
+			if not _cur_ability:
 				SwitchState(BossState.Idle)
+				return
+			_cur_ability.Trigger()
+			pass
+		StateExecutionType.Exit:
+			_cur_ability = null
 			pass
 		StateExecutionType.Update:
-			if (!anim_player.is_playing()):
+			if not _cur_ability.IsExecuting():
 				SwitchState(BossState.Idle)
+				return
 			pass
-		_:
-			pass
-			
-func SpecialState(stateExecutionType: StateExecutionType):
-	match stateExecutionType:
-		StateExecutionType.Enter:
-			if _gigaPunchRush:
-				_gigaPunchRush.dashDirection = rotateDirection.x
-				_gigaPunchRush.Trigger()
-			pass
-		StateExecutionType.Update:
-			if _gigaPunchRush:
-				if not _gigaPunchRush.IsExecuting():
-					SwitchState(BossState.Idle)
-			else:
-				SwitchState(BossState.Idle)
-			pass
-		StateExecutionType.FixedUpdate:
-			if _gigaPunchRush:
-				_gigaPunchRush.External_PhysicsProcess(_physicsDeltaTime)
 		_:
 			pass

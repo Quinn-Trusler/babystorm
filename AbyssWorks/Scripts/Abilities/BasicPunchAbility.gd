@@ -18,8 +18,11 @@ var isExecuting: bool = false
 var _consecutiveCount: int = 1
 
 func External_Ready():
+	anim_player = _variable_dict["anim_player"]
+	
 	if not allowFirst:
 		_cooldownTimer = cooldownTime
+	
 	pass
 	
 func IsExecuting():

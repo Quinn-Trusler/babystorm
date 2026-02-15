@@ -3,6 +3,8 @@ class_name Ability
 
 signal onExecutionComplete;
 
+var _variable_dict: Dictionary = {}
+
 func CanTrigger() -> bool:
 	return true
 	
