@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://h8q4hj0x51me"
+path="res://.godot/imported/Babystorm music 1.wav-c8f76a3cece495f312759ab5f3280f26.sample"
+
+[deps]
+
+source_file="res://music/Babystorm music 1.wav"
+dest_files=["res://.godot/imported/Babystorm music 1.wav-c8f76a3cece495f312759ab5f3280f26.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dgwce7la5kv76"]
+
+[ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_pg8b3"]
+[ext_resource type="PackedScene" uid="uid://bl2o6eyu8beo4" path="res://Graeme/Scenes/item_pick_up.tscn" id="2_7k3vs"]
+[ext_resource type="Resource" uid="uid://dr61e32pb2lch" path="res://Graeme/Resources/Items/stroller.tres" id="3_xxgml"]
+[ext_resource type="Resource" uid="uid://umobhfywuqy4" path="res://Graeme/Resources/Items/default.tres" id="4_dvmvq"]
+[ext_resource type="AudioStream" uid="uid://h8q4hj0x51me" path="res://music/Babystorm music 1.wav" id="5_hoqxl"]
+[ext_resource type="Script" uid="uid://71h2qqc6so5i" path="res://Quinn/music.gd" id="6_7yuad"]
+[ext_resource type="PackedScene" uid="uid://c8b5ks8w5xxvh" path="res://Quinn/transition_screen.tscn" id="7_bg4gm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eog2y"]
+size = Vector2(1209, 49)
+
+[node name="QuinnTestScene" type="Node2D" unique_id=1081746649]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1527517087]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1858050015]
+position = Vector2(11.5, 14.5)
+shape = SubResource("RectangleShape2D_eog2y")
+
+[node name="TheBaby" parent="." unique_id=973563755 instance=ExtResource("1_pg8b3")]
+position = Vector2(2, -109)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=194665330]
+
+[node name="ItemPickUp" parent="." unique_id=1393872170 instance=ExtResource("2_7k3vs")]
+position = Vector2(333, -170)
+item = ExtResource("3_xxgml")
+
+[node name="ItemPickUp2" parent="." unique_id=1604277567 instance=ExtResource("2_7k3vs")]
+position = Vector2(-143, -116)
+item = ExtResource("4_dvmvq")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1546308271]
+stream = ExtResource("5_hoqxl")
+autoplay = true
+script = ExtResource("6_7yuad")
+
+[node name="TransitionScreen" parent="." unique_id=1977795938 instance=ExtResource("7_bg4gm")]
+visible = false
+powerup_on_win = "ice"
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]
