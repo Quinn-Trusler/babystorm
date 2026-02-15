@@ -19,6 +19,10 @@ run/main_scene="uid://b6alk7jyfmxof"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TransitionScreen="*uid://c8b5ks8w5xxvh"
+
 [dotnet]
 
 project/assembly_name="Babystorm"
@@ -41,6 +45,7 @@ NextScene={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

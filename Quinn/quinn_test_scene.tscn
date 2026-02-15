@@ -4,9 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bl2o6eyu8beo4" path="res://Graeme/Scenes/item_pick_up.tscn" id="2_iofnj"]
 [ext_resource type="Resource" uid="uid://dr61e32pb2lch" path="res://Graeme/Resources/Items/stroller.tres" id="3_i43xj"]
 [ext_resource type="Resource" uid="uid://umobhfywuqy4" path="res://Graeme/Resources/Items/default.tres" id="4_f4y6g"]
-[ext_resource type="AudioStream" uid="uid://h8q4hj0x51me" path="res://music/Babystorm music 1.wav" id="5_yioxo"]
-[ext_resource type="Script" uid="uid://71h2qqc6so5i" path="res://Quinn/music.gd" id="6_lrlvd"]
-[ext_resource type="PackedScene" uid="uid://c8b5ks8w5xxvh" path="res://Quinn/transition_screen.tscn" id="7_lrlvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eog2y"]
 size = Vector2(1209, 49)
@@ -31,14 +28,3 @@ item = ExtResource("3_i43xj")
 [node name="ItemPickUp2" parent="." unique_id=1604277567 instance=ExtResource("2_iofnj")]
 position = Vector2(-143, -116)
 item = ExtResource("4_f4y6g")
-
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1546308271]
-stream = ExtResource("5_yioxo")
-autoplay = true
-script = ExtResource("6_lrlvd")
-
-[node name="TransitionScreen" parent="." unique_id=1977795938 instance=ExtResource("7_lrlvd")]
-visible = false
-powerup_on_win = "ice"
-
-[connection signal="finished" from="Music" to="Music" method="_on_finished"]

@@ -1,24 +1,27 @@
 extends CanvasLayer
 
-@export var powerup_on_win : String
-
 # How it works:
 # Use fade in to trigger
-# When player presses continue it goes to a brand new scene and pases it data
-# That new scene automatically does a fade out
+# When player presses continue new scene is loaded
+# After fade out new scene is unpaused
+
+# ????? We could use global variabes to pass data or pass through this scene
+
 var next_scene : String
-var in_animation : bool = false
+var in_transition : bool = false
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("NextScene") and not in_animation:# Letter n
-		in_animation = true
-		fade_in(["yada yada"],"res://Quinn/quinn_test_scene2.tscn")
+	if Input.is_action_just_pressed("NextScene") and not in_transition:# Letter n
+		in_transition = true
+		fade_in(["mega punch","amazing fire power"],"ice","res://Quinn/quinn_test_scene2.tscn")
 
-func fade_in(powerups_owned, next_scene_):
+func fade_in(powerups_owned, new_powerup, next_scene_):
 	get_tree().paused = true
 	next_scene = next_scene_
 	visible = true
+	$PowerupImage.play(new_powerup)
+	$PowerUpName.text = new_powerup + " gene unlocked!"
 	$AnimationPlayer.play("fade_in")
 	
 func fade_out():
@@ -27,15 +30,14 @@ func fade_out():
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_in":
-		$PowerupImage.play(powerup_on_win)
 		$AnimationPlayer.play("fade_in_UI")
-		print("fade in")
 	if anim_name == "fade_out":
 		visible = false
+		in_transition = false
+		get_tree().paused = false
 
-#func send_information(list_of_powerups : Array[String], new_powerup : String):
 	
 func _on_continue_button_pressed() -> void:
-	get_tree().paused = false
 	get_tree().change_scene_to_file(next_scene)
+	fade_out()
 	
