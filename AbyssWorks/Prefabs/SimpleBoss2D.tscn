@@ -63,6 +63,18 @@ tracks/2/keys = {
 "method": &"TriggerCallable"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D_RightH:canDealDamage")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.566667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_lbv44"]
 resource_name = "Idle"
@@ -118,6 +130,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(78, 3.34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D_LeftH:canDealDamage")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_2ntrd"]
@@ -182,6 +206,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D_RightH:canDealDamage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Area2D_LeftH:canDealDamage")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_04qan"]
 resource_name = "RightPunch"
@@ -209,6 +257,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(84, 1), Vector2(73, 1), Vector2(143, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D_RightH:canDealDamage")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_d4jy4"]
@@ -261,9 +321,10 @@ _data = {
 "RightPunch": SubResource("Animation_04qan")
 }
 
-[node name="SimpleBossAnim" type="CharacterBody2D"]
+[node name="SimpleBossAnim" type="CharacterBody2D" node_paths=PackedStringArray("hitboxes")]
 collision_layer = 2
 script = ExtResource("1_8kj1u")
+hitboxes = [NodePath("Area2D_LeftH"), NodePath("Area2D_RightH")]
 idleAnim = "Idle"
 basicPunchAbility = SubResource("Resource_6adao")
 gigaPunchRushAbility = ExtResource("3_5fo7l")
@@ -271,10 +332,11 @@ metadata/bodyColor = Color(1, 0, 0, 1)
 metadata/rhColor = Color(0.117501, 0.354071, 1, 1)
 metadata/lhColor = Color(0, 0.135694, 0.999999, 1)
 
-[node name="Area2D_LeftH" parent="." node_paths=PackedStringArray("metaDataOwner") instance=ExtResource("1_n8e1m")]
+[node name="Area2D_LeftH" parent="." node_paths=PackedStringArray("instigator", "metaDataOwner") instance=ExtResource("1_n8e1m")]
 modulate = Color(0, 0.135694, 0.999999, 1)
 position = Vector2(78, -7)
 scale = Vector2(0.5, 0.5)
+instigator = NodePath("..")
 metaDataOwner = NodePath("..")
 metaDataName = "lhColor"
 isSelfModulate = false
@@ -322,10 +384,11 @@ rotation = -0.785398
 scale = Vector2(2.461, 0.401)
 texture = ExtResource("1_227uj")
 
-[node name="Area2D_RightH" parent="." node_paths=PackedStringArray("metaDataOwner") instance=ExtResource("1_n8e1m")]
+[node name="Area2D_RightH" parent="." node_paths=PackedStringArray("instigator", "metaDataOwner") instance=ExtResource("1_n8e1m")]
 modulate = Color(0.117501, 0.354071, 1, 1)
 position = Vector2(84, 1)
 scale = Vector2(0.5, 0.5)
+instigator = NodePath("..")
 metaDataOwner = NodePath("..")
 metaDataName = "rhColor"
 isSelfModulate = false

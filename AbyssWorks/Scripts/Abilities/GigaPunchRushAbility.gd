@@ -9,6 +9,7 @@ class_name GigaPunchRushAbility
 var characterBody2D: CharacterBody2D = null
 var customForce2D: CustomForce2D = null
 var animationSubscriber: AnimationSubscriber = null
+var hitboxes: Array[Hitbox] = []
 
 var dashDirection: float = 0
 
@@ -24,6 +25,9 @@ func External_Ready():
 	characterBody2D = _variable_dict["char_body"]
 	customForce2D = _variable_dict["custom_force"]
 	animationSubscriber = _variable_dict["anim_subsc"]
+	hitboxes = _variable_dict["hitboxes"]
+	
+	_enable_hitboxes(false)
 	
 	if animationSubscriber:
 		animationSubscriber.SubscribeCallable("PunchRush", self._start_dash)
@@ -46,9 +50,19 @@ func Trigger():
 	if animationSubscriber:
 		animationSubscriber.play(gigaAnimName)
 	isExecuting = true
-	
+	_enable_hitboxes(true)
+	_reset_hitboxes()
+			
 	_cooldownTimer = cooldownTime
 	
+	pass
+
+func ExecutionCancel():
+	isExecuting = false
+	_canDash = false
+	_cooldownTimer = 0
+	_dashTimer = 0
+	_enable_hitboxes(false)
 	pass
 	
 func CheckRequirements(distance: float) -> bool:
@@ -85,6 +99,7 @@ func External_PhysicsProcess(delta):
 	elif _canDash:
 		isExecuting = false
 		_canDash = false
+		_enable_hitboxes(false)
 		if onExecutionComplete:
 			onExecutionComplete.emit()
 	
@@ -98,3 +113,15 @@ func _condition_cooldown(delta):
 		_cooldownTimer = maxf(_cooldownTimer - delta, 0)
 	else:
 		_cooldownTimer = cooldownTime
+
+func _enable_hitboxes(status: bool):
+	if hitboxes:
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox._set_enabled_status(status)
+				pass
+func _reset_hitboxes():
+	if hitboxes:
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox._clear_hit_objects()

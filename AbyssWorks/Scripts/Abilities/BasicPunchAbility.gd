@@ -6,6 +6,7 @@ class_name BasicPunchAbility
 @export var basicAttackAnims: Array[String] = []
 
 var anim_player: AnimationPlayer = null
+var hitboxes: Array[Hitbox] = []
 
 var _cooldownTimer: float = 0
 var isExecuting: bool = false
@@ -14,6 +15,9 @@ var _consecutiveCount: int = 1
 
 func External_Ready():
 	anim_player = _variable_dict["anim_player"]
+	hitboxes = _variable_dict["hitboxes"]
+	
+	_enable_hitboxes(false)
 	
 	if not allowFirst:
 		_cooldownTimer = cooldownTime
@@ -28,12 +32,21 @@ func CanTrigger():
 	
 func Trigger():
 	if (anim_player and basicAttackAnims.size() > 0):
+		_enable_hitboxes(true)
+		_reset_hitboxes()
+		
 		isExecuting = true
 		_cooldownTimer = cooldownTime
 		_consecutiveCount = 1
 		anim_player.play(basicAttackAnims.pick_random())
 	pass
 	
+func ExecutionCancel():
+	isExecuting = false
+	_cooldownTimer = 0
+	_enable_hitboxes(false)
+	pass
+
 func CheckRequirements(distance: float) -> bool:
 	return distance <= attackDistance
 	
@@ -59,6 +72,7 @@ func External_PhysicsProcess(delta):
 			
 	if not anim_player.is_playing():
 		if _consecutiveCount >= consecutiveHits:
+			_enable_hitboxes(false)
 			isExecuting = false
 			return
 		_consecutiveCount+=1
@@ -71,3 +85,16 @@ func _condition_cooldown(delta):
 		_cooldownTimer = maxf(_cooldownTimer - delta, 0)
 	else:
 		_cooldownTimer = cooldownTime
+
+func _enable_hitboxes(status: bool):
+	if hitboxes:
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox._set_enabled_status(status)
+				pass
+				
+func _reset_hitboxes():
+	if hitboxes:
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox._clear_hit_objects()

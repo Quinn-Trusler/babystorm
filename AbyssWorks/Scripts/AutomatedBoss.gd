@@ -2,6 +2,7 @@ extends CharacterBase
 
 @export var SPEED: float = 300.0
 @export var attackTime: float = 10
+@export var hitboxes: Array[Hitbox] = []
 @export var customForce2D: CustomForce2D
 
 @export_group("Movement stamina")
@@ -58,6 +59,7 @@ func _ready() -> void:
 	_variable_dict["custom_force"] = _customForce2D
 	_variable_dict["char_body"] = self
 	_variable_dict["node2d"] = self as Node2D
+	_variable_dict["hitboxes"] = hitboxes
 	
 	for ability in abilities:
 		if not ability:

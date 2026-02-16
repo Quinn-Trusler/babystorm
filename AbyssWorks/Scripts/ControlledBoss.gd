@@ -2,6 +2,7 @@ extends CharacterBase
 
 @export var SPEED: float = 300.0
 @export var JUMP_VELOCITY: float = 400.0
+@export var hitboxes: Array[Hitbox] = []
 @export var customForce2D: CustomForce2D
 
 @export_group("Animations")
@@ -44,6 +45,7 @@ func _ready() -> void:
 	_variable_dict["custom_force"] = _customForce2D
 	_variable_dict["char_body"] = self
 	_variable_dict["node2d"] = self as Node2D
+	_variable_dict["hitboxes"] = hitboxes
 	
 	if (basicPunchAbility):
 		_basicPunch = basicPunchAbility.duplicate(true)
@@ -178,6 +180,8 @@ func FallState(stateExecutionType: StateExecutionType):
 func AttackState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
+			if (_gigaPunchRush and _gigaPunchRush.IsExecuting()):
+				_gigaPunchRush.ExecutionCancel()
 			if (_basicPunch and _basicPunch.CanTrigger()):
 				_basicPunch.Trigger()
 				pass
@@ -197,6 +201,9 @@ func AttackState(stateExecutionType: StateExecutionType):
 func SpecialState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
+			if _basicPunch and _basicPunch.IsExecuting():
+				_basicPunch.ExecutionCancel()
+			
 			if _gigaPunchRush:
 				_gigaPunchRush.Trigger()
 			pass

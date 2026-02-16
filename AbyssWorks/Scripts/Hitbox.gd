@@ -1,10 +1,12 @@
 extends Area2D
 class_name Hitbox
 
-var target: Node2D = null
-var targetGroups: Array[String] = []
+@export var instigator: Node2D = null
 
-var canDealDamage: bool = false
+@export var target: Node2D = null
+@export var targetGroups: Array[String] = []
+
+@export var canDealDamage: bool = false
 
 @export_group("Modulate control")
 @export var metaDataOwner: Node2D = null
@@ -24,22 +26,22 @@ func _set_enabled_status(status: bool) -> void:
 func _clear_hit_objects():
 	_hitObjects.clear()
 
-func _on_body_entered(body: Node2D) -> void:
+func _physics_process(delta: float) -> void:
 	if not canDealDamage:
 		return
-		
-	if _hitObjects.has(body):
-		return
-		
-	if _is_in_target_groups(body) and body is CharacterBase:
-		_hitObjects.append(body)
-		var characterBase: CharacterBase = body
-		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)			
-	pass # Replace with function body.
-
-
-func _on_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	var overlappingBodies: Array[Node2D] = get_overlapping_bodies()
+	
+	for body: Node2D in overlappingBodies:
+		if body == instigator or _hitObjects.has(body):
+			continue	
+	
+		if body is CharacterBase:
+			_hitObjects.append(body)
+			print(body, " ", _hitObjects.has(body))
+			var characterBase: CharacterBase = body
+			characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
+			
+	pass
 
 func _is_in_target_groups(node2D: Node2D) -> bool:
 	for group_name in targetGroups:
