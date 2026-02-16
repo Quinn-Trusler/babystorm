@@ -1,7 +1,4 @@
-extends CharacterBody2D
-
-enum StateExecutionType { Enter, Update, FixedUpdate, Exit }
-enum BossState { Idle, Move, Fall, Attack, Special }
+extends CharacterBase
 
 @export var SPEED: float = 300.0
 @export var JUMP_VELOCITY: float = 400.0
@@ -11,7 +8,6 @@ enum BossState { Idle, Move, Fall, Attack, Special }
 @export var idleAnim: String = ""
 @export var moveAnim: String = ""
 @export var fallAnim: String = ""
-@export var basicAttackAnims: Array[String] = []
 
 @export_group(("Abilities"))
 @export var basicPunchAbility: BasicPunchAbility
@@ -23,7 +19,6 @@ var isGrounded: bool;
 var rotateDirection: Vector2 = Vector2.RIGHT
 var _customForce2D: CustomForce2D = null
 
-var _currentState: BossState = BossState.Idle
 var _inputDirection: float = 0
 
 var _deltaTime: float = 0
@@ -84,11 +79,11 @@ func _process(delta: float) -> void:
 		bulletInstance.global_position = global_position
 		get_tree().current_scene.add_child(bulletInstance)
 		'''
-		SwitchState(BossState.Attack)
+		SwitchState(BehaviorState.Attack)
 		
 	if Input.is_action_just_pressed("Special"):
 		if _gigaPunchRush != null and _gigaPunchRush.CanTrigger():
-			SwitchState(BossState.Special)
+			SwitchState(BehaviorState.Special)
 		#print(bulletInstance.position, 'position', self)
 	ExecuteState(StateExecutionType.Update)
 	
@@ -110,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	_inputDirection = Input.get_axis("ui_left", "ui_right")
 	
-	if _inputDirection != 0 and _currentState != BossState.Special:
+	if _inputDirection != 0 and _currentState != BehaviorState.Special:
 		rotateDirection = Vector2.RIGHT * _inputDirection
 		#transform.x = Vector2(_inputDirection, 0.0)
 		_flip_horizontal(_inputDirection)
@@ -139,29 +134,6 @@ func _flip_horizontal(direction: float):
 		transform = transform * FLIP_X
 	pass
 	
-func ExecuteState(stateExecutionType: StateExecutionType):
-	match _currentState:
-		BossState.Idle:
-			IdleState(stateExecutionType)
-		BossState.Move:
-			MoveState(stateExecutionType)
-		BossState.Fall:
-			FallState(stateExecutionType)
-		BossState.Attack:
-			AttackState(stateExecutionType)
-		BossState.Special:
-			SpecialState(stateExecutionType)
-		_:
-			pass
-	pass
-
-func SwitchState(bossState: BossState, loop: bool = false):
-	if not loop and _currentState == bossState:
-		return
-	ExecuteState(StateExecutionType.Exit)
-	_currentState = bossState
-	ExecuteState(StateExecutionType.Enter)
-
 func IdleState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
@@ -170,7 +142,7 @@ func IdleState(stateExecutionType: StateExecutionType):
 			pass
 		StateExecutionType.Update:
 			if _inputDirection != 0:
-				SwitchState(BossState.Move)
+				SwitchState(BehaviorState.Move)
 				return
 			
 			pass
@@ -185,7 +157,7 @@ func MoveState(stateExecutionType: StateExecutionType):
 			pass
 		StateExecutionType.Update:
 			if _inputDirection == 0:
-				SwitchState(BossState.Idle)
+				SwitchState(BehaviorState.Idle)
 				return
 			velocity.x = _inputDirection * SPEED
 			pass
@@ -210,14 +182,14 @@ func AttackState(stateExecutionType: StateExecutionType):
 				_basicPunch.Trigger()
 				pass
 			else:
-				SwitchState(BossState.Idle)
+				SwitchState(BehaviorState.Idle)
 			pass
 		StateExecutionType.Update:
 			if (_basicPunch):
 				if not _basicPunch.IsExecuting():
-					SwitchState(BossState.Idle)
+					SwitchState(BehaviorState.Idle)
 			else:
-				SwitchState(BossState.Idle)
+				SwitchState(BehaviorState.Idle)
 			pass
 		_:
 			pass
@@ -231,9 +203,9 @@ func SpecialState(stateExecutionType: StateExecutionType):
 		StateExecutionType.Update:
 			if _gigaPunchRush:
 				if not _gigaPunchRush.IsExecuting():
-					SwitchState(BossState.Idle)
+					SwitchState(BehaviorState.Idle)
 			else:
-				SwitchState(BossState.Idle)
+				SwitchState(BehaviorState.Idle)
 			pass
 		StateExecutionType.FixedUpdate:
 			pass

@@ -90,9 +90,14 @@ gigaPunchRushAbility = ExtResource("9_2mfi2")
 [node name="AutomatedBossAnim" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_p63bm")]
 position = Vector2(898, 495)
 script = ExtResource("9_tufmu")
+SPEED = 200.0
 attackTime = 10.0
-stamina = 100.0
 customForce2D = ExtResource("4_p6kem")
+maxStamina = 10.0
+staminaRecFactor = 1.0
+staminaDepFactor = 2.0
+staminaThreshold_min = 3.0
+staminaThreshold_max = 8.0
 target = NodePath("../SimpleBossAnim")
 nearDistanceToTarget = 150.0
 abilities = Array[ExtResource("10_ukbhy")]([SubResource("Resource_6gfrr"), ExtResource("11_w5cow")])

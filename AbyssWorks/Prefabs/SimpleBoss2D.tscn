@@ -1,24 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://rk7c1tc64sho"]
+[gd_scene load_steps=18 format=3 uid="uid://rk7c1tc64sho"]
 
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/ControlledBoss.gd" id="1_8kj1u"]
 [ext_resource type="Texture2D" uid="uid://dxtti3mn2t58j" path="res://AbyssWorks/Textures/ModSquare.png" id="1_227uj"]
 [ext_resource type="PackedScene" uid="uid://cc1v28suud5xx" path="res://AbyssWorks/Prefabs/BodyParts/damagePart.tscn" id="1_n8e1m"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/Misc/CustomForce2D.gd" id="2_bxg4c"]
 [ext_resource type="Resource" uid="uid://cls1bwlefnx3r" path="res://AbyssWorks/ResourceBehaviours/Abilities/GigaPunchRushAbilityRB.tres" id="3_5fo7l"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Abilities/BasicPunchAbility.gd" id="3_h2uov"]
 [ext_resource type="Texture2D" uid="uid://drc1jgmpq14kb" path="res://AbyssWorks/Textures/CircleNoBackground.png" id="3_i75mi"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/Misc/AnimationSubscriber.gd" id="6_6evk3"]
 [ext_resource type="Script" path="res://AbyssWorks/Scripts/CustomTools/ColorMetaToModulate.gd" id="6_wg6cf"]
-
-[sub_resource type="Resource" id="Resource_84n5a"]
-script = ExtResource("2_bxg4c")
-mass = 1.0
-gravity_scale = 0.4
-gravity = 980.0
-ground_friction = 8.0
-air_drag = 0.1
-static_gravity = 200.0
-max_terminal_velocity = 4000.0
 
 [sub_resource type="Resource" id="Resource_6adao"]
 script = ExtResource("3_h2uov")
@@ -157,6 +146,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(84, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D_Body/Eye/X_Pupil:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D_Body/Eye/Pupil:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D_Body/Eye/Lash:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_04qan"]
 resource_name = "RightPunch"
@@ -186,8 +211,49 @@ tracks/1/keys = {
 "values": [Vector2(84, 1), Vector2(73, 1), Vector2(143, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_d4jy4"]
+resource_name = "DamagedReact"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D_Body/Eye/X_Pupil:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D_Body/Eye/Pupil:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D_Body/Eye/Lash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_npo71"]
 _data = {
+"DamagedReact": SubResource("Animation_d4jy4"),
 "GigaPunch": SubResource("Animation_yqeqh"),
 "Idle": SubResource("Animation_lbv44"),
 "LeftPunch": SubResource("Animation_x7xa5"),
@@ -198,9 +264,7 @@ _data = {
 [node name="SimpleBossAnim" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_8kj1u")
-customForce2D = SubResource("Resource_84n5a")
 idleAnim = "Idle"
-basicAttackAnims = Array[String](["LeftPunch", "RightPunch"])
 basicPunchAbility = SubResource("Resource_6adao")
 gigaPunchRushAbility = ExtResource("3_5fo7l")
 metadata/bodyColor = Color(1, 0, 0, 1)
@@ -241,6 +305,21 @@ self_modulate = Color(0, 0, 0, 1)
 position = Vector2(39.9497, -304.907)
 rotation = 0.466003
 scale = Vector2(4.92094, 0.801471)
+texture = ExtResource("1_227uj")
+
+[node name="X_Pupil" type="Node2D" parent="CollisionShape2D_Body/Eye"]
+visible = false
+
+[node name="Line" type="Sprite2D" parent="CollisionShape2D_Body/Eye/X_Pupil"]
+self_modulate = Color(0, 0, 0, 1)
+rotation = 0.785398
+scale = Vector2(2.461, 0.401)
+texture = ExtResource("1_227uj")
+
+[node name="Line2" type="Sprite2D" parent="CollisionShape2D_Body/Eye/X_Pupil"]
+self_modulate = Color(0, 0, 0, 1)
+rotation = -0.785398
+scale = Vector2(2.461, 0.401)
 texture = ExtResource("1_227uj")
 
 [node name="Area2D_RightH" parent="." node_paths=PackedStringArray("metaDataOwner") instance=ExtResource("1_n8e1m")]

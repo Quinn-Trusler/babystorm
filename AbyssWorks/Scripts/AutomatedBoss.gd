@@ -1,12 +1,15 @@
-extends CharacterBody2D
-
-enum StateExecutionType { Enter, Update, FixedUpdate, Exit }
-enum BossState { Idle, Move, Fall, Attack}
+extends CharacterBase
 
 @export var SPEED: float = 300.0
 @export var attackTime: float = 10
-@export var stamina: float = 100
 @export var customForce2D: CustomForce2D
+
+@export_group("Movement stamina")
+@export var maxStamina: float = 10
+@export var staminaRecFactor: float = 1
+@export var staminaDepFactor: float = 2
+@export var staminaThreshold_min: float = 3
+@export var staminaThreshold_max: float = 8
 
 @export_group("Target")
 @export var target: Node2D = null
@@ -24,7 +27,6 @@ var isGrounded: bool;
 var rotateDirection: Vector2 = Vector2.RIGHT
 var _customForce2D: CustomForce2D = null
 
-var _currentState: BossState = BossState.Idle
 var _target_direction: Vector2 = Vector2.ZERO
 var _target_hori_direction: float = 0
 
@@ -36,8 +38,10 @@ var _cur_attack_time: float = 0
 var _variable_dict: Dictionary = {}
 
 var _abilities: Array[Ability] = []
-
 var _cur_ability: Ability = null
+
+var _cur_stamina: float = 0
+var _cur_stamina_threshold: float = 0
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
@@ -68,6 +72,8 @@ func _ready() -> void:
 		_target_hori_direction = sign(_target_direction.x)	
 	
 	_cur_attack_time = attackTime
+	_cur_stamina = maxStamina
+	_cur_stamina_threshold = randf_range(staminaThreshold_min, staminaThreshold_max)
 	
 	ExecuteState(StateExecutionType.Enter)
 	
@@ -83,8 +89,8 @@ func _process(delta: float) -> void:
 	
 	_cur_attack_time += delta
 	
-	if _cur_ability == null and _currentState != BossState.Attack:
-		#print(BossState.keys()[_currentState])
+	if _cur_ability == null and _currentState != BehaviorState.Attack:
+		#print(BehaviorState.keys()[_currentState])
 		_cur_ability = _get_ability()
 	
 	ExecuteState(StateExecutionType.Update)
@@ -101,7 +107,7 @@ func _physics_process(delta: float) -> void:
 	
 	_physicsDeltaTime = delta
 	
-	if _target_hori_direction != 0 and _currentState != BossState.Attack:
+	if _target_hori_direction != 0 and _currentState != BehaviorState.Attack:
 		rotateDirection = Vector2.RIGHT * _target_hori_direction
 		_flip_horizontal(_target_hori_direction)
 	else:
@@ -157,27 +163,6 @@ func _get_ability() -> Ability:
 	
 	return res_ability
 
-func ExecuteState(stateExecutionType: StateExecutionType):
-	match _currentState:
-		BossState.Idle:
-			IdleState(stateExecutionType)
-		BossState.Move:
-			MoveState(stateExecutionType)
-		BossState.Fall:
-			FallState(stateExecutionType)
-		BossState.Attack:
-			AttackState(stateExecutionType)
-		_:
-			pass
-	pass
-
-func SwitchState(bossState: BossState, loop: bool = false):
-	if not loop and _currentState == bossState:
-		return
-	ExecuteState(StateExecutionType.Exit)
-	_currentState = bossState
-	ExecuteState(StateExecutionType.Enter)
-
 func IdleState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
@@ -186,14 +171,15 @@ func IdleState(stateExecutionType: StateExecutionType):
 			pass
 		StateExecutionType.Update:
 			if _cur_ability:
-				SwitchState(BossState.Attack)
+				SwitchState(BehaviorState.Attack)
 				return
 				
-			if _target_direction.length() > nearDistanceToTarget:
-				SwitchState(BossState.Move)
+			if _target_direction.length() > nearDistanceToTarget and _cur_stamina >= _cur_stamina_threshold:
+				SwitchState(BehaviorState.Move)
 				return
 				
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			_cur_stamina = minf(_cur_stamina + staminaRecFactor * _deltaTime, maxStamina)
 			pass
 		_:
 			pass
@@ -204,15 +190,20 @@ func MoveState(stateExecutionType: StateExecutionType):
 			if (anim_player and moveAnim != ""):
 				anim_player.play(moveAnim)
 			pass
+		StateExecutionType.Exit:
+			_cur_stamina_threshold = randf_range(staminaThreshold_min, staminaThreshold_max)
+			pass
 		StateExecutionType.Update:
 			if _cur_ability:
-				SwitchState(BossState.Attack)
+				SwitchState(BehaviorState.Attack)
 				return
 				
-			if _target_direction.length() <= nearDistanceToTarget:
-				SwitchState(BossState.Idle)
+			if _target_direction.length() <= nearDistanceToTarget or _cur_stamina <= 0:
+				SwitchState(BehaviorState.Idle)
 				return
 			velocity.x = _target_hori_direction * SPEED
+			
+			_cur_stamina = maxf(_cur_stamina - staminaDepFactor * _deltaTime, 0)
 			pass
 		_:
 			pass
@@ -232,7 +223,7 @@ func AttackState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
 			if not _cur_ability:
-				SwitchState(BossState.Idle)
+				SwitchState(BehaviorState.Idle)
 				return
 			_cur_ability.Trigger()
 			pass
@@ -241,8 +232,26 @@ func AttackState(stateExecutionType: StateExecutionType):
 			pass
 		StateExecutionType.Update:
 			if not _cur_ability.IsExecuting():
-				SwitchState(BossState.Idle)
+				SwitchState(BehaviorState.Idle)
 				return
 			pass
 		_:
 			pass
+
+func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
+	if forceInfo and customForce2D:
+		match forceInfo.ForceType:
+			ForceInfo.ForceType.Normal:
+				customForce2D.AddForce(forceInfo.force, forceInfo.forceMode)
+				pass
+			ForceInfo.ForceType.Explosion:
+				customForce2D.AddExplosionForce(forceInfo.explosionForce, forceInfo.explosionPosition,
+				forceInfo.explosionRadius, forceInfo.upwardsModifier, forceInfo.forceMode)
+				pass
+			ForceInfo.ForceType.Implosion:
+				customForce2D.AddExplosionForce(-forceInfo.explosionForce, forceInfo.explosionPosition,
+				forceInfo.explosionRadius, forceInfo.upwardsModifier, forceInfo.forceMode)
+				pass
+			_:
+				pass		
+	pass
