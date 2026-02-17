@@ -87,6 +87,7 @@ func ExecutionCancel():
 	_canDash = false
 	_dashTimer = 0
 	_enable_hitboxes(false)
+	_reset_hitboxes()
 	pass
 	
 func CheckRequirements(distance: float) -> bool:

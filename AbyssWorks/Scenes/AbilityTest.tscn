@@ -67,6 +67,34 @@ position = Vector2(12.5001, 17)
 scale = Vector2(11.8333, 0.509804)
 texture = ExtResource("4_gwwrj")
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(1142, 581)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(11.5, 14.5)
+shape = SubResource("RectangleShape2D_7pj5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+modulate = Color(0.0836291, 0.297798, 0.238199, 1)
+position = Vector2(12.5001, 17)
+scale = Vector2(11.8333, 0.509804)
+texture = ExtResource("4_gwwrj")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(10, 588)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(11.5, 14.5)
+shape = SubResource("RectangleShape2D_7pj5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+modulate = Color(0.0836291, 0.297798, 0.238199, 1)
+position = Vector2(12.5001, 17)
+scale = Vector2(11.8333, 0.509804)
+texture = ExtResource("4_gwwrj")
+
 [node name="BulletArea2D" type="Area2D" parent="."]
 visible = false
 position = Vector2(354, 455)
@@ -81,12 +109,6 @@ texture = ExtResource("3_bqmpb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea2D"]
 shape = SubResource("RectangleShape2D_vao0r")
 
-[node name="SimpleBossAnim" parent="." instance=ExtResource("8_p63bm")]
-position = Vector2(160, 495)
-JUMP_VELOCITY = 1150.0
-customForce2D = ExtResource("4_p6kem")
-gigaPunchRushAbility = ExtResource("9_2mfi2")
-
 [node name="AutomatedBossAnim" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_p63bm")]
 position = Vector2(898, 495)
 script = ExtResource("9_tufmu")
@@ -100,10 +122,15 @@ staminaThreshold_min = 3.0
 staminaThreshold_max = 8.0
 target = NodePath("../SimpleBossAnim")
 nearDistanceToTarget = 150.0
-damagedAnim = "DamagedReact"
 abilities = Array[ExtResource("10_ukbhy")]([SubResource("Resource_6gfrr"), ExtResource("11_w5cow")])
 metadata/bodyColor = Color(0.0883331, 0.600824, 0.672148, 1)
 metadata/rhColor = Color(0, 0.579148, 0.176489, 1)
 metadata/lhColor = Color(0.375952, 0.369639, 0, 1)
+
+[node name="SimpleBossAnim" parent="." instance=ExtResource("8_p63bm")]
+position = Vector2(160, 495)
+JUMP_VELOCITY = 1150.0
+customForce2D = ExtResource("4_p6kem")
+gigaPunchRushAbility = ExtResource("9_2mfi2")
 
 [connection signal="body_entered" from="BulletArea2D" to="BulletArea2D" method="_on_body_entered"]

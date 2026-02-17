@@ -326,6 +326,7 @@ collision_layer = 2
 script = ExtResource("1_8kj1u")
 hitboxes = [NodePath("Area2D_LeftH"), NodePath("Area2D_RightH")]
 idleAnim = "Idle"
+damagedAnim = "DamagedReact"
 basicPunchAbility = SubResource("Resource_6adao")
 gigaPunchRushAbility = ExtResource("3_5fo7l")
 metadata/bodyColor = Color(1, 0, 0, 1)

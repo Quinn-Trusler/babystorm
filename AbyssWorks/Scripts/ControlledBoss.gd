@@ -9,6 +9,7 @@ extends CharacterBase
 @export var idleAnim: String = ""
 @export var moveAnim: String = ""
 @export var fallAnim: String = ""
+@export var damagedAnim: String = ""
 
 @export_group(("Abilities"))
 @export var basicPunchAbility: BasicPunchAbility
@@ -75,7 +76,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and isGrounded:
 		_customForce2D.AddForce(Vector2.UP * JUMP_VELOCITY, CustomForce2D.ForceMode.Impulse)
 		
-	if Input.is_action_just_pressed('Shoot'):
+	if Input.is_action_just_pressed('Shoot') and  _currentState != BehaviorState.Damaged:
 		'''
 		var bulletInstance = bulletRes.instantiate()
 		bulletInstance.moveDirection = rotateDirection
@@ -85,7 +86,7 @@ func _process(delta: float) -> void:
 		'''
 		SwitchState(BehaviorState.Attack)
 		
-	if Input.is_action_just_pressed("Special"):
+	if Input.is_action_just_pressed("Special") and _currentState != BehaviorState.Damaged:
 		if _gigaPunchRush != null and _gigaPunchRush.CanTrigger():
 			SwitchState(BehaviorState.Special)
 		#print(bulletInstance.position, 'position', self)
@@ -111,7 +112,6 @@ func _physics_process(delta: float) -> void:
 	
 	if _inputDirection != 0 and _currentState != BehaviorState.Special:
 		rotateDirection = Vector2.RIGHT * _inputDirection
-		#transform.x = Vector2(_inputDirection, 0.0)
 		_flip_horizontal(_inputDirection)
 	else:
 		_moveVelocity = Vector2(move_toward(velocity.x, 0, SPEED), 0)
@@ -150,6 +150,10 @@ func IdleState(stateExecutionType: StateExecutionType):
 				return
 			
 			pass
+		StateExecutionType.FixedUpdate:
+			_moveVelocity = Vector2(move_toward(velocity.x, 0, SPEED), 0)
+			_move_character(_moveVelocity)
+			pass
 		_:
 			pass
 			
@@ -163,9 +167,10 @@ func MoveState(stateExecutionType: StateExecutionType):
 			if _inputDirection == 0:
 				SwitchState(BehaviorState.Idle)
 				return
+			pass
+		StateExecutionType.FixedUpdate:
 			_moveVelocity = Vector2(_inputDirection * SPEED, 0)
 			_move_character(_moveVelocity)
-			pass
 		_:
 			pass
 
@@ -177,19 +182,24 @@ func FallState(stateExecutionType: StateExecutionType):
 			pass
 		StateExecutionType.Update:
 			pass
+		StateExecutionType.FixedUpdate:
+			_moveVelocity = Vector2(_inputDirection * SPEED, 0)
+			_move_character(_moveVelocity)
 		_:
 			pass
 
 func AttackState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
-			if (_gigaPunchRush and _gigaPunchRush.IsExecuting()):
-				_gigaPunchRush.ExecutionCancel()
 			if (_basicPunch and _basicPunch.CanTrigger()):
 				_basicPunch.Trigger()
 				pass
 			else:
 				SwitchState(BehaviorState.Idle)
+			pass
+		StateExecutionType.Exit:
+			if _basicPunch and _basicPunch.IsExecuting():
+				_basicPunch.ExecutionCancel()
 			pass
 		StateExecutionType.Update:
 			if (_basicPunch):
@@ -204,11 +214,12 @@ func AttackState(stateExecutionType: StateExecutionType):
 func SpecialState(stateExecutionType: StateExecutionType):
 	match stateExecutionType:
 		StateExecutionType.Enter:
-			if _basicPunch and _basicPunch.IsExecuting():
-				_basicPunch.ExecutionCancel()
-			
 			if _gigaPunchRush:
 				_gigaPunchRush.Trigger()
+			pass
+		StateExecutionType.Exit:
+			if (_gigaPunchRush and _gigaPunchRush.IsExecuting()):
+				_gigaPunchRush.ExecutionCancel()
 			pass
 		StateExecutionType.Update:
 			if _gigaPunchRush:
@@ -221,3 +232,40 @@ func SpecialState(stateExecutionType: StateExecutionType):
 			pass
 		_:
 			pass
+
+func DamagedState(stateExecutionType: StateExecutionType):
+	match stateExecutionType:
+		StateExecutionType.Enter:
+			if (anim_player and damagedAnim != ""):
+				anim_player.play(damagedAnim)
+			
+			pass
+		StateExecutionType.Update:
+			if (anim_player and not anim_player.is_playing()):
+				SwitchState(BehaviorState.Idle)
+				return
+			pass
+		StateExecutionType.FixedUpdate:
+			pass
+		_:
+			pass
+			
+func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
+	SwitchState(BehaviorState.Damaged)
+	
+	if forceInfo and _customForce2D:
+		match forceInfo.forceType:
+			ForceInfo.ForceType.Normal:
+				_customForce2D.AddForce(forceInfo.force, forceInfo.forceMode)
+				pass
+			ForceInfo.ForceType.Explosion:
+				_customForce2D.AddExplosionForce(forceInfo.explosionForce, forceInfo.explosionPosition,
+				forceInfo.explosionRadius, forceInfo.upwardsModifier, forceInfo.forceMode)
+				pass
+			ForceInfo.ForceType.Implosion:
+				_customForce2D.AddExplosionForce(-forceInfo.explosionForce, forceInfo.explosionPosition,
+				forceInfo.explosionRadius, forceInfo.upwardsModifier, forceInfo.forceMode)
+				pass
+			_:
+				pass		
+	pass

@@ -44,6 +44,7 @@ func Trigger():
 func ExecutionCancel():
 	isExecuting = false
 	_enable_hitboxes(false)
+	_reset_hitboxes()
 	pass
 
 func CheckRequirements(distance: float) -> bool:
