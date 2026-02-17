@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cggdfe8ppkv02"]
+
+[ext_resource type="Script" path="res://Graeme/Scripts/Attacks/default_attack.gd" id="1_luk8j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_02cs5"]
+radius = 16.0
+height = 60.0
+
+[node name="DefaultAttack" type="Node2D"]
+script = ExtResource("1_luk8j")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_02cs5")
+
+[node name="AttackDurationTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="AttackDurationTimer" to="." method="_on_attack_duration_timer_timeout"]
