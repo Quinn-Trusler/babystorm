@@ -31,6 +31,8 @@ var _gigaPunchRush: GigaPunchRushAbility = null
 var _abilities: Array[Ability] = []
 var _variable_dict: Dictionary = {}
 
+var _moveVelocity: Vector2 = Vector2.ZERO
+
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 const FLIP_X = Transform2D(Vector2(-1, 0), Vector2(0, 1), Vector2(0, 0))
@@ -112,11 +114,8 @@ func _physics_process(delta: float) -> void:
 		#transform.x = Vector2(_inputDirection, 0.0)
 		_flip_horizontal(_inputDirection)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	if (_customForce2D):
-		_customForce2D._simulate_forces(isGrounded, delta)
-		velocity += _customForce2D.velocity
+		_moveVelocity = Vector2(move_toward(velocity.x, 0, SPEED), 0)
+		_move_character(_moveVelocity)
 	
 	ExecuteState(StateExecutionType.FixedUpdate)
 	
@@ -124,7 +123,10 @@ func _physics_process(delta: float) -> void:
 		if _ability:
 			_ability.External_PhysicsProcess(_physicsDeltaTime)
 		
-	move_and_slide()
+	if (_customForce2D):
+		_customForce2D._simulate_forces(isGrounded, delta)
+		_move_character(_customForce2D.velocity)
+		
 	pass
 
 func _flip_horizontal(direction: float):
@@ -161,7 +163,8 @@ func MoveState(stateExecutionType: StateExecutionType):
 			if _inputDirection == 0:
 				SwitchState(BehaviorState.Idle)
 				return
-			velocity.x = _inputDirection * SPEED
+			_moveVelocity = Vector2(_inputDirection * SPEED, 0)
+			_move_character(_moveVelocity)
 			pass
 		_:
 			pass

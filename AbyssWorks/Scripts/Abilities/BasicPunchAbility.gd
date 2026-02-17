@@ -43,7 +43,6 @@ func Trigger():
 	
 func ExecutionCancel():
 	isExecuting = false
-	_cooldownTimer = 0
 	_enable_hitboxes(false)
 	pass
 

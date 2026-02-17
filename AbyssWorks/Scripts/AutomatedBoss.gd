@@ -20,6 +20,7 @@ extends CharacterBase
 @export var idleAnim: String = ""
 @export var moveAnim: String = ""
 @export var fallAnim: String = ""
+@export var damagedAnim: String = ""
 
 @export_group(("Abilities"))
 @export var abilities: Array[Ability] = []
@@ -44,6 +45,8 @@ var _cur_ability: Ability = null
 var _cur_stamina: float = 0
 var _cur_stamina_threshold: float = 0
 
+var _moveVelocity: Vector2 = Vector2.ZERO
+
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 const FLIP_X = Transform2D(Vector2(-1, 0), Vector2(0, 1), Vector2(0, 0))
@@ -51,6 +54,7 @@ const FLIP_X = Transform2D(Vector2(-1, 0), Vector2(0, 1), Vector2(0, 0))
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if (customForce2D):
+		customForce2D.velocity = Vector2.ZERO
 		_customForce2D = customForce2D.duplicate(true)
 		_customForce2D.node2D = self
 	
@@ -109,34 +113,21 @@ func _physics_process(delta: float) -> void:
 	
 	_physicsDeltaTime = delta
 	
-	if _target_hori_direction != 0 and _currentState != BehaviorState.Attack:
-		rotateDirection = Vector2.RIGHT * _target_hori_direction
-		_flip_horizontal(_target_hori_direction)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	if (_customForce2D):
-		_customForce2D._simulate_forces(isGrounded, delta)
-		velocity += _customForce2D.velocity
-	
-	ExecuteState(StateExecutionType.FixedUpdate)
+	isGrounded = is_on_floor()
 	
 	if target:
 		_target_direction = target.global_position - global_position
 		_target_hori_direction = sign(_target_direction.x)
 		
-	
-	if (_customForce2D):
-		_customForce2D._simulate_forces(isGrounded, delta)
-		velocity += _customForce2D.velocity
-	
 	ExecuteState(StateExecutionType.FixedUpdate)
 	
 	for _ability in _abilities:
 		if _ability:
 			_ability.External_PhysicsProcess(_physicsDeltaTime)
 	
-	move_and_slide()
+	if (_customForce2D):
+		_customForce2D._simulate_forces(isGrounded, delta)
+		_move_character(_customForce2D.velocity)
 	
 	pass
 	
@@ -148,6 +139,12 @@ func _flip_horizontal(direction: float):
 	if signedDir != signedXTransform:
 		transform = transform * FLIP_X
 	pass
+	
+func Rotate():
+	if _target_hori_direction != 0:
+		rotateDirection = Vector2.RIGHT * _target_hori_direction
+		_flip_horizontal(_target_hori_direction)
+		
 	
 func _get_ability() -> Ability:
 	var res_ability = null
@@ -180,8 +177,12 @@ func IdleState(stateExecutionType: StateExecutionType):
 				SwitchState(BehaviorState.Move)
 				return
 				
-			velocity.x = move_toward(velocity.x, 0, SPEED)
 			_cur_stamina = minf(_cur_stamina + staminaRecFactor * _deltaTime, maxStamina)
+			pass
+		StateExecutionType.FixedUpdate:
+			_moveVelocity = Vector2(move_toward(velocity.x, 0, SPEED), 0)
+			_move_character(_moveVelocity)
+			Rotate()
 			pass
 		_:
 			pass
@@ -203,10 +204,13 @@ func MoveState(stateExecutionType: StateExecutionType):
 			if _target_direction.length() <= nearDistanceToTarget or _cur_stamina <= 0:
 				SwitchState(BehaviorState.Idle)
 				return
-			velocity.x = _target_hori_direction * SPEED
 			
 			_cur_stamina = maxf(_cur_stamina - staminaDepFactor * _deltaTime, 0)
 			pass
+		StateExecutionType.FixedUpdate:
+			_moveVelocity = Vector2(_target_hori_direction * SPEED, 0)
+			_move_character(_moveVelocity)
+			Rotate()
 		_:
 			pass
 
@@ -217,6 +221,11 @@ func FallState(stateExecutionType: StateExecutionType):
 				anim_player.play(fallAnim)
 			pass
 		StateExecutionType.Update:
+			pass
+		StateExecutionType.FixedUpdate:
+			_moveVelocity = Vector2(move_toward(velocity.x, 0, SPEED), 0)
+			_move_character(_moveVelocity)
+			Rotate()
 			pass
 		_:
 			pass
@@ -230,6 +239,8 @@ func AttackState(stateExecutionType: StateExecutionType):
 			_cur_ability.Trigger()
 			pass
 		StateExecutionType.Exit:
+			if _cur_ability:
+				_cur_ability.ExecutionCancel()
 			_cur_ability = null
 			pass
 		StateExecutionType.Update:
@@ -237,23 +248,49 @@ func AttackState(stateExecutionType: StateExecutionType):
 				SwitchState(BehaviorState.Idle)
 				return
 			pass
+		StateExecutionType.FixedUpdate:
+			pass
+		_:
+			pass
+
+func DamagedState(stateExecutionType: StateExecutionType):
+	match stateExecutionType:
+		StateExecutionType.Enter:
+			if (anim_player and damagedAnim != ""):
+				anim_player.play(damagedAnim)
+			
+			pass
+		StateExecutionType.Update:
+			if (anim_player and not anim_player.is_playing()):
+				SwitchState(BehaviorState.Idle)
+				return
+			pass
+		StateExecutionType.FixedUpdate:
+			pass
 		_:
 			pass
 
 func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
-	if forceInfo and customForce2D:
-		match forceInfo.ForceType:
+	SwitchState(BehaviorState.Damaged)
+	
+	if forceInfo and _customForce2D:
+		#print(forceInfo.force, " ", CustomForce2D.ForceMode.keys()[forceInfo.forceMode])
+		match forceInfo.forceType:
 			ForceInfo.ForceType.Normal:
-				customForce2D.AddForce(forceInfo.force, forceInfo.forceMode)
+				_customForce2D.AddForce(forceInfo.force, forceInfo.forceMode)
 				pass
 			ForceInfo.ForceType.Explosion:
-				customForce2D.AddExplosionForce(forceInfo.explosionForce, forceInfo.explosionPosition,
+				_customForce2D.AddExplosionForce(forceInfo.explosionForce, forceInfo.explosionPosition,
 				forceInfo.explosionRadius, forceInfo.upwardsModifier, forceInfo.forceMode)
 				pass
 			ForceInfo.ForceType.Implosion:
-				customForce2D.AddExplosionForce(-forceInfo.explosionForce, forceInfo.explosionPosition,
+				_customForce2D.AddExplosionForce(-forceInfo.explosionForce, forceInfo.explosionPosition,
 				forceInfo.explosionRadius, forceInfo.upwardsModifier, forceInfo.forceMode)
 				pass
 			_:
 				pass		
+				
+		#print(_customForce2D.velocity)
+		
+	
 	pass

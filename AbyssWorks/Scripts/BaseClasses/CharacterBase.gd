@@ -2,12 +2,16 @@ extends CharacterBody2D
 class_name CharacterBase
 
 enum StateExecutionType { Enter, Update, FixedUpdate, Exit }
-enum BehaviorState { Idle, Move, Fall, Attack, Special }
+enum BehaviorState { Idle, Move, Fall, Attack, Special, Damaged }
 
 var _currentState: BehaviorState = BehaviorState.Idle
 
 func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
 	pass
+
+func _move_character(velocity: Vector2):
+	self.velocity = velocity
+	move_and_slide()
 
 func ExecuteState(stateExecutionType: StateExecutionType):
 	match _currentState:
@@ -21,6 +25,8 @@ func ExecuteState(stateExecutionType: StateExecutionType):
 			AttackState(stateExecutionType)
 		BehaviorState.Special:
 			SpecialState(stateExecutionType)
+		BehaviorState.Damaged:
+			DamagedState(stateExecutionType)
 		_:
 			pass
 	pass
@@ -45,4 +51,7 @@ func AttackState(stateExecutionType: StateExecutionType):
 	pass
 	
 func SpecialState(stateExecutionType: StateExecutionType):
+	pass
+	
+func DamagedState(stateExecutionType: StateExecutionType):
 	pass

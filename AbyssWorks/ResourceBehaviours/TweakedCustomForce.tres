@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_h5ggi")
 mass = 1.0
-gravity_scale = 0.4
+gravity_scale = 2.0
 gravity = 980.0
-ground_friction = 8.0
+ground_friction = 1000.0
 air_drag = 0.1
 static_gravity = 200.0
 max_terminal_velocity = 4000.0

@@ -24,11 +24,6 @@ var accumulated_forces: Vector2 = Vector2.ZERO
 var node2D: Node2D = null
 
 func _simulate_forces(is_grounded: bool, delta: float) -> void:
-
-	# Apply accumulated forces
-	velocity += accumulated_forces * delta
-	accumulated_forces = Vector2.ZERO
-	
 	# Gravity
 	if is_grounded and velocity.y > 0.0:
 		velocity.y = static_gravity * gravity_scale
@@ -38,6 +33,10 @@ func _simulate_forces(is_grounded: bool, delta: float) -> void:
 			velocity.y += gravity * gravity_scale * delta
 
 		_apply_drag(delta)
+		
+	# Apply accumulated forces
+	velocity += accumulated_forces * delta
+	accumulated_forces = Vector2.ZERO
 	
 func AddForce(force: Vector2, forceMode: ForceMode) -> void:
 	match forceMode:
@@ -90,10 +89,13 @@ func ResetForces() -> void:
 	accumulated_forces = Vector2.ZERO
 	
 func _apply_friction(delta: float) -> void:
+	'''
 	velocity.x -= velocity.x * ground_friction * delta
 
 	if abs(velocity.x) < 0.01:
 		velocity.x = 0.0
+	'''
+	velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
 
 
 func _apply_drag(delta: float) -> void:

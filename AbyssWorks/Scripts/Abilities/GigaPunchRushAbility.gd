@@ -6,6 +6,15 @@ class_name GigaPunchRushAbility
 @export var dashSpeed: float = 4
 @export var attackDistance: float = 400
 
+@export_group("Damage")
+@export var damageAmount: float = 0
+@export var damageType: DamageInfo.DamageType = DamageInfo.DamageType.Physical
+
+@export_group("Force")
+@export var forceMode: CustomForce2D.ForceMode = CustomForce2D.ForceMode.Impulse
+@export var forceType: ForceInfo.ForceType = ForceInfo.ForceType.Normal
+@export var pushbackMultiplier: float = 500
+
 var characterBody2D: CharacterBody2D = null
 var customForce2D: CustomForce2D = null
 var animationSubscriber: AnimationSubscriber = null
@@ -41,6 +50,18 @@ func _start_dash():
 	_dashTimer = dashTime
 	_canDash = true
 
+func _modifyDamageAndForceInfo(body: Node2D, damageInfo: DamageInfo, forceInfo: ForceInfo):
+	damageInfo.amount = damageAmount
+	damageInfo.damageType = damageType
+	
+	forceInfo.forceMode = forceMode
+	forceInfo.forceType = forceType
+	
+	if characterBody2D:
+		forceInfo.force = (body.global_position - characterBody2D.global_position).normalized() * pushbackMultiplier
+			
+	pass
+
 func CanTrigger():
 	#print("was checked")
 	#print(isExecuting, " ", _cooldownTimer)
@@ -52,6 +73,10 @@ func Trigger():
 	isExecuting = true
 	_enable_hitboxes(true)
 	_reset_hitboxes()
+	
+	for hitbox: Hitbox in hitboxes:
+		if hitbox:
+			hitbox.onModifyDamageAndForceInfo = self._modifyDamageAndForceInfo
 			
 	_cooldownTimer = cooldownTime
 	
@@ -60,7 +85,6 @@ func Trigger():
 func ExecutionCancel():
 	isExecuting = false
 	_canDash = false
-	_cooldownTimer = 0
 	_dashTimer = 0
 	_enable_hitboxes(false)
 	pass
@@ -91,8 +115,9 @@ func External_PhysicsProcess(delta):
 	
 	if _dashTimer > 0:
 		if characterBody2D:
-			characterBody2D.velocity.x = sign(characterBody2D.transform.x.x) * dashSpeed
-			characterBody2D.velocity.y = 0
+			characterBody2D.velocity = Vector2(sign(characterBody2D.transform.x.x) * dashSpeed, 0)
+			characterBody2D.move_and_slide()
+			
 		if customForce2D:
 			customForce2D.ResetForces()
 		_dashTimer -= delta
@@ -115,13 +140,12 @@ func _condition_cooldown(delta):
 		_cooldownTimer = cooldownTime
 
 func _enable_hitboxes(status: bool):
-	if hitboxes:
-		for hitbox: Hitbox in hitboxes:
-			if hitbox:
-				hitbox._set_enabled_status(status)
-				pass
+	for hitbox: Hitbox in hitboxes:
+		if hitbox:
+			hitbox._set_enabled_status(status)
+			pass
+			
 func _reset_hitboxes():
-	if hitboxes:
-		for hitbox: Hitbox in hitboxes:
-			if hitbox:
-				hitbox._clear_hit_objects()
+	for hitbox: Hitbox in hitboxes:
+		if hitbox:
+			hitbox._clear_hit_objects()

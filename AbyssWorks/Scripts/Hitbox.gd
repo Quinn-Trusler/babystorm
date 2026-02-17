@@ -13,10 +13,12 @@ class_name Hitbox
 @export var metaDataName: String = ""
 @export var isSelfModulate: bool = true
 
-var damageInfo: DamageInfo = null
-var forceInfo: ForceInfo = null
+var _damageInfo: DamageInfo = null
+var _forceInfo: ForceInfo = null
 
 var _hitObjects: Array[Node2D] = []
+
+var onModifyDamageAndForceInfo: Callable = Callable();
 
 func _set_enabled_status(status: bool) -> void:
 	if not status:
@@ -24,6 +26,7 @@ func _set_enabled_status(status: bool) -> void:
 	set_deferred("monitoring", status)
 
 func _clear_hit_objects():
+	onModifyDamageAndForceInfo = Callable()
 	_hitObjects.clear()
 
 func _physics_process(delta: float) -> void:
@@ -37,9 +40,17 @@ func _physics_process(delta: float) -> void:
 	
 		if body is CharacterBase:
 			_hitObjects.append(body)
-			print(body, " ", _hitObjects.has(body))
 			var characterBase: CharacterBase = body
-			characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
+			_damageInfo = DamageInfo.new()
+			_forceInfo = ForceInfo.new()
+			
+			_damageInfo.instigator = instigator
+			
+			if onModifyDamageAndForceInfo.is_valid():
+				onModifyDamageAndForceInfo.call(body, _damageInfo, _forceInfo)
+				onModifyDamageAndForceInfo = Callable()
+			
+			characterBase.ApplyDamageAndForce(_damageInfo, _forceInfo)
 			
 	pass
 

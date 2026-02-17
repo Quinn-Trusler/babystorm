@@ -61,7 +61,7 @@ func getCount(callableName: String) -> int:
 
 func InvokeCallables(callables: Array[Callable]):
 	for callable in callables:
-		if (callable != null):
+		if (callable.is_valid()):
 			callable.call()
 			
 func _exit_tree() -> void:
