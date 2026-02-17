@@ -23,6 +23,10 @@ config/icon="res://icon.svg"
 
 TransitionScreen="*uid://c8b5ks8w5xxvh"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Babystorm"

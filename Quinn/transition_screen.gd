@@ -9,6 +9,7 @@ extends CanvasLayer
 
 var next_scene : String
 var in_transition : bool = false
+var play_animations_backwards = false
 
 
 func _process(_delta: float) -> void:
@@ -17,6 +18,7 @@ func _process(_delta: float) -> void:
 		fade_in(["mega punch","amazing fire power"],"ice","res://Quinn/quinn_test_scene2.tscn")
 
 func fade_in(powerups_owned, new_powerup, next_scene_):
+	play_animations_backwards = false
 	get_tree().paused = true
 	next_scene = next_scene_
 	visible = true
@@ -25,19 +27,24 @@ func fade_in(powerups_owned, new_powerup, next_scene_):
 	$AnimationPlayer.play("fade_in")
 	
 func fade_out():
-	$AnimationPlayer.play("fade_out")
+	play_animations_backwards = true
+	$AnimationPlayer.play_backwards("fade_in")
 	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_in":
-		$AnimationPlayer.play("fade_in_UI")
-	if anim_name == "fade_out":
+		if play_animations_backwards:
+			$AnimationPlayer.play_backwards("fade_in_UI")
+		else:
+			$AnimationPlayer.play("fade_in_UI")
+	if anim_name == "fade_in_UI" and play_animations_backwards == true:
 		visible = false
 		in_transition = false
 		get_tree().paused = false
 
 	
 func _on_continue_button_pressed() -> void:
-	get_tree().change_scene_to_file(next_scene)
-	fade_out()
+	if not play_animations_backwards:
+		get_tree().change_scene_to_file(next_scene)
+		fade_out()
 	

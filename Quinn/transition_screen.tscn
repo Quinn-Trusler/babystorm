@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://hvci7u4b4iar" path="res://Quinn/transition_screen.gd" id="1_77mk1"]
 [ext_resource type="Texture2D" uid="uid://dn3iq6djy27ym" path="res://Quinn/art/Ice DNA.png" id="2_4hyr7"]
 [ext_resource type="FontFile" uid="uid://d0fml67pkspne" path="res://Quinn/font/yoster.ttf" id="3_f0yyg"]
-[ext_resource type="Texture2D" uid="uid://co7jxatl6trnd" path="res://Quinn/UI/continue_button.png" id="4_3lbym"]
-[ext_resource type="Texture2D" uid="uid://p53dfax5quuf" path="res://Quinn/UI/continue_button_hover.png" id="5_6i8ac"]
+[ext_resource type="Texture2D" uid="uid://co7jxatl6trnd" path="res://Quinn/art/UI/continue_button.png" id="4_3lbym"]
+[ext_resource type="Texture2D" uid="uid://p53dfax5quuf" path="res://Quinn/art/UI/continue_button_hover.png" id="5_6i8ac"]
 [ext_resource type="Script" uid="uid://71h2qqc6so5i" path="res://Quinn/music.gd" id="5_f0yyg"]
+[ext_resource type="Texture2D" uid="uid://8gjk4257cba0" path="res://Quinn/art/UI/continue_button_pressed.png" id="5_llslp"]
 [ext_resource type="AudioStream" uid="uid://w6jd8lqbgyh3" path="res://music/Babystorm music short.wav" id="6_3lbym"]
 
 [sub_resource type="Animation" id="Animation_s4ft7"]
@@ -49,7 +50,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HBoxContainer/ContinueButton:modulate")
+tracks/3/path = NodePath("ContinueButton:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -57,6 +58,54 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PowerupImage:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PowerUpName:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ContinueButton:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_77mk1"]
@@ -72,7 +121,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.5),
+"transitions": PackedFloat32Array(3, 3),
+"update": 0,
+"values": [Vector2(0, -650), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pdxje"]
@@ -105,7 +166,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HBoxContainer/ContinueButton:self_modulate")
+tracks/2/path = NodePath("ContinueButton:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -114,53 +175,48 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_voa77"]
-resource_name = "fade_out"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PowerupImage:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PowerupImage:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PowerUpName:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PowerUpName:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(0.1, 0.1), Vector2(4, 4)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HBoxContainer/ContinueButton:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ContinueButton:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(0.1, 0.1), Vector2(4, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4hyr7"]
 _data = {
 &"RESET": SubResource("Animation_s4ft7"),
 &"fade_in": SubResource("Animation_77mk1"),
-&"fade_in_UI": SubResource("Animation_pdxje"),
-&"fade_out": SubResource("Animation_voa77")
+&"fade_in_UI": SubResource("Animation_pdxje")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_voa77"]
@@ -176,6 +232,7 @@ animations = [{
 
 [node name="TransitionScreen" type="CanvasLayer" unique_id=1977795938]
 process_mode = 3
+visible = false
 script = ExtResource("1_77mk1")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=148431534]
@@ -195,25 +252,26 @@ animation = &"ice"
 
 [node name="PowerUpName" type="Label" parent="." unique_id=230208129]
 self_modulate = Color(1, 1, 1, 0)
-offset_top = 72.0
-offset_right = 289.25
-offset_bottom = 99.0
+offset_left = 432.0
+offset_top = 77.0
+offset_right = 722.0
+offset_bottom = 104.0
 scale = Vector2(4, 4)
+pivot_offset = Vector2(145, 13)
 theme_override_fonts/font = ExtResource("3_f0yyg")
 theme_override_font_sizes/font_size = 12
+text = "sdfdssfdfddfs"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=839290303]
-offset_top = 451.0
-offset_right = 288.0
-offset_bottom = 474.5
-scale = Vector2(4, 4)
-alignment = 1
-
-[node name="ContinueButton" type="TextureButton" parent="HBoxContainer" unique_id=1727975835]
+[node name="ContinueButton" type="TextureButton" parent="." unique_id=1727975835]
 self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
+offset_left = 563.0
+offset_top = 468.0
+offset_right = 625.0
+offset_bottom = 484.0
+pivot_offset = Vector2(31, 8)
 texture_normal = ExtResource("4_3lbym")
+texture_pressed = ExtResource("5_llslp")
 texture_hover = ExtResource("5_6i8ac")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1073356526]
@@ -222,5 +280,5 @@ autoplay = true
 script = ExtResource("5_f0yyg")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="pressed" from="HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="finished" from="Music" to="Music" method="_on_finished"]
