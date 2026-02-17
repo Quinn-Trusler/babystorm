@@ -108,7 +108,7 @@ func _physics_process(delta: float) -> void:
 	isGrounded = is_on_floor()
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	_inputDirection = Input.get_axis("ui_left", "ui_right")
+	_inputDirection = Input.get_axis("move_left", "move_right")
 	
 	if _inputDirection != 0 and _currentState != BehaviorState.Special:
 		rotateDirection = Vector2.RIGHT * _inputDirection
