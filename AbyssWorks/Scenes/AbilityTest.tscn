@@ -1,101 +1,89 @@
-[gd_scene load_steps=19 format=3 uid="uid://clexcbmer7hsj"]
+[gd_scene format=3 uid="uid://clexcbmer7hsj"]
 
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/someScript.gd" id="1_jwhiv"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/Abilities/FireBallAbility.gd" id="2_3e61s"]
+[ext_resource type="Script" uid="uid://cag27dm6a1sra" path="res://AbyssWorks/Scripts/someScript.gd" id="1_jwhiv"]
+[ext_resource type="Script" uid="uid://bhu7qkypufcg3" path="res://AbyssWorks/Scripts/Abilities/FireBallAbility.gd" id="2_3e61s"]
 [ext_resource type="Texture2D" uid="uid://csc3o1qqltf1n" path="res://icon.svg" id="3_bqmpb"]
 [ext_resource type="Texture2D" uid="uid://dxtti3mn2t58j" path="res://AbyssWorks/Textures/ModSquare.png" id="4_gwwrj"]
 [ext_resource type="Resource" uid="uid://dvw5ane5ynyql" path="res://AbyssWorks/ResourceBehaviours/TweakedCustomForce.tres" id="4_p6kem"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/Misc/CustomForce2D.gd" id="5_k41iv"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/Bullet.gd" id="6_gjnwp"]
+[ext_resource type="Script" uid="uid://diaaqjycdvfj4" path="res://AbyssWorks/Scripts/Misc/CustomForce2D.gd" id="5_k41iv"]
+[ext_resource type="Script" uid="uid://1m0oypphykjx" path="res://AbyssWorks/Scripts/Bullet.gd" id="6_gjnwp"]
 [ext_resource type="PackedScene" uid="uid://rk7c1tc64sho" path="res://AbyssWorks/Prefabs/SimpleBoss2D.tscn" id="8_p63bm"]
 [ext_resource type="Resource" uid="uid://cd5hf1lhvdt4w" path="res://AbyssWorks/ResourceBehaviours/Abilities/GigaPunchRushAbilityRB_ZeroC.tres" id="9_2mfi2"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/AutomatedBoss.gd" id="9_tufmu"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="10_ukbhy"]
+[ext_resource type="Script" uid="uid://cihpsji3jdbjo" path="res://AbyssWorks/Scripts/AutomatedBoss.gd" id="9_tufmu"]
+[ext_resource type="Script" uid="uid://c7xkca3cn7tdh" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="10_ukbhy"]
 [ext_resource type="Resource" uid="uid://cls1bwlefnx3r" path="res://AbyssWorks/ResourceBehaviours/Abilities/GigaPunchRushAbilityRB.tres" id="11_w5cow"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/Abilities/BasicPunchAbility.gd" id="12_swjeh"]
+[ext_resource type="Script" uid="uid://dbasvhclvxvd2" path="res://AbyssWorks/Scripts/Abilities/BasicPunchAbility.gd" id="12_swjeh"]
 
 [sub_resource type="Resource" id="Resource_qryff"]
 script = ExtResource("2_3e61s")
-cooldownTime = 0.0
-allowFirst = false
-tickWhileExecuting = false
-usePhysicsDelta = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pj5y"]
 size = Vector2(1209, 49)
 
 [sub_resource type="Resource" id="Resource_524qu"]
 script = ExtResource("5_k41iv")
-mass = 1.0
 gravity_scale = 0.0
-gravity = 980.0
 ground_friction = 0.0
 air_drag = 0.0
-static_gravity = 50.0
-max_terminal_velocity = 4000.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vao0r"]
 size = Vector2(120, 120)
 
 [sub_resource type="Resource" id="Resource_6gfrr"]
 script = ExtResource("12_swjeh")
-consecutiveHits = 1
-attackDistance = 180.0
 basicAttackAnims = Array[String](["LeftPunch", "RightPunch"])
 cooldownTime = 2.0
 allowFirst = true
-tickWhileExecuting = false
-usePhysicsDelta = true
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1250586401]
 
-[node name="QuickNode" type="Node" parent="." node_paths=PackedStringArray("ballNode")]
+[node name="QuickNode" type="Node" parent="." unique_id=167565119 node_paths=PackedStringArray("ballNode")]
 script = ExtResource("1_jwhiv")
 ballNode = NodePath("../BulletArea2D/BallSprite2D")
 fireballAbility = SubResource("Resource_qryff")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1363164579]
 position = Vector2(569, 569)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1362279579]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_7pj5y")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1859940111]
 modulate = Color(0.0836291, 0.297798, 0.238199, 1)
 position = Vector2(12.5001, 17)
 scale = Vector2(11.8333, 0.509804)
 texture = ExtResource("4_gwwrj")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1856294974]
 position = Vector2(1142, 581)
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=213703621]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_7pj5y")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=646566302]
 modulate = Color(0.0836291, 0.297798, 0.238199, 1)
 position = Vector2(12.5001, 17)
 scale = Vector2(11.8333, 0.509804)
 texture = ExtResource("4_gwwrj")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=288466890]
 position = Vector2(10, 588)
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1803182889]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_7pj5y")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3" unique_id=890944919]
 modulate = Color(0.0836291, 0.297798, 0.238199, 1)
 position = Vector2(12.5001, 17)
 scale = Vector2(11.8333, 0.509804)
 texture = ExtResource("4_gwwrj")
 
-[node name="BulletArea2D" type="Area2D" parent="."]
+[node name="BulletArea2D" type="Area2D" parent="." unique_id=2047070998]
 visible = false
 position = Vector2(354, 455)
 scale = Vector2(0.4, 0.4)
@@ -103,13 +91,13 @@ script = ExtResource("6_gjnwp")
 force = 10.0
 customForce2D = SubResource("Resource_524qu")
 
-[node name="BallSprite2D" type="Sprite2D" parent="BulletArea2D"]
+[node name="BallSprite2D" type="Sprite2D" parent="BulletArea2D" unique_id=1435616167]
 texture = ExtResource("3_bqmpb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea2D" unique_id=1420542341]
 shape = SubResource("RectangleShape2D_vao0r")
 
-[node name="AutomatedBossAnim" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_p63bm")]
+[node name="AutomatedBossAnim" parent="." unique_id=1418126735 node_paths=PackedStringArray("target") instance=ExtResource("8_p63bm")]
 position = Vector2(898, 495)
 script = ExtResource("9_tufmu")
 SPEED = 200.0
@@ -127,7 +115,7 @@ metadata/bodyColor = Color(0.0883331, 0.600824, 0.672148, 1)
 metadata/rhColor = Color(0, 0.579148, 0.176489, 1)
 metadata/lhColor = Color(0.375952, 0.369639, 0, 1)
 
-[node name="SimpleBossAnim" parent="." instance=ExtResource("8_p63bm")]
+[node name="SimpleBossAnim" parent="." unique_id=1871365039 instance=ExtResource("8_p63bm")]
 position = Vector2(160, 495)
 JUMP_VELOCITY = 1150.0
 customForce2D = ExtResource("4_p6kem")
