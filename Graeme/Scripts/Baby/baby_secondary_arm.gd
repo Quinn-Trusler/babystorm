@@ -8,12 +8,16 @@ const DEFAULT_NAME: String = "default"
 
 @onready var attack_cool_down_timer: Timer = $AttackCoolDownTimer
 @onready var attack_spawn_point: Node2D = $AttackSpawnPoint
+@onready var secondary_arm_animated_sprite_2d: AnimatedSprite2D = $SecondaryArmAnimatedSprite2D
 
 
 
 var can_attack: bool = true
 var current_type: String = DEFAULT_NAME
 var attack_direction = -1
+
+var right_facing_position: Vector2 = Vector2(-2, 4)
+var left_facing_position: Vector2 = Vector2(3, 3)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	the_baby.on_change_direction.connect(change_attack_direction)
@@ -35,15 +39,17 @@ func attack():
 			get_tree().current_scene.add_child(default_projectile_attack_instance)
 			default_projectile_attack_instance.global_position = attack_spawn_point.global_position
 
-			print("attack direction" + str(attack_direction))
+			
 			default_projectile_attack_instance.set_direction(attack_direction)
+			secondary_arm_animated_sprite_2d.play("secondaryArmPunch")
 
 func change_attack_direction(direction):
 	if direction == 1 and attack_spawn_point.position.x < 0 or direction == -1 and attack_spawn_point.position.x > 0:
 		attack_spawn_point.position.x *= -1
 	
-	
+	flip_sprite(direction, secondary_arm_animated_sprite_2d, right_facing_position, left_facing_position)
 	attack_direction = direction
 
 func _on_attack_cool_down_timer_timeout() -> void:
 	can_attack = true
+	#secondary_arm_animated_sprite_2d.play("default")

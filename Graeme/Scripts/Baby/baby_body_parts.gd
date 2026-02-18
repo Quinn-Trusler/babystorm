@@ -5,7 +5,6 @@ class_name BabyBodyPart
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -15,3 +14,12 @@ func swap_part(body_part: String):
 
 func set_new_animation(animation_name: String, animated_sprite: AnimatedSprite2D):
 	animated_sprite.play(animation_name)
+
+func flip_sprite(direction: int, animated_sprite: AnimatedSprite2D, right_pos: Vector2, left_pos: Vector2):
+	#pass
+	if direction < 0:
+		animated_sprite.flip_h = true
+		position = left_pos
+	else:
+		animated_sprite.flip_h = false
+		position = right_pos 
