@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qqr4hbljepge"
-path="res://.godot/imported/back_arm_large.png-97664b6a481fcbbfc8fc7e4df5f5e96b.ctex"
+uid="uid://dv18q4vsxm38w"
+path="res://.godot/imported/baby_torso_jump_anim.png-9410d6afe324c5c4ae92381febe96008.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/baby/back_arm_large.png"
-dest_files=["res://.godot/imported/back_arm_large.png-97664b6a481fcbbfc8fc7e4df5f5e96b.ctex"]
+source_file="res://assets/sprites/baby/baby_torso_jump_anim.png"
+dest_files=["res://.godot/imported/baby_torso_jump_anim.png-9410d6afe324c5c4ae92381febe96008.ctex"]
 
 [params]
 
