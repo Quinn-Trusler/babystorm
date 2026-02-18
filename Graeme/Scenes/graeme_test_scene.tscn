@@ -20,6 +20,7 @@ shape = SubResource("RectangleShape2D_eog2y")
 position = Vector2(2, -109)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [node name="ItemPickUp" parent="." instance=ExtResource("2_8lkbj")]
 position = Vector2(333, -170)
