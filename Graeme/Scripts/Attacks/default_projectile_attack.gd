@@ -1,10 +1,15 @@
 extends RigidBody2D
+class_name DefaultProjectile
 
 var direction: int = -1
 var velocity_scalar: float = 1000
 var initial_velocity = Vector2(0.5, -0.3)
 var rotation_speed = 20
 @onready var projectile_sprite: Sprite2D = $ProjectileSprite
+
+var instigator: Node2D = null
+var damageInfo: DamageInfo = DamageInfo.new()
+var forceInfo: ForceInfo = ForceInfo.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,4 +41,14 @@ func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_hit_area_2d_body_entered(body: Node2D) -> void:
 	# does damage on enemy with rigid body
+	if body == instigator:
+		return	
+	
+	print(body)
+	
+	if body is CharacterBase:
+		var characterBase: CharacterBase = body
+		damageInfo.instigator = instigator
+		
+		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
 	pass
