@@ -15,7 +15,7 @@ var play_animations_backwards = false
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("NextScene") and not in_transition:# Letter n
 		in_transition = true
-		fade_in(["mega punch","amazing fire power"],"ice","res://Quinn/quinn_test_scene2.tscn")
+		fade_in(["fire", "strength"],"ice","res://Quinn/quinn_test_scene2.tscn")
 
 func fade_in(powerups_owned, new_powerup, next_scene_):
 	play_animations_backwards = false
@@ -29,9 +29,11 @@ func fade_in(powerups_owned, new_powerup, next_scene_):
 func fade_out():
 	play_animations_backwards = true
 	$AnimationPlayer.play_backwards("fade_in")
+	print("fade out", play_animations_backwards)
 	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	print("animation finished")
 	if anim_name == "fade_in":
 		if play_animations_backwards:
 			$AnimationPlayer.play_backwards("fade_in_UI")
