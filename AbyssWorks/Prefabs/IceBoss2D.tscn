@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://tc67qi5f4l1g" path="res://assets/sprites/ice_baby/ice_back_shoulder.png" id="3_m4w2e"]
 [ext_resource type="Texture2D" uid="uid://xqn406g52ka2" path="res://assets/sprites/ice_baby/ice_front_arm_push.png" id="4_is1x7"]
 [ext_resource type="Script" uid="uid://d3u3i5wacwbqi" path="res://AbyssWorks/Scripts/Abilities/IceProjectileAbility.gd" id="4_n54vx"]
+[ext_resource type="Script" uid="uid://3kqsayg0g50j" path="res://AbyssWorks/Scripts/Abilities/IceHailStormAbility.gd" id="5_n54vx"]
 [ext_resource type="Script" uid="uid://ibxgg123333m" path="res://AbyssWorks/Scripts/Misc/AnimationSubscriber.gd" id="7_tah1y"]
 
 [sub_resource type="Resource" id="Resource_w6al8"]
@@ -17,6 +18,14 @@ iceAttackAnims = Array[String](["Push"])
 cooldownTime = 5.0
 allowFirst = true
 metadata/_custom_type_script = "uid://d3u3i5wacwbqi"
+
+[sub_resource type="Resource" id="Resource_n54vx"]
+script = ExtResource("5_n54vx")
+iceAttackAnim = "Push"
+spawnInterval = 1.0
+spawnFirstIce = false
+cooldownTime = 20.0
+metadata/_custom_type_script = "uid://3kqsayg0g50j"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5txj4"]
 radius = 16.0
@@ -554,7 +563,7 @@ idleAnim = "Idle"
 moveAnim = "Walk"
 spawnNames = Array[String](["IceProjectileSP"])
 spawnPoints = [NodePath("MainArm/SpawnPoint")]
-abilities = Array[ExtResource("3_cwv1l")]([SubResource("Resource_w6al8")])
+abilities = Array[ExtResource("3_cwv1l")]([SubResource("Resource_w6al8"), SubResource("Resource_n54vx")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=261172196]
 position = Vector2(0, -2)

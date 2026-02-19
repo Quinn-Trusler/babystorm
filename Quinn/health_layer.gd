@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name HealthLayer
 
 func set_player_max_health(max_health):
 	$PlayerHealthBar.max_value = max_health
