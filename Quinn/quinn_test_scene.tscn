@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b6alk7jyfmxof"]
+[gd_scene load_steps=6 format=3 uid="uid://b6alk7jyfmxof"]
 
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_7gixp"]
 [ext_resource type="PackedScene" uid="uid://bl2o6eyu8beo4" path="res://Graeme/Scenes/item_pick_up.tscn" id="2_iofnj"]
@@ -8,23 +8,23 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eog2y"]
 size = Vector2(1209, 49)
 
-[node name="QuinnTestScene" type="Node2D" unique_id=1081746649]
+[node name="QuinnTestScene" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1527517087]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1858050015]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_eog2y")
 
-[node name="TheBaby" parent="." unique_id=973563755 instance=ExtResource("1_7gixp")]
+[node name="TheBaby" parent="." instance=ExtResource("1_7gixp")]
 position = Vector2(2, -109)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=194665330]
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="ItemPickUp" parent="." unique_id=1393872170 instance=ExtResource("2_iofnj")]
+[node name="ItemPickUp" parent="." instance=ExtResource("2_iofnj")]
 position = Vector2(333, -170)
 item = ExtResource("3_i43xj")
 
-[node name="ItemPickUp2" parent="." unique_id=1604277567 instance=ExtResource("2_iofnj")]
+[node name="ItemPickUp2" parent="." instance=ExtResource("2_iofnj")]
 position = Vector2(-143, -116)
 item = ExtResource("4_f4y6g")

@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://b83cwi4ha4qvk"]
+
+[ext_resource type="Texture2D" uid="uid://cjokroqrnot71" path="res://assets/sprites/baby/baby_head.png" id="1_ab43v"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss.gd" id="1_e1n56"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_state_machine.gd" id="3_408is"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_light_attack.gd" id="4_fqbqx"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_heavy_attack.gd" id="5_c1akg"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_special_attack.gd" id="6_pr3xb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8w5ko"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfa3g"]
+atlas = ExtResource("1_ab43v")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtv15"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfa3g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FireBoss" type="Node2D"]
+script = ExtResource("1_e1n56")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_8w5ko")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 25)
+sprite_frames = SubResource("SpriteFrames_qtv15")
+
+[node name="FireBossStateMachine" type="Node" parent="."]
+script = ExtResource("3_408is")
+
+[node name="LightAttack" type="Node2D" parent="FireBossStateMachine"]
+script = ExtResource("4_fqbqx")
+
+[node name="lightStateTimer" type="Timer" parent="FireBossStateMachine/LightAttack"]
+wait_time = 3.0
+one_shot = true
+
+[node name="attackTimer" type="Timer" parent="FireBossStateMachine/LightAttack"]
+wait_time = 2.0
+one_shot = true
+
+[node name="HeavyAttack" type="Node2D" parent="FireBossStateMachine"]
+script = ExtResource("5_c1akg")
+
+[node name="heavyStateTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack"]
+one_shot = true
+
+[node name="heavyAttackTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack"]
+one_shot = true
+
+[node name="SpecialAttack" type="Node2D" parent="FireBossStateMachine"]
+script = ExtResource("6_pr3xb")
+
+[node name="specialStateTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack"]
+wait_time = 3.0
+one_shot = true
+
+[node name="specialAttackTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack"]
+one_shot = true
+
+[connection signal="timeout" from="FireBossStateMachine/LightAttack/lightStateTimer" to="FireBossStateMachine/LightAttack" method="_on_light_state_timer_timeout"]
+[connection signal="timeout" from="FireBossStateMachine/LightAttack/attackTimer" to="FireBossStateMachine/LightAttack" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="FireBossStateMachine/HeavyAttack/heavyStateTimer" to="FireBossStateMachine/HeavyAttack" method="_on_heavy_state_timer_timeout"]
+[connection signal="timeout" from="FireBossStateMachine/HeavyAttack/heavyAttackTimer" to="FireBossStateMachine/HeavyAttack" method="_on_heavy_attack_timer_timeout"]
+[connection signal="timeout" from="FireBossStateMachine/SpecialAttack/specialStateTimer" to="FireBossStateMachine/SpecialAttack" method="_on_special_state_timer_timeout"]
+[connection signal="timeout" from="FireBossStateMachine/SpecialAttack/specialAttackTimer" to="FireBossStateMachine/SpecialAttack" method="_on_special_attack_timer_timeout"]

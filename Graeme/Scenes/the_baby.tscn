@@ -1,4 +1,6 @@
+
 [gd_scene format=3 uid="uid://ulp6peon4ldn"]
+
 
 [ext_resource type="Script" uid="uid://3tp1qx7unn0d" path="res://Graeme/Scripts/Baby/the_baby.gd" id="1_rd01h"]
 [ext_resource type="Script" uid="uid://bvakx3jmco0p1" path="res://Graeme/Scripts/Baby/baby_head.gd" id="2_ej0j6"]
@@ -9,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bvqb2me5us57i" path="res://assets/sprites/baby/front_arm_punch_small.png" id="7_2gqkr"]
 [ext_resource type="Script" uid="uid://c7f6eodpxk0po" path="res://Graeme/Scripts/Baby/baby_legs.gd" id="7_euptn"]
 [ext_resource type="Texture2D" uid="uid://ct7gk82o40167" path="res://assets/sprites/baby/back_arm_small.png" id="9_gbud1"]
+[ext_resource type="Texture2D" uid="uid://qbmxi8yhkw0a" path="res://assets/sprites/baby/baby_torso_jump_anim.png" id="11_5j2h5"]
 [ext_resource type="Texture2D" uid="uid://dvww2c5vhejei" path="res://assets/sprites/baby/baby_body_small.png" id="11_eygqt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_th1fm"]
@@ -176,6 +179,30 @@ animations = [{
 atlas = ExtResource("11_eygqt")
 region = Rect2(0, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_505ly"]
+atlas = ExtResource("11_5j2h5")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o81sr"]
+atlas = ExtResource("11_5j2h5")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y151u"]
+atlas = ExtResource("11_5j2h5")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4tve"]
+atlas = ExtResource("11_5j2h5")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyxl6"]
+atlas = ExtResource("11_5j2h5")
+region = Rect2(160, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3og51"]
+atlas = ExtResource("11_5j2h5")
+region = Rect2(0, 160, 80, 80)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qa4qn"]
 animations = [{
 "frames": [{
@@ -185,13 +212,43 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_505ly")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o81sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y151u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4tve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyxl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3og51")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_paxpy"]
 radius = 16.0
 height = 66.0
 
+
 [node name="TheBaby" type="CharacterBody2D" unique_id=24734658]
+
 script = ExtResource("1_rd01h")
 
 [node name="Head" type="Node2D" parent="." unique_id=916617369]
