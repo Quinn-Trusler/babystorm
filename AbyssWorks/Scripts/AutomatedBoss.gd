@@ -1,5 +1,6 @@
 extends CharacterBase
 
+@export var skipDamagedState: bool = true
 @export var SPEED: float = 300.0
 @export var attackTime: float = 10
 @export var hitboxes: Array[Hitbox] = []
@@ -284,7 +285,8 @@ func DamagedState(stateExecutionType: StateExecutionType):
 			pass
 
 func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
-	SwitchState(BehaviorState.Damaged)
+	if not skipDamagedState:
+		SwitchState(BehaviorState.Damaged)
 	
 	if forceInfo and _customForce2D:
 		#print(forceInfo.force, " ", CustomForce2D.ForceMode.keys()[forceInfo.forceMode])

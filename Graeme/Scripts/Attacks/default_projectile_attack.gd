@@ -11,6 +11,8 @@ var instigator: Node2D = null
 var damageInfo: DamageInfo = DamageInfo.new()
 var forceInfo: ForceInfo = ForceInfo.new()
 
+var _hitCalc: HitCalculator = HitCalculator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -43,12 +45,19 @@ func _on_hit_area_2d_body_entered(body: Node2D) -> void:
 	# does damage on enemy with rigid body
 	if body == instigator:
 		return	
-	
-	print(body)
-	
+		
 	if body is CharacterBase:
+		#print(body.global_position, " ", Hit.new().calculateHit2D(self, body))
+	
 		var characterBase: CharacterBase = body
 		damageInfo.instigator = instigator
 		
+		var hit: HitCalculator.Hit2D = _hitCalc.calculateHit2D(self, body)
+		
+		if hit != null:
+			damageInfo.hitPoint = hit.hit_point
+			damageInfo.hitNormal = hit.hit_normal
+		
 		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
+		GlobalSignal.projectile_damage_registered.emit(self, body, damageInfo)
 	pass

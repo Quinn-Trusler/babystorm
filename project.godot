@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TransitionScreen="*uid://c8b5ks8w5xxvh"
+GlobalSignal="*uid://b6i04vpqjtft"
 
 [display]
 

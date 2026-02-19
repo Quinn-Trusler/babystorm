@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_npaks"]
 [ext_resource type="Script" uid="uid://d3u3i5wacwbqi" path="res://AbyssWorks/Scripts/Abilities/IceProjectileAbility.gd" id="4_l5ewk"]
 [ext_resource type="Script" uid="uid://c7xkca3cn7tdh" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="5_il3kv"]
+[ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_thapu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
 size = Vector2(1209, 49)
@@ -38,3 +39,6 @@ SPEED = 150.0
 target = NodePath("../TheBaby")
 nearDistanceToTarget = 300.0
 abilities = Array[ExtResource("5_il3kv")]([SubResource("Resource_thapu")])
+
+[node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]
+script = ExtResource("5_thapu")
