@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bskqd50um2mpm" path="res://assets/sprites/ice_baby/ice_head_walk_anim.png" id="1_7kt58"]
 [ext_resource type="Texture2D" uid="uid://b0101s5ayowb3" path="res://assets/sprites/ice_baby/ice_torso_walk_anim.png" id="1_8b5fo"]
-[ext_resource type="Script" uid="uid://cihpsji3jdbjo" path="res://AbyssWorks/Scripts/AutomatedBoss.gd" id="1_hbubl"]
+[ext_resource type="Script" uid="uid://cihpsji3jdbjo" path="res://AbyssWorks/Scripts/Bosses/AutomatedBoss.gd" id="1_hbubl"]
 [ext_resource type="Resource" uid="uid://dvw5ane5ynyql" path="res://AbyssWorks/ResourceBehaviours/TweakedCustomForce.tres" id="2_vfqvq"]
 [ext_resource type="Script" uid="uid://c7xkca3cn7tdh" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="3_cwv1l"]
 [ext_resource type="Texture2D" uid="uid://tc67qi5f4l1g" path="res://assets/sprites/ice_baby/ice_back_shoulder.png" id="3_m4w2e"]
@@ -547,13 +547,13 @@ _data = {
 &"Walk": SubResource("Animation_vfqvq")
 }
 
-[node name="IceBoss2d" type="CharacterBody2D" unique_id=2054299605 node_paths=PackedStringArray("animSpawnPoints")]
+[node name="IceBoss2d" type="CharacterBody2D" unique_id=2054299605 node_paths=PackedStringArray("spawnPoints")]
 script = ExtResource("1_hbubl")
 customForce2D = ExtResource("2_vfqvq")
 idleAnim = "Idle"
 moveAnim = "Walk"
-animSpawnNames = Array[String](["Push"])
-animSpawnPoints = [NodePath("MainArm/SpawnPoint")]
+spawnNames = Array[String](["IceProjectileSP"])
+spawnPoints = [NodePath("MainArm/SpawnPoint")]
 abilities = Array[ExtResource("3_cwv1l")]([SubResource("Resource_w6al8")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=261172196]
