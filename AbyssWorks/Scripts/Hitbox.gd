@@ -59,3 +59,4 @@ func _is_in_target_groups(node2D: Node2D) -> bool:
 		if node2D.is_in_group(group_name):
 			return true
 	return false
+	

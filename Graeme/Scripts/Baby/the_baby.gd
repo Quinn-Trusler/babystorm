@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends CharacterBase
 class_name TheBaby
 
 signal on_toggle_move(is_moving: bool)

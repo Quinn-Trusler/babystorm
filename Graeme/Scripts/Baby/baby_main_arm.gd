@@ -47,6 +47,10 @@ func attack():
 		
 		if current_type == DEFAULT_NAME:
 			var default_attack_instance = DEFAULT_ATTACK.instantiate()
+			if default_attack_instance is DefaultAttack:
+				var default_attack: DefaultAttack = default_attack_instance
+				default_attack.instigator = the_baby
+				
 			add_child(default_attack_instance)
 			default_attack_instance.global_position = attack_spawn_point.global_position
 			main_arm_animated_sprite_2d.play("mainArmPunch")

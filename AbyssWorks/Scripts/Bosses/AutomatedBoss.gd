@@ -1,5 +1,6 @@
 extends CharacterBase
 
+@export var skipDamagedState: bool = true
 @export var SPEED: float = 300.0
 @export var attackTime: float = 10
 @export var hitboxes: Array[Hitbox] = []
@@ -21,6 +22,10 @@ extends CharacterBase
 @export var moveAnim: String = ""
 @export var fallAnim: String = ""
 @export var damagedAnim: String = ""
+
+@export_group("Spawn Points")
+@export var spawnNames: Array[String] = []
+@export var spawnPoints: Array[Node2D] = []
 
 @export_group(("Abilities"))
 @export var abilities: Array[Ability] = []
@@ -64,6 +69,17 @@ func _ready() -> void:
 	_variable_dict["char_body"] = self
 	_variable_dict["node2d"] = self as Node2D
 	_variable_dict["hitboxes"] = hitboxes
+	_variable_dict["target"] = target
+	
+	if spawnNames.size()  == spawnPoints.size():
+		var spawn_dict: Dictionary[String, Node2D] = {} 
+		for i in range(spawnNames.size()):
+			var theName = spawnNames[i]
+			var theNode = spawnPoints[i]
+			if not spawn_dict.has(theName):
+				spawn_dict[theName] = theNode
+			pass
+		_variable_dict["spawn_dict"] = spawn_dict
 	
 	for ability in abilities:
 		if not ability:
@@ -258,7 +274,8 @@ func DamagedState(stateExecutionType: StateExecutionType):
 		StateExecutionType.Enter:
 			if (anim_player and damagedAnim != ""):
 				anim_player.play(damagedAnim)
-			
+			else:
+				SwitchState(BehaviorState.Idle)
 			pass
 		StateExecutionType.Update:
 			if (anim_player and not anim_player.is_playing()):
@@ -271,7 +288,8 @@ func DamagedState(stateExecutionType: StateExecutionType):
 			pass
 
 func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
-	SwitchState(BehaviorState.Damaged)
+	if not skipDamagedState:
+		SwitchState(BehaviorState.Damaged)
 	
 	if forceInfo and _customForce2D:
 		#print(forceInfo.force, " ", CustomForce2D.ForceMode.keys()[forceInfo.forceMode])
