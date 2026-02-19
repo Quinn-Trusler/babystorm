@@ -17,6 +17,9 @@ extends CharacterBase
 @export var target: Node2D = null
 @export var nearDistanceToTarget: float = 10
 
+@export_group("Health")
+@export var maxHealth: float = 100
+
 @export_group("Animations")
 @export var idleAnim: String = ""
 @export var moveAnim: String = ""
