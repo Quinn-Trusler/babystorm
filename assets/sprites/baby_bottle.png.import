@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq0egxtm1o55n"
-path="res://.godot/imported/projectile_sprite.png-6619ce88cbb83195baa6c609cb4c486c.ctex"
+uid="uid://cxk0vhntvikka"
+path="res://.godot/imported/baby_bottle.png-f803e4177865e56df3be2e7ca1316a9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graeme/TestingVisuals/projectile_sprite.png"
-dest_files=["res://.godot/imported/projectile_sprite.png-6619ce88cbb83195baa6c609cb4c486c.ctex"]
+source_file="res://assets/sprites/baby_bottle.png"
+dest_files=["res://.godot/imported/baby_bottle.png-f803e4177865e56df3be2e7ca1316a9a.ctex"]
 
 [params]
 

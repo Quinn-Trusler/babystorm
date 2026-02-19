@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq0egxtm1o55n"
-path="res://.godot/imported/projectile_sprite.png-6619ce88cbb83195baa6c609cb4c486c.ctex"
+uid="uid://bhvs7120f5rrd"
+path="res://.godot/imported/fire_torso_jump_anim.png-e8eff175786dd7f89ba0b838f896d627.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graeme/TestingVisuals/projectile_sprite.png"
-dest_files=["res://.godot/imported/projectile_sprite.png-6619ce88cbb83195baa6c609cb4c486c.ctex"]
+source_file="res://assets/sprites/fire_baby/fire_torso_jump_anim.png"
+dest_files=["res://.godot/imported/fire_torso_jump_anim.png-e8eff175786dd7f89ba0b838f896d627.ctex"]
 
 [params]
 
