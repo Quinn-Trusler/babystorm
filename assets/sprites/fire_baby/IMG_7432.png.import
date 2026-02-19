@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn3iq6djy27ym"
-path="res://.godot/imported/Ice DNA.png-ff500171048715881bbe0272fb8b5103.ctex"
+uid="uid://pj1l5qjouvu7"
+path="res://.godot/imported/IMG_7432.png-c4d9126d11bb6e7b8e0b630e8e68a033.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Quinn/art/Ice DNA.png"
-dest_files=["res://.godot/imported/Ice DNA.png-ff500171048715881bbe0272fb8b5103.ctex"]
+source_file="res://assets/sprites/fire_baby/IMG_7432.png"
+dest_files=["res://.godot/imported/IMG_7432.png-c4d9126d11bb6e7b8e0b630e8e68a033.ctex"]
 
 [params]
 
