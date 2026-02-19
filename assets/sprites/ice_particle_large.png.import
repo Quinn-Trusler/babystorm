@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq0egxtm1o55n"
-path="res://.godot/imported/projectile_sprite.png-6619ce88cbb83195baa6c609cb4c486c.ctex"
+uid="uid://csrm33yuenxie"
+path="res://.godot/imported/ice_particle_large.png-e4bd27feb321b509d0132feff6b28506.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graeme/TestingVisuals/projectile_sprite.png"
-dest_files=["res://.godot/imported/projectile_sprite.png-6619ce88cbb83195baa6c609cb4c486c.ctex"]
+source_file="res://assets/sprites/ice_particle_large.png"
+dest_files=["res://.godot/imported/ice_particle_large.png-e4bd27feb321b509d0132feff6b28506.ctex"]
 
 [params]
 

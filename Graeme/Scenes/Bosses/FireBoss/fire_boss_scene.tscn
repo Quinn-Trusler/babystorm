@@ -8,7 +8,7 @@ size = Vector2(870, 20)
 
 [node name="FireBossScene" type="Node2D"]
 
-[node name="TheBaby" parent="." instance=ExtResource("1_hmkqi")]
+[node name="TheBaby" parent="." groups=["player"] instance=ExtResource("1_hmkqi")]
 
 [node name="FireBoss" parent="." instance=ExtResource("2_5eubn")]
 position = Vector2(-353, -213)
