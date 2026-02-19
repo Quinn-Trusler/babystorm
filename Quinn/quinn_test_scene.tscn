@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b6alk7jyfmxof"]
 
+[ext_resource type="Texture2D" uid="uid://c1mdw6vqj7six" path="res://Quinn/art/baby_boxing_ring.png" id="1_0wdab"]
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_7gixp"]
 [ext_resource type="PackedScene" uid="uid://bl2o6eyu8beo4" path="res://Graeme/Scenes/item_pick_up.tscn" id="2_iofnj"]
 [ext_resource type="Resource" uid="uid://dr61e32pb2lch" path="res://Graeme/Resources/Items/stroller.tres" id="3_i43xj"]
 [ext_resource type="Resource" uid="uid://umobhfywuqy4" path="res://Graeme/Resources/Items/default.tres" id="4_f4y6g"]
-[ext_resource type="Texture2D" uid="uid://in55q8gkmh5f" path="res://Quinn/art/baby_ring_bg.png" id="5_0wdab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eog2y"]
 size = Vector2(1209, 49)
@@ -13,7 +13,7 @@ size = Vector2(1209, 49)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=171049431]
 scale = Vector2(2, 2)
-texture = ExtResource("5_0wdab")
+texture = ExtResource("1_0wdab")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=400067517]
 
