@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxtti3mn2t58j"
-path="res://.godot/imported/ModSquare.png-2764d01665bde7fe6d89020afe9c2707.ctex"
+uid="uid://qbmxi8yhkw0a"
+path="res://.godot/imported/baby_torso_jump_anim.png-9410d6afe324c5c4ae92381febe96008.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AbyssWorks/Textures/ModSquare.png"
-dest_files=["res://.godot/imported/ModSquare.png-2764d01665bde7fe6d89020afe9c2707.ctex"]
+source_file="res://assets/sprites/baby/baby_torso_jump_anim.png"
+dest_files=["res://.godot/imported/baby_torso_jump_anim.png-9410d6afe324c5c4ae92381febe96008.ctex"]
 
 [params]
 

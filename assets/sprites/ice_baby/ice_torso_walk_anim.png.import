@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxtti3mn2t58j"
-path="res://.godot/imported/ModSquare.png-2764d01665bde7fe6d89020afe9c2707.ctex"
+uid="uid://pd0vchrleudy"
+path="res://.godot/imported/ice_torso_walk_anim.png-26bfad1f0baa3f3dd04bca9f2e3714ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AbyssWorks/Textures/ModSquare.png"
-dest_files=["res://.godot/imported/ModSquare.png-2764d01665bde7fe6d89020afe9c2707.ctex"]
+source_file="res://assets/sprites/ice_baby/ice_torso_walk_anim.png"
+dest_files=["res://.godot/imported/ice_torso_walk_anim.png-26bfad1f0baa3f3dd04bca9f2e3714ca.ctex"]
 
 [params]
 

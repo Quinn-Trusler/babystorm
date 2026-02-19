@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxtti3mn2t58j"
-path="res://.godot/imported/ModSquare.png-2764d01665bde7fe6d89020afe9c2707.ctex"
+uid="uid://bp8adn4kqhy5o"
+path="res://.godot/imported/IMG_7419.png-db5f0b18780f6f6437594e4923ef202e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AbyssWorks/Textures/ModSquare.png"
-dest_files=["res://.godot/imported/ModSquare.png-2764d01665bde7fe6d89020afe9c2707.ctex"]
+source_file="res://assets/sprites/IMG_7419.png"
+dest_files=["res://.godot/imported/IMG_7419.png-db5f0b18780f6f6437594e4923ef202e.ctex"]
 
 [params]
 
