@@ -1,16 +1,17 @@
-[gd_scene load_steps=42 format=3 uid="uid://ulp6peon4ldn"]
+[gd_scene format=3 uid="uid://ulp6peon4ldn"]
 
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/the_baby.gd" id="1_rd01h"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_head.gd" id="2_ej0j6"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_torso.gd" id="3_e2hms"]
+[ext_resource type="Script" uid="uid://3tp1qx7unn0d" path="res://Graeme/Scripts/Baby/the_baby.gd" id="1_rd01h"]
+[ext_resource type="Script" uid="uid://bvakx3jmco0p1" path="res://Graeme/Scripts/Baby/baby_head.gd" id="2_ej0j6"]
+[ext_resource type="Script" uid="uid://dm0uu4h5t3gaa" path="res://Graeme/Scripts/Baby/baby_torso.gd" id="3_e2hms"]
 [ext_resource type="Texture2D" uid="uid://cjokroqrnot71" path="res://assets/sprites/baby/baby_head.png" id="3_odic7"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_main_arm.gd" id="5_jwkfu"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_secondary_arm.gd" id="6_5en4v"]
+[ext_resource type="Script" uid="uid://c7ulp0jtbv4cr" path="res://Graeme/Scripts/Baby/baby_main_arm.gd" id="5_jwkfu"]
+[ext_resource type="Script" uid="uid://bcb7q27dghprp" path="res://Graeme/Scripts/Baby/baby_secondary_arm.gd" id="6_5en4v"]
 [ext_resource type="Texture2D" uid="uid://bvqb2me5us57i" path="res://assets/sprites/baby/front_arm_punch_small.png" id="7_2gqkr"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_legs.gd" id="7_euptn"]
+[ext_resource type="Script" uid="uid://c7f6eodpxk0po" path="res://Graeme/Scripts/Baby/baby_legs.gd" id="7_euptn"]
 [ext_resource type="Texture2D" uid="uid://ct7gk82o40167" path="res://assets/sprites/baby/back_arm_small.png" id="9_gbud1"]
 [ext_resource type="Texture2D" uid="uid://dv18q4vsxm38w" path="res://assets/sprites/baby/baby_torso_jump_anim.png" id="11_5j2h5"]
 [ext_resource type="Texture2D" uid="uid://dvww2c5vhejei" path="res://assets/sprites/baby/baby_body_small.png" id="11_eygqt"]
+[ext_resource type="PackedScene" uid="uid://d1y6vvju5qlhb" path="res://Quinn/health_bar.tscn" id="12_ik3gr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_th1fm"]
 atlas = ExtResource("3_odic7")
@@ -244,32 +245,33 @@ animations = [{
 radius = 16.0
 height = 66.0
 
-[node name="TheBaby" type="CharacterBody2D"]
+[node name="TheBaby" type="CharacterBody2D" unique_id=983571038]
 script = ExtResource("1_rd01h")
 
-[node name="Head" type="Node2D" parent="."]
+[node name="Head" type="Node2D" parent="." unique_id=1136470919]
 position = Vector2(8, -5)
 script = ExtResource("2_ej0j6")
 
-[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Head"]
+[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Head" unique_id=993809697]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_yyjfj")
 flip_h = true
 
-[node name="Torso" type="Node2D" parent="."]
+[node name="Torso" type="Node2D" parent="." unique_id=157722353 node_paths=PackedStringArray("health_bar")]
 visible = false
 script = ExtResource("3_e2hms")
+health_bar = NodePath("../HealthBar")
 
-[node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="Torso"]
+[node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="Torso" unique_id=1100393854]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s6hnl")
 
-[node name="MainArm" type="Node2D" parent="."]
+[node name="MainArm" type="Node2D" parent="." unique_id=97349759]
 z_index = 1
 position = Vector2(-4, 6)
 script = ExtResource("5_jwkfu")
 
-[node name="MainArmAnimatedSprite2D" type="AnimatedSprite2D" parent="MainArm"]
+[node name="MainArmAnimatedSprite2D" type="AnimatedSprite2D" parent="MainArm" unique_id=1314916211]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h1fl5")
 animation = &"mainArmPunch"
@@ -277,16 +279,16 @@ frame = 5
 frame_progress = 1.0
 flip_h = true
 
-[node name="AttackSpawnPoint" type="Node2D" parent="MainArm"]
+[node name="AttackSpawnPoint" type="Node2D" parent="MainArm" unique_id=814950700]
 position = Vector2(-34, -6)
 
-[node name="AttackCoolDownTimer" type="Timer" parent="MainArm"]
+[node name="AttackCoolDownTimer" type="Timer" parent="MainArm" unique_id=1813238085]
 
-[node name="SecondaryArm" type="Node2D" parent="."]
+[node name="SecondaryArm" type="Node2D" parent="." unique_id=1629855099]
 position = Vector2(3, 3)
 script = ExtResource("6_5en4v")
 
-[node name="SecondaryArmAnimatedSprite2D" type="AnimatedSprite2D" parent="SecondaryArm"]
+[node name="SecondaryArmAnimatedSprite2D" type="AnimatedSprite2D" parent="SecondaryArm" unique_id=1235446688]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_626s4")
 animation = &"secondaryArmPunch"
@@ -294,24 +296,30 @@ frame = 6
 frame_progress = 1.0
 flip_h = true
 
-[node name="AttackCoolDownTimer" type="Timer" parent="SecondaryArm"]
+[node name="AttackCoolDownTimer" type="Timer" parent="SecondaryArm" unique_id=493645446]
 wait_time = 0.1
 
-[node name="AttackSpawnPoint" type="Node2D" parent="SecondaryArm"]
+[node name="AttackSpawnPoint" type="Node2D" parent="SecondaryArm" unique_id=271553924]
 position = Vector2(-22, -13)
 
-[node name="Legs" type="Node2D" parent="."]
+[node name="Legs" type="Node2D" parent="." unique_id=1531756489]
 position = Vector2(8, -4)
 script = ExtResource("7_euptn")
 
-[node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="Legs"]
+[node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="Legs" unique_id=851654426]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qa4qn")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236570405]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_paxpy")
+
+[node name="HealthBar" parent="." unique_id=1740155163 instance=ExtResource("12_ik3gr")]
+offset_left = -13.0
+offset_top = -50.0
+offset_right = 19.0
+offset_bottom = -39.0
 
 [connection signal="timeout" from="MainArm/AttackCoolDownTimer" to="MainArm" method="_on_attack_cool_down_timer_timeout"]
 [connection signal="timeout" from="SecondaryArm/AttackCoolDownTimer" to="SecondaryArm" method="_on_attack_cool_down_timer_timeout"]
