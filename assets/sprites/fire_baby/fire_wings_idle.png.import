@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qqr4hbljepge"
-path="res://.godot/imported/back_arm_large.png-97664b6a481fcbbfc8fc7e4df5f5e96b.ctex"
+uid="uid://c8leognruefe7"
+path="res://.godot/imported/fire_wings_idle.png-dabf30db51e8ba062cf213fca0d0ea15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/baby/back_arm_large.png"
-dest_files=["res://.godot/imported/back_arm_large.png-97664b6a481fcbbfc8fc7e4df5f5e96b.ctex"]
+source_file="res://assets/sprites/fire_baby/fire_wings_idle.png"
+dest_files=["res://.godot/imported/fire_wings_idle.png-dabf30db51e8ba062cf213fca0d0ea15.ctex"]
 
 [params]
 

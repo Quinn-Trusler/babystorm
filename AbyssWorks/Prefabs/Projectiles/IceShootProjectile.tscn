@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://gibxx6q2vg1h"]
+
+[ext_resource type="Script" uid="uid://b8rgefe4woglp" path="res://AbyssWorks/Scripts/Projectiles/ShootProjectile.gd" id="1_m5lrc"]
+[ext_resource type="Texture2D" uid="uid://e6jg86clmuub" path="res://assets/sprites/ice_projectile_small.png" id="2_x3pf4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxu0o"]
+radius = 18.0
+
+[node name="IceShootProjectile" type="Area2D" unique_id=1721735638]
+script = ExtResource("1_m5lrc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1374342155]
+shape = SubResource("CircleShape2D_rxu0o")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=103091962]
+position = Vector2(-3.555, -1.055)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_x3pf4")

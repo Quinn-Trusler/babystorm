@@ -22,8 +22,10 @@ extends CharacterBase
 @export var moveAnim: String = ""
 @export var fallAnim: String = ""
 @export var damagedAnim: String = ""
-@export var animSpawnNames: Array[String] = []
-@export var animSpawnPoints: Array[Node2D] = []
+
+@export_group("Spawn Points")
+@export var spawnNames: Array[String] = []
+@export var spawnPoints: Array[Node2D] = []
 
 @export_group(("Abilities"))
 @export var abilities: Array[Ability] = []
@@ -67,16 +69,17 @@ func _ready() -> void:
 	_variable_dict["char_body"] = self
 	_variable_dict["node2d"] = self as Node2D
 	_variable_dict["hitboxes"] = hitboxes
+	_variable_dict["target"] = target
 	
-	if animSpawnNames.size()  == animSpawnPoints.size():
-		var anim_spawn_dict: Dictionary[String, Node2D] = {} 
-		for i in range(animSpawnNames.size()):
-			var theName = animSpawnNames[i]
-			var theNode = animSpawnPoints[i]
-			if not anim_spawn_dict.has(theName):
-				anim_spawn_dict[theName] = theNode
+	if spawnNames.size()  == spawnPoints.size():
+		var spawn_dict: Dictionary[String, Node2D] = {} 
+		for i in range(spawnNames.size()):
+			var theName = spawnNames[i]
+			var theNode = spawnPoints[i]
+			if not spawn_dict.has(theName):
+				spawn_dict[theName] = theNode
 			pass
-		_variable_dict["anim_spawn_dict"] = anim_spawn_dict
+		_variable_dict["spawn_dict"] = spawn_dict
 	
 	for ability in abilities:
 		if not ability:
