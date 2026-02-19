@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qqr4hbljepge"
-path="res://.godot/imported/back_arm_large.png-97664b6a481fcbbfc8fc7e4df5f5e96b.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://rqtv2bp0st3n"
+valid=false
 
 [deps]
 
-source_file="res://assets/sprites/baby/back_arm_large.png"
-dest_files=["res://.godot/imported/back_arm_large.png-97664b6a481fcbbfc8fc7e4df5f5e96b.ctex"]
+source_file="res://assets/sprites/IMG_7414.png"
 
 [params]
 
