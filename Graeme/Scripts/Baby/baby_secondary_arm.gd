@@ -36,6 +36,10 @@ func attack():
 		if current_type == DEFAULT_NAME:
 			#spawn projectile
 			var default_projectile_attack_instance = DEFAULT_PROJECTILE_ATTACK.instantiate()
+			if default_projectile_attack_instance is DefaultProjectile:
+				var default_projectile: DefaultProjectile = default_projectile_attack_instance
+				default_projectile.instigator = the_baby
+				
 			get_tree().current_scene.add_child(default_projectile_attack_instance)
 			default_projectile_attack_instance.global_position = attack_spawn_point.global_position
 
