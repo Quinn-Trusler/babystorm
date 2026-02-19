@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c5pn3y0gq10sy"]
+
+[sub_resource type="Gradient" id="Gradient_g8bsc"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.78431374)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uxxjx"]
+gradient = SubResource("Gradient_g8bsc")
+
+[node name="BossSpecialAttackIndicator" type="Node2D" unique_id=153572502]
+modulate = Color(1, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=679871172]
+rotation = 1.5707964
+texture = SubResource("GradientTexture2D_uxxjx")
