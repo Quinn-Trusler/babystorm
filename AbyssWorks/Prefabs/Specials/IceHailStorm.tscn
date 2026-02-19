@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://hpyg6ljj6khx"]
+
+[ext_resource type="Script" uid="uid://ycrll0881mf5" path="res://AbyssWorks/Scripts/Specials/IceHailStorm.gd" id="1_a8pvv"]
+[ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="1_rx1vx"]
+
+[node name="IceHailStorm" type="Node2D" unique_id=838045364]
+script = ExtResource("1_a8pvv")
+
+[node name="SpawnPoint" type="Node2D" parent="." unique_id=1344596345]
+position = Vector2(-279, -2)
+
+[node name="SpawnPoint1" type="Node2D" parent="." unique_id=981090562]
+position = Vector2(322, 3)
+
+[node name="IceBoss2d" parent="." unique_id=2054299605 instance=ExtResource("1_rx1vx")]
+visible = false

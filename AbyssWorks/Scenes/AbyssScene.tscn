@@ -2,24 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_r7afr"]
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_npaks"]
-[ext_resource type="Script" uid="uid://d3u3i5wacwbqi" path="res://AbyssWorks/Scripts/Abilities/IceProjectileAbility.gd" id="4_l5ewk"]
-[ext_resource type="Script" uid="uid://c7xkca3cn7tdh" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="5_il3kv"]
 [ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_thapu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
 size = Vector2(1209, 49)
 
-[sub_resource type="Resource" id="Resource_thapu"]
-script = ExtResource("4_l5ewk")
-attackDistance = 800.0
-iceAttackAnims = Array[String](["Push"])
-cooldownTime = 5.0
-allowFirst = true
-metadata/_custom_type_script = "uid://d3u3i5wacwbqi"
-
 [node name="AbyssScene" type="Node2D" unique_id=1795464032]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=813667751]
+position = Vector2(0, 113)
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=245884970]
@@ -27,18 +18,17 @@ position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_npaks")
 
 [node name="TheBaby" parent="." unique_id=24734658 instance=ExtResource("1_r7afr")]
-position = Vector2(2, -109)
+position = Vector2(-199, 27)
 platform_floor_layers = 4294967040
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1715551278]
 zoom = Vector2(1.5, 1.5)
 
 [node name="IceBoss2d" parent="." unique_id=2054299605 node_paths=PackedStringArray("target") instance=ExtResource("2_npaks")]
-position = Vector2(192, -40)
+position = Vector2(221, 30)
 SPEED = 150.0
 target = NodePath("../TheBaby")
 nearDistanceToTarget = 300.0
-abilities = Array[ExtResource("5_il3kv")]([SubResource("Resource_thapu")])
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]
 script = ExtResource("5_thapu")

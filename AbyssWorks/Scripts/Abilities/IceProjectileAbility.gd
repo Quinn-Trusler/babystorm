@@ -16,14 +16,13 @@ class_name IceProjectileAbility
 var spawn_dict: Dictionary[String, Node2D] = {}
 
 var characterBody2D: CharacterBody2D = null
-var anim_subsc: AnimationPlayer = null
+var anim_subsc: AnimationSubscriber = null
 var target: Node2D = null
 
 var _cooldownTimer: float = 0
 var isExecuting: bool = false
 
 var _consecutiveCount: int = 1
-var _currentAnim: String = ""
 
 var spawnLocation: Node2D = null
 
@@ -56,13 +55,11 @@ func Trigger():
 		isExecuting = true
 		_cooldownTimer = cooldownTime
 		_consecutiveCount = 1
-		_currentAnim = iceAttackAnims.pick_random()
-		anim_subsc.play(_currentAnim)
+		anim_subsc.play(iceAttackAnims.pick_random())
 	pass
 	
 func ExecutionCancel():
 	isExecuting = false
-	_currentAnim = ""
 	pass
 	
 func CheckRequirements(distance: float) -> bool:
@@ -91,7 +88,6 @@ func External_PhysicsProcess(delta):
 	if not anim_subsc.is_playing():
 		if _consecutiveCount >= consecutiveHits:
 			isExecuting = false
-			_currentAnim = ""
 			return
 		_consecutiveCount+=1
 		anim_subsc.play(iceAttackAnims.pick_random())
@@ -105,7 +101,7 @@ func _condition_cooldown(delta):
 		_cooldownTimer = cooldownTime
 		
 func _spawn_on_current_anim():
-	if _currentAnim != "":
+	if isExecuting:
 		_spawn_projectile(spawnLocation)
 
 func _spawn_projectile(spawnPoint: Node2D):
