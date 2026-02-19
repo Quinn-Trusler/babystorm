@@ -19,6 +19,7 @@ extends CharacterBase
 
 @export_group("Health")
 @export var maxHealth: float = 100
+@export var healthLayer: HealthLayer = null
 
 @export_group("Animations")
 @export var idleAnim: String = ""
@@ -55,12 +56,19 @@ var _cur_stamina_threshold: float = 0
 
 var _moveVelocity: Vector2 = Vector2.ZERO
 
+var _health: float = 0
+
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 const FLIP_X = Transform2D(Vector2(-1, 0), Vector2(0, 1), Vector2(0, 0))
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_health = maxHealth
+	if healthLayer:
+		healthLayer.set_boss_max_health(maxHealth)
+		healthLayer.update_boss_health_bar(maxHealth)
+	
 	if (customForce2D):
 		customForce2D.velocity = Vector2.ZERO
 		_customForce2D = customForce2D.duplicate(true)
@@ -291,6 +299,12 @@ func DamagedState(stateExecutionType: StateExecutionType):
 			pass
 
 func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
+	if damageInfo != null:
+		_health = maxf(_health - damageInfo.amount, 0)
+	
+	if healthLayer:
+		healthLayer.update_boss_health_bar(_health)
+	
 	if not skipDamagedState:
 		SwitchState(BehaviorState.Damaged)
 	

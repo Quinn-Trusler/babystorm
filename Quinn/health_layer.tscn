@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bswvra2k03sp4"]
+[gd_scene format=3 uid="uid://drpmr8uqsehup"]
 
-[ext_resource type="Script" uid="uid://dqe6rpkv1d25p" path="res://Quinn/health_layer.gd" id="1_1nbg0"]
-[ext_resource type="PackedScene" uid="uid://d1y6vvju5qlhb" path="res://Quinn/health_bar.tscn" id="1_4ahf8"]
+[ext_resource type="Script" path="res://Quinn/health_layer.gd" id="1_1nbg0"]
+[ext_resource type="PackedScene" path="res://Quinn/health_bar.tscn" id="1_4ahf8"]
 [ext_resource type="Texture2D" uid="uid://dcctieyd2qlll" path="res://Quinn/art/UI/mana_bar_large_fill.png" id="3_1dfdn"]
 [ext_resource type="Texture2D" uid="uid://bnw3ml8yoj4ab" path="res://Quinn/art/UI/hp_bar_large_flipped.png" id="3_4ifm6"]
 [ext_resource type="Texture2D" uid="uid://bnpxns3bt42vb" path="res://Quinn/art/UI/hp_bar_large_fill_flipped.png" id="4_1dfdn"]
