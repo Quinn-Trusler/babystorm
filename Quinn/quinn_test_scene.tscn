@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bl2o6eyu8beo4" path="res://Graeme/Scenes/item_pick_up.tscn" id="2_iofnj"]
 [ext_resource type="Resource" uid="uid://dr61e32pb2lch" path="res://Graeme/Resources/Items/stroller.tres" id="3_i43xj"]
 [ext_resource type="Resource" uid="uid://umobhfywuqy4" path="res://Graeme/Resources/Items/default.tres" id="4_f4y6g"]
+[ext_resource type="PackedScene" uid="uid://d1y6vvju5qlhb" path="res://Quinn/health_bar.tscn" id="6_yioxo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eog2y"]
 size = Vector2(1209, 49)
@@ -34,3 +35,6 @@ item = ExtResource("3_i43xj")
 [node name="ItemPickUp2" parent="." unique_id=201639164 instance=ExtResource("2_iofnj")]
 position = Vector2(-143, -116)
 item = ExtResource("4_f4y6g")
+
+[node name="HealthBar" parent="." unique_id=1740155163 instance=ExtResource("6_yioxo")]
+value = 0.0
