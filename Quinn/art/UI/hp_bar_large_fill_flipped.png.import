@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn3iq6djy27ym"
-path="res://.godot/imported/Ice DNA.png-ff500171048715881bbe0272fb8b5103.ctex"
+uid="uid://bnpxns3bt42vb"
+path="res://.godot/imported/hp_bar_large_fill_flipped.png-878f15d99863b7c1be008ce997b8182a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Quinn/art/Ice DNA.png"
-dest_files=["res://.godot/imported/Ice DNA.png-ff500171048715881bbe0272fb8b5103.ctex"]
+source_file="res://Quinn/art/UI/hp_bar_large_fill_flipped.png"
+dest_files=["res://.godot/imported/hp_bar_large_fill_flipped.png-878f15d99863b7c1be008ce997b8182a.ctex"]
 
 [params]
 

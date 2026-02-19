@@ -62,6 +62,6 @@ func _input(event):
 
 		
 func take_damage(damage: int):
-	torso.health -= damage
+	torso.take_damage(damage)
 	if torso.health <= 0:
 		print("you have died :()")
