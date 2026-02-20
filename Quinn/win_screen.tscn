@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cftspy47exx7e" path="res://Quinn/art/dna/fire_dna.png" id="2_cvh2m"]
 [ext_resource type="Texture2D" uid="uid://1rwsro8v5emv" path="res://Quinn/art/dna/ice_dna.png" id="3_snrke"]
 [ext_resource type="Texture2D" uid="uid://c4kgl2jmfk1t3" path="res://Quinn/art/dna/strength_dna.png" id="4_81pqi"]
+[ext_resource type="Texture2D" uid="uid://bvxoc625pjsli" path="res://Quinn/art/dna/rainbow_dna.png" id="6_81pqi"]
 
 [sub_resource type="Animation" id="Animation_cvh2m"]
 length = 0.001
@@ -58,12 +59,12 @@ visible = false
 position = Vector2(576, 324)
 
 [node name="FireDna" type="Sprite2D" parent="Node2D" unique_id=513192524]
-position = Vector2(179, 60)
+position = Vector2(190, -55)
 scale = Vector2(2, 2)
 texture = ExtResource("2_cvh2m")
 
 [node name="IceDna" type="Sprite2D" parent="Node2D" unique_id=1799155141]
-position = Vector2(-187, 63)
+position = Vector2(-195, -52)
 scale = Vector2(2, 2)
 texture = ExtResource("3_snrke")
 
@@ -91,6 +92,11 @@ theme_override_fonts/font = ExtResource("1_v4jsk")
 theme_override_font_sizes/font_size = 48
 text = "All DNA collected"
 horizontal_alignment = 1
+
+[node name="StrengthDna2" type="Sprite2D" parent="Node2D" unique_id=2062591750]
+position = Vector2(4, 56)
+scale = Vector2(2, 2)
+texture = ExtResource("6_81pqi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2094918254]
 libraries/ = SubResource("AnimationLibrary_81pqi")
