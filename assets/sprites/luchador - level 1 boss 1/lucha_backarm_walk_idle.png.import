@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn2ymme6jivxk"
-path="res://.godot/imported/fire_both_arms_push_centered__.png-b9473ced6acacb06927953a580a681c4.ctex"
+uid="uid://c602iwi1r05rp"
+path="res://.godot/imported/lucha_backarm_walk_idle.png-8f9ea011c4ae402bef13f4787cdf6012.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fire - level 2 boss 1/fire_both_arms_push_centered__.png"
-dest_files=["res://.godot/imported/fire_both_arms_push_centered__.png-b9473ced6acacb06927953a580a681c4.ctex"]
+source_file="res://assets/sprites/luchador - level 1 boss 1/lucha_backarm_walk_idle.png"
+dest_files=["res://.godot/imported/lucha_backarm_walk_idle.png-8f9ea011c4ae402bef13f4787cdf6012.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dno7nddk2fa64"
-path="res://.godot/imported/fire_pivotable_arm_centered.png-74f756ebacfa9eab0c548422319aca40.ctex"
+path="res://.godot/imported/fire_pivotable_arm_centered.png-23bc4f5f48a4fa738a4f18fec9c52060.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fire_baby/fire_pivotable_arm_centered.png"
-dest_files=["res://.godot/imported/fire_pivotable_arm_centered.png-74f756ebacfa9eab0c548422319aca40.ctex"]
+source_file="res://assets/sprites/fire - level 2 boss 1/fire_pivotable_arm_centered.png"
+dest_files=["res://.godot/imported/fire_pivotable_arm_centered.png-23bc4f5f48a4fa738a4f18fec9c52060.ctex"]
 
 [params]
 

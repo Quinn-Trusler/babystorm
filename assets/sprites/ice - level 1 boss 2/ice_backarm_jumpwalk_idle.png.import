@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn2ymme6jivxk"
-path="res://.godot/imported/fire_both_arms_push_centered__.png-b9473ced6acacb06927953a580a681c4.ctex"
+uid="uid://xl84xvwjtgit"
+path="res://.godot/imported/ice_backarm_jumpwalk_idle.png-38cdc356e0eb08a180e2fe5ed6809796.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fire - level 2 boss 1/fire_both_arms_push_centered__.png"
-dest_files=["res://.godot/imported/fire_both_arms_push_centered__.png-b9473ced6acacb06927953a580a681c4.ctex"]
+source_file="res://assets/sprites/ice - level 1 boss 2/ice_backarm_jumpwalk_idle.png"
+dest_files=["res://.godot/imported/ice_backarm_jumpwalk_idle.png-38cdc356e0eb08a180e2fe5ed6809796.ctex"]
 
 [params]
 
