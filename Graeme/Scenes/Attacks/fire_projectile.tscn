@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfahlux47t05h"]
+
+[ext_resource type="Script" path="res://Graeme/Scripts/Attacks/fire_projectile.gd" id="1_tfbke"]
+[ext_resource type="Texture2D" uid="uid://db8hv2bv2m8d3" path="res://assets/sprites/fire_projectile_small.png" id="2_nohic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oe6df"]
+
+[node name="FireProjectile" type="RigidBody2D"]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_tfbke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oe6df")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_nohic")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

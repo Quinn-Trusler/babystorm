@@ -1,8 +1,12 @@
 extends BabyBodyPart
 
-
+const FIRE_PROJECTILE = preload("res://Graeme/Scenes/Attacks/fire_projectile.tscn")
 const DEFAULT_PROJECTILE_ATTACK = preload("res://Graeme/Scenes/Attacks/default_projectile_attack.tscn")
+const ICE_PROJECTILE = preload("res://Graeme/Scenes/Attacks/ice_projectile.tscn")
+
 const DEFAULT_NAME: String = "default"
+const FIRE_NAME: String = "fire"
+const ICE_NAME: String = "ice"
 
 @onready var the_baby: TheBaby = $".."
 
@@ -13,7 +17,7 @@ const DEFAULT_NAME: String = "default"
 
 
 var can_attack: bool = true
-var current_type: String = DEFAULT_NAME
+var current_type: String = FIRE_NAME
 var attack_direction = -1
 
 var right_facing_position: Vector2 = Vector2(-2, 4)
@@ -36,16 +40,28 @@ func attack():
 		if current_type == DEFAULT_NAME:
 			#spawn projectile
 			var default_projectile_attack_instance = DEFAULT_PROJECTILE_ATTACK.instantiate()
-			if default_projectile_attack_instance is DefaultProjectile:
-				var default_projectile: DefaultProjectile = default_projectile_attack_instance
-				default_projectile.instigator = the_baby
-				
-			get_tree().current_scene.add_child(default_projectile_attack_instance)
-			default_projectile_attack_instance.global_position = attack_spawn_point.global_position
-
-			
+			spawn_projectile(default_projectile_attack_instance)
 			default_projectile_attack_instance.set_direction(attack_direction)
-			secondary_arm_animated_sprite_2d.play("secondaryArmPunch")
+			
+		if current_type == ICE_NAME:
+			var ice_projectile_attack_instance = ICE_PROJECTILE.instantiate()
+			spawn_projectile(ice_projectile_attack_instance)
+			ice_projectile_attack_instance.set_direction(attack_direction)
+		if current_type == FIRE_NAME:
+			var fire_projectile_attack_instance = FIRE_PROJECTILE.instantiate()
+			spawn_projectile(fire_projectile_attack_instance)
+			fire_projectile_attack_instance.set_direction(attack_direction)
+			
+	secondary_arm_animated_sprite_2d.play("secondaryArmPunch")
+		
+func spawn_projectile(projectile_attack_instance):
+	
+	if projectile_attack_instance is DefaultProjectile:
+		var projectile: DefaultProjectile = projectile_attack_instance
+		projectile.instigator = the_baby
+				
+	get_tree().current_scene.add_child(projectile_attack_instance)
+	projectile_attack_instance.global_position = attack_spawn_point.global_position
 
 func change_attack_direction(direction):
 	if direction == 1 and attack_spawn_point.position.x < 0 or direction == -1 and attack_spawn_point.position.x > 0:
