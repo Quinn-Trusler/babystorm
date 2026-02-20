@@ -17,11 +17,6 @@ collision_mask = 3
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_npaks")
 
-[node name="TheBaby" parent="." unique_id=1063866243 node_paths=PackedStringArray("health_layer") instance=ExtResource("1_mq04c")]
-position = Vector2(2, -109)
-platform_floor_layers = 4294967040
-health_layer = NodePath("../HealthLayer")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2043231435]
 zoom = Vector2(1.5, 1.5)
 
@@ -34,5 +29,10 @@ healthLayer = NodePath("../HealthLayer")
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=1421537836]
 script = ExtResource("5_ody6q")
+
+[node name="TheBaby" parent="." unique_id=1063866243 node_paths=PackedStringArray("health_layer") instance=ExtResource("1_mq04c")]
+position = Vector2(2, -109)
+platform_floor_layers = 4294967040
+health_layer = NodePath("../HealthLayer")
 
 [node name="HealthLayer" parent="." unique_id=834321996 instance=ExtResource("4_abovt")]
