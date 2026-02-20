@@ -10,6 +10,7 @@ var rotation_speed = 20
 var instigator: Node2D = null
 var damageInfo: DamageInfo = DamageInfo.new()
 var forceInfo: ForceInfo = ForceInfo.new()
+@export var damage: float = 1
 
 var _hitCalc: HitCalculator = HitCalculator.new()
 
@@ -57,6 +58,8 @@ func _on_hit_area_2d_body_entered(body: Node2D) -> void:
 		if hit != null:
 			damageInfo.hitPoint = hit.hit_point
 			damageInfo.hitNormal = hit.hit_normal
+		
+		damageInfo.amount = damage
 		
 		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
 		GlobalSignal.projectile_damage_registered.emit(self, body, damageInfo)

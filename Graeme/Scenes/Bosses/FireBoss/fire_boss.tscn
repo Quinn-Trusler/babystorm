@@ -1,18 +1,18 @@
-[gd_scene load_steps=45 format=3 uid="uid://b83cwi4ha4qvk"]
+[gd_scene format=3 uid="uid://b83cwi4ha4qvk"]
 
-[ext_resource type="Texture2D" uid="uid://cjokroqrnot71" path="res://assets/sprites/baby/baby_head.png" id="1_ab43v"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss.gd" id="1_e1n56"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_state_machine.gd" id="3_408is"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_light_attack.gd" id="4_fqbqx"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_heavy_attack.gd" id="5_c1akg"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_special_attack.gd" id="6_pr3xb"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_animations.gd" id="7_iatj6"]
-[ext_resource type="Texture2D" uid="uid://bhvs7120f5rrd" path="res://assets/sprites/fire_baby/fire_torso_jump_anim.png" id="8_kd4e1"]
-[ext_resource type="Texture2D" uid="uid://2hps2ek1rb5a" path="res://assets/sprites/fire_baby/fire_torso_freeze_frame.png" id="8_xmpwk"]
-[ext_resource type="Texture2D" uid="uid://cll844a88i1sy" path="res://assets/sprites/fire_baby/fire_torso_walk_anim.png" id="9_rwsw6"]
-[ext_resource type="Texture2D" uid="uid://cj0ot0ylkgg7k" path="res://assets/sprites/fire_baby/fire_pivotable_arm.png" id="10_3lhq1"]
-[ext_resource type="Texture2D" uid="uid://pj1l5qjouvu7" path="res://assets/sprites/fire_baby/IMG_7432.png" id="12_awgv7"]
-[ext_resource type="Texture2D" uid="uid://c8leognruefe7" path="res://assets/sprites/fire_baby/fire_wings_idle.png" id="13_yquij"]
+[ext_resource type="Texture2D" uid="uid://b5772rcb0x81b" path="res://assets/sprites/baby/baby_head_jumpwalk_idle.png" id="1_ab43v"]
+[ext_resource type="Script" uid="uid://cgbwsutxvuqgv" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss.gd" id="1_e1n56"]
+[ext_resource type="Script" uid="uid://vheugv802s2u" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_state_machine.gd" id="3_408is"]
+[ext_resource type="Script" uid="uid://cpueqhoqcjidy" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_light_attack.gd" id="4_fqbqx"]
+[ext_resource type="Script" uid="uid://cm033kqowi626" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_heavy_attack.gd" id="5_c1akg"]
+[ext_resource type="Script" uid="uid://c2d5l52b0mu8b" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_special_attack.gd" id="6_pr3xb"]
+[ext_resource type="Script" uid="uid://dctdskeetdpfv" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_animations.gd" id="7_iatj6"]
+[ext_resource type="Texture2D" uid="uid://bhvs7120f5rrd" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_jump_anim.png" id="8_kd4e1"]
+[ext_resource type="Texture2D" uid="uid://2hps2ek1rb5a" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_freeze_frame.png" id="8_xmpwk"]
+[ext_resource type="Texture2D" uid="uid://cll844a88i1sy" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_walk_anim.png" id="9_rwsw6"]
+[ext_resource type="Texture2D" uid="uid://cj0ot0ylkgg7k" path="res://assets/sprites/fire - level 2 boss 1/fire_pivotable_arm.png" id="10_3lhq1"]
+[ext_resource type="Texture2D" uid="uid://bifs5f3f730g7" path="res://assets/sprites/baby/baby_firearm_jumpwalk_anim.png" id="12_awgv7"]
+[ext_resource type="Texture2D" uid="uid://c8leognruefe7" path="res://assets/sprites/fire - level 2 boss 1/fire_wings_idle.png" id="13_yquij"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8w5ko"]
 radius = 16.0
@@ -243,70 +243,70 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="FireBoss" type="Node2D"]
+[node name="FireBoss" type="Node2D" unique_id=800384082]
 script = ExtResource("1_e1n56")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=779633359]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=374582240]
 shape = SubResource("CapsuleShape2D_8w5ko")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=488607244]
 position = Vector2(0, 25)
 sprite_frames = SubResource("SpriteFrames_qtv15")
 
-[node name="FireBossStateMachine" type="Node" parent="."]
+[node name="FireBossStateMachine" type="Node" parent="." unique_id=1177660605]
 script = ExtResource("3_408is")
 
-[node name="LightAttack" type="Node2D" parent="FireBossStateMachine"]
+[node name="LightAttack" type="Node2D" parent="FireBossStateMachine" unique_id=1885167273]
 script = ExtResource("4_fqbqx")
 
-[node name="lightStateTimer" type="Timer" parent="FireBossStateMachine/LightAttack"]
+[node name="lightStateTimer" type="Timer" parent="FireBossStateMachine/LightAttack" unique_id=26444861]
 wait_time = 3.0
 one_shot = true
 
-[node name="attackTimer" type="Timer" parent="FireBossStateMachine/LightAttack"]
+[node name="attackTimer" type="Timer" parent="FireBossStateMachine/LightAttack" unique_id=1196220952]
 wait_time = 2.0
 one_shot = true
 
-[node name="HeavyAttack" type="Node2D" parent="FireBossStateMachine"]
+[node name="HeavyAttack" type="Node2D" parent="FireBossStateMachine" unique_id=1048486961]
 script = ExtResource("5_c1akg")
 
-[node name="heavyStateTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack"]
+[node name="heavyStateTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack" unique_id=2061875664]
 one_shot = true
 
-[node name="heavyAttackTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack"]
+[node name="heavyAttackTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack" unique_id=802272259]
 one_shot = true
 
-[node name="SpecialAttack" type="Node2D" parent="FireBossStateMachine"]
+[node name="SpecialAttack" type="Node2D" parent="FireBossStateMachine" unique_id=799729151]
 script = ExtResource("6_pr3xb")
 
-[node name="specialStateTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack"]
+[node name="specialStateTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack" unique_id=1769544876]
 wait_time = 3.0
 one_shot = true
 
-[node name="specialAttackTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack"]
+[node name="specialAttackTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack" unique_id=495183176]
 one_shot = true
 
-[node name="Animations" type="Node2D" parent="."]
+[node name="Animations" type="Node2D" parent="." unique_id=608735675]
 script = ExtResource("7_iatj6")
 
-[node name="BodyAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
+[node name="BodyAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=649533986]
 sprite_frames = SubResource("SpriteFrames_rd508")
 animation = &"idle"
 
-[node name="ArmsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
+[node name="ArmsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=1119902455]
 position = Vector2(-2, -3)
 rotation = 0.0758349
 sprite_frames = SubResource("SpriteFrames_8fske")
 frame = 1
 frame_progress = 0.70598
 
-[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
+[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=133526386]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_by5kb")
 
-[node name="WingsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
+[node name="WingsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=715756190]
 sprite_frames = SubResource("SpriteFrames_6pk1g")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj4pjerer124"]
+[gd_scene format=3 uid="uid://dj4pjerer124"]
 
-[ext_resource type="Script" path="res://Graeme/Scripts/Attacks/default_projectile_attack.gd" id="1_0l8cr"]
+[ext_resource type="Script" uid="uid://byxvpr6lmrjr4" path="res://Graeme/Scripts/Attacks/default_projectile_attack.gd" id="1_0l8cr"]
 [ext_resource type="Texture2D" uid="uid://cxk0vhntvikka" path="res://assets/sprites/baby_bottle.png" id="2_gcbod"]
 [ext_resource type="Texture2D" uid="uid://c5eabwbs8hvj6" path="res://assets/sprites/baby_bottle_fill.png" id="3_63eot"]
 
@@ -8,28 +8,29 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ehpo"]
 
-[node name="DefaultProjectileAttack" type="RigidBody2D" groups=["projectile"]]
+[node name="DefaultProjectileAttack" type="RigidBody2D" unique_id=1511562160 groups=["projectile"]]
 collision_layer = 128
 collision_mask = 128
 script = ExtResource("1_0l8cr")
+damage = 3.0
 
-[node name="HitArea2D" type="Area2D" parent="."]
+[node name="HitArea2D" type="Area2D" parent="." unique_id=872094319]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D" unique_id=802943570]
 shape = SubResource("CircleShape2D_2eu1g")
 
-[node name="RigidBodyCollisionShape" type="CollisionShape2D" parent="."]
+[node name="RigidBodyCollisionShape" type="CollisionShape2D" parent="." unique_id=1630518367]
 shape = SubResource("CircleShape2D_8ehpo")
 
-[node name="DespawnTimer" type="Timer" parent="."]
+[node name="DespawnTimer" type="Timer" parent="." unique_id=1302954310]
 
-[node name="ProjectileSprite" type="Sprite2D" parent="."]
+[node name="ProjectileSprite" type="Sprite2D" parent="." unique_id=1828841410]
 texture_filter = 1
 position = Vector2(3, 1.78814e-07)
 scale = Vector2(0.75, 0.863636)
 texture = ExtResource("2_gcbod")
 
-[node name="Sprite2D" type="Sprite2D" parent="ProjectileSprite"]
+[node name="Sprite2D" type="Sprite2D" parent="ProjectileSprite" unique_id=1545481993]
 texture = ExtResource("3_63eot")
 
 [connection signal="area_entered" from="HitArea2D" to="." method="_on_hit_area_2d_area_entered"]

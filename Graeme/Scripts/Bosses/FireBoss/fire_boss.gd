@@ -11,11 +11,14 @@ signal on_health_updated(health)
 @export var area_size: Vector2 = Vector2(400, 80)
 
 @export var arrive_distance: float = 10.0
+@export var health_layer: CanvasLayer = null
 
 var target_pos: Vector2
 
 
 func _ready():
+	if health_layer != null:
+		health_layer.set_boss_max_health(health)
 	randomize()
 	target_pos = get_random_point()
 
@@ -47,7 +50,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 func take_damage(damage_amount):
 	health -= damage_amount
-	
+	if health_layer != null:
+		health_layer.update_boss_health_bar(health)
 	print(health)
 	if health <= 0:
 		print("boss has died")
