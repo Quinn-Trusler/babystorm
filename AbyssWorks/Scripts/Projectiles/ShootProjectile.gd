@@ -63,6 +63,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if hit != null:
 			damageInfo.hitPoint = hit.hit_point
 			damageInfo.hitNormal = hit.hit_normal
+		queue_free()
 		
 		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
 		GlobalSignal.projectile_damage_registered.emit(self, body, damageInfo)

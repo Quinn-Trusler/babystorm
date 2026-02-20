@@ -47,6 +47,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	var area_parent = area.get_node("../")
 	if area_parent and area_parent is Projectile:
 		take_damage(area_parent.damage_amount)
+		area_parent.queue_free()
 	if area_parent and area_parent is PhysicalAttack:
 		take_damage(area_parent.damage_amount)
 	
