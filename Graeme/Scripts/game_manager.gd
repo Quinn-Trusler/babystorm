@@ -10,11 +10,12 @@ const STRENGTH_ABILITY = "strong main"
 var main_arm_body_part = "default main"
 var secondary_arm_body_part = "default secondary"
 var scene_index = 0
-var scenes = ["res://AbyssWorks/Scenes/AbyssSceneDuplicate.tscn",
+var scenes = ["res://AbyssWorks/Scenes/AbyssSceneLuchadorBoss.tscn",
+	"res://AbyssWorks/Scenes/AbyssScene.tscn",
 "res://Graeme/Scenes/Bosses/FireBoss/fire_boss_scene.tscn",
 "res://AbyssWorks/Scenes/AbyssScenePhysicalBoss.tscn",
 "res://Quinn/win_screen.tscn"]
-var scene_unlocks = ["ice", "fire", "strength"]
+var scene_unlocks = ["strength","ice", "fire", "big strong"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

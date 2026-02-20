@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://brv8kmx7s06k2"]
 
+[ext_resource type="Texture2D" uid="uid://c1mdw6vqj7six" path="res://Quinn/art/baby_boxing_ring.png" id="1_47pwu"]
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_hpx7a"]
 [ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="2_47pwu"]
 [ext_resource type="PackedScene" uid="uid://bwcoxhyapu0ga" path="res://AbyssWorks/Prefabs/LuchadorBoss2D.tscn" id="2_hpx7a"]
@@ -9,6 +10,10 @@
 size = Vector2(1209, 49)
 
 [node name="AbyssScene" type="Node2D" unique_id=1795464032]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1970826605]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_47pwu")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=813667751]
 position = Vector2(0, 113)

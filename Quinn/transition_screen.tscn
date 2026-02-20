@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8b5ks8w5xxvh"]
 
 [ext_resource type="Script" uid="uid://hvci7u4b4iar" path="res://Quinn/transition_screen.gd" id="1_77mk1"]
+[ext_resource type="Texture2D" uid="uid://bvxoc625pjsli" path="res://Quinn/art/dna/rainbow_dna.png" id="2_4rvue"]
 [ext_resource type="Texture2D" uid="uid://cftspy47exx7e" path="res://Quinn/art/dna/fire_dna.png" id="2_fo4h7"]
 [ext_resource type="Texture2D" uid="uid://1rwsro8v5emv" path="res://Quinn/art/dna/ice_dna.png" id="3_4rvue"]
 [ext_resource type="FontFile" uid="uid://d0fml67pkspne" path="res://Quinn/font/yoster.ttf" id="3_f0yyg"]
@@ -225,6 +226,14 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_4rvue")
+}],
+"loop": true,
+"name": &"big strong",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_fo4h7")
 }],
 "loop": true,
@@ -266,7 +275,7 @@ libraries/ = SubResource("AnimationLibrary_4hyr7")
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(576, 286)
 sprite_frames = SubResource("SpriteFrames_voa77")
-animation = &"strength"
+animation = &"big strong"
 
 [node name="PowerUpName" type="Label" parent="." unique_id=230208129]
 self_modulate = Color(1, 1, 1, 0)
