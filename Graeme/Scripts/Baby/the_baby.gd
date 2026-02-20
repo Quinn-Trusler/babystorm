@@ -104,11 +104,13 @@ func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
 	take_damage(damageInfo.amount)
 		
 func take_damage(damage: int):
+	$hurtSound.play()
 	torso.take_damage(damage)
 	if health_layer != null:
 		health_layer.update_player_health_bar(torso.health)
 	on_health_changed.emit(torso.health)
 	if torso.health <= 0:
+		TransitionScreen.play_death()
 		get_tree().reload_current_scene()
 		
 func get_health():

@@ -1,8 +1,8 @@
 extends Projectile
 
 var direction: int = -1
-var velocity_scalar: float = 1000
-var initial_velocity = Vector2(1.0, -0.3)
+var velocity_scalar: float = 400
+var initial_velocity = Vector2(1.0, 0)
 var rotation_speed = 20
 
 @onready var texture_rect: TextureRect = $TextureRect

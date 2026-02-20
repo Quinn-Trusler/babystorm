@@ -47,8 +47,9 @@ health_layer = NodePath("../HealthLayer")
 [node name="IceBoss2d" parent="." unique_id=2054299605 node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("2_npaks")]
 position = Vector2(221, 30)
 SPEED = 150.0
+attackTime = 7.0
 target = NodePath("../TheBaby")
-nearDistanceToTarget = 300.0
+nearDistanceToTarget = 130.0
 healthLayer = NodePath("../HealthLayer")
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]

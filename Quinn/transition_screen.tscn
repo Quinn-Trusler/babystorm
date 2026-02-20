@@ -10,7 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://p53dfax5quuf" path="res://Quinn/art/UI/continue_button_hover.png" id="5_6i8ac"]
 [ext_resource type="Script" uid="uid://71h2qqc6so5i" path="res://Quinn/music.gd" id="5_f0yyg"]
 [ext_resource type="Texture2D" uid="uid://8gjk4257cba0" path="res://Quinn/art/UI/continue_button_pressed.png" id="5_llslp"]
-[ext_resource type="AudioStream" uid="uid://w6jd8lqbgyh3" path="res://music/Babystorm music short.wav" id="6_3lbym"]
+[ext_resource type="AudioStream" uid="uid://b8xjyi87fwovf" path="res://music/Babystorm fight theme 1 (final_).wav" id="10_tdliv"]
+[ext_resource type="AudioStream" uid="uid://bn6visdo2h1id" path="res://music/Babystorm fight theme 2 (final_).wav" id="12_b6iyg"]
+[ext_resource type="AudioStream" uid="uid://ck8hgtctvvyb3" path="res://music/Babystorm menu.wav" id="13_3mlkg"]
+[ext_resource type="Script" uid="uid://chm6in500w58u" path="res://Quinn/music_2.gd" id="13_b6iyg"]
+[ext_resource type="AudioStream" uid="uid://byg5n20ej24sd" path="res://music/evolve baby start.wav" id="14_76o1a"]
+[ext_resource type="Script" uid="uid://cjxculs2atpx3" path="res://Quinn/win.gd" id="15_3mlkg"]
+[ext_resource type="AudioStream" uid="uid://825fmkwke1y8" path="res://music/evolve baby end.wav" id="17_76o1a"]
+[ext_resource type="AudioStream" uid="uid://djcc0tf71avdy" path="res://sfx/baby death.wav" id="18_lhid5"]
 
 [sub_resource type="Animation" id="Animation_s4ft7"]
 length = 0.001
@@ -301,11 +308,32 @@ texture_normal = ExtResource("4_3lbym")
 texture_pressed = ExtResource("5_llslp")
 texture_hover = ExtResource("5_6i8ac")
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1073356526]
-stream = ExtResource("6_3lbym")
+[node name="Music1" type="AudioStreamPlayer" parent="." unique_id=1073356526]
+stream = ExtResource("10_tdliv")
+volume_db = -5.0
 autoplay = true
 script = ExtResource("5_f0yyg")
 
+[node name="Music2" type="AudioStreamPlayer" parent="." unique_id=1910848582]
+stream = ExtResource("12_b6iyg")
+volume_db = -5.0
+script = ExtResource("13_b6iyg")
+
+[node name="Win" type="AudioStreamPlayer" parent="." unique_id=462319792]
+stream = ExtResource("13_3mlkg")
+script = ExtResource("15_3mlkg")
+
+[node name="Play" type="AudioStreamPlayer" parent="." unique_id=1774705147]
+stream = ExtResource("14_76o1a")
+
+[node name="WinBossBattle" type="AudioStreamPlayer" parent="." unique_id=214551015]
+stream = ExtResource("17_76o1a")
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=1540255970]
+stream = ExtResource("18_lhid5")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="finished" from="Music" to="Music" method="_on_finished"]
+[connection signal="finished" from="Music1" to="Music1" method="_on_finished"]
+[connection signal="finished" from="Music2" to="Music2" method="_on_finished"]
+[connection signal="finished" from="Win" to="Win" method="_on_finished"]

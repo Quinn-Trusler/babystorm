@@ -15,10 +15,13 @@
 [ext_resource type="Texture2D" uid="uid://dtec6q77n05di" path="res://assets/sprites/baby/baby_luchaarm_jumpwalk_idle.png" id="10_s3np4"]
 [ext_resource type="Texture2D" uid="uid://81dnyn8u2edw" path="res://assets/sprites/baby/baby_icearm_jumpwalk_anim.png" id="11_3vl5m"]
 [ext_resource type="Texture2D" uid="uid://db6uxynteehrj" path="res://assets/sprites/baby/baby_torso_jump_anim.png" id="11_eygqt"]
+[ext_resource type="AudioStream" uid="uid://cgp8tds145e35" path="res://sfx/punch.wav" id="11_h8h2a"]
 [ext_resource type="Texture2D" uid="uid://464se3boffcn" path="res://assets/sprites/baby/baby_torso_walk_anim.png" id="12_5sf3j"]
 [ext_resource type="Texture2D" uid="uid://dupasxw3xbrbd" path="res://assets/sprites/baby/baby_push_jumpwalk_anim.png" id="13_aiijn"]
 [ext_resource type="Texture2D" uid="uid://cuvimvp7bdx42" path="res://assets/sprites/baby/baby_firearm_jumpwalk_idle.png" id="14_1jyaj"]
 [ext_resource type="Texture2D" uid="uid://c3c4phcaevmlg" path="res://assets/sprites/baby/baby_icearm_jumpwalk_idle.png" id="16_o0ddh"]
+[ext_resource type="AudioStream" uid="uid://dfofqtdtq0qlc" path="res://sfx/throw.wav" id="19_siaxq"]
+[ext_resource type="AudioStream" uid="uid://do6d0idk7cfx4" path="res://sfx/baby damage.wav" id="20_2x636"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nj4xm"]
 atlas = ExtResource("3_odic7")
@@ -559,7 +562,7 @@ script = ExtResource("2_ej0j6")
 texture_filter = 1
 position = Vector2(-8, 8)
 sprite_frames = SubResource("SpriteFrames_yyjfj")
-animation = &"walk"
+animation = &"idle"
 flip_h = true
 
 [node name="Torso" type="Node2D" parent="." unique_id=935661571]
@@ -579,13 +582,18 @@ script = ExtResource("5_jwkfu")
 texture_filter = 1
 position = Vector2(4, -2)
 sprite_frames = SubResource("SpriteFrames_h1fl5")
-animation = &"strongMainStatic"
+animation = &"defaultMainStatic"
 flip_h = true
 
 [node name="AttackSpawnPoint" type="Node2D" parent="MainArm" unique_id=766357618]
 position = Vector2(-34, -6)
 
 [node name="AttackCoolDownTimer" type="Timer" parent="MainArm" unique_id=1115649442]
+wait_time = 3.0
+
+[node name="punchSound" type="AudioStreamPlayer" parent="MainArm" unique_id=838363782]
+stream = ExtResource("11_h8h2a")
+volume_db = -5.0
 
 [node name="SecondaryArm" type="Node2D" parent="." unique_id=698164327]
 position = Vector2(3, 3)
@@ -599,10 +607,14 @@ animation = &"defaultThrow"
 flip_h = true
 
 [node name="AttackCoolDownTimer" type="Timer" parent="SecondaryArm" unique_id=1516526108]
-wait_time = 0.1
+wait_time = 0.5
 
 [node name="AttackSpawnPoint" type="Node2D" parent="SecondaryArm" unique_id=400752836]
 position = Vector2(-22, -13)
+
+[node name="throwSound" type="AudioStreamPlayer" parent="SecondaryArm" unique_id=412394986]
+stream = ExtResource("19_siaxq")
+volume_db = 5.0
 
 [node name="Legs" type="Node2D" parent="." unique_id=257853671]
 position = Vector2(8, -4)
@@ -612,12 +624,16 @@ script = ExtResource("7_euptn")
 texture_filter = 1
 position = Vector2(-8, 7)
 sprite_frames = SubResource("SpriteFrames_qa4qn")
-animation = &"jump"
+animation = &"idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2053114806]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_paxpy")
+
+[node name="hurtSound" type="AudioStreamPlayer" parent="." unique_id=1372466394]
+stream = ExtResource("20_2x636")
+volume_db = 5.0
 
 [connection signal="timeout" from="MainArm/AttackCoolDownTimer" to="MainArm" method="_on_attack_cool_down_timer_timeout"]
 [connection signal="timeout" from="SecondaryArm/AttackCoolDownTimer" to="SecondaryArm" method="_on_attack_cool_down_timer_timeout"]

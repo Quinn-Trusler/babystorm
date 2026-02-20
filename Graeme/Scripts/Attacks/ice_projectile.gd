@@ -2,8 +2,8 @@ extends Projectile
 
 
 var direction: int = -1
-var velocity_scalar: float = 1000
-var initial_velocity = Vector2(1.0, -0.3)
+var velocity_scalar: float = 700
+var initial_velocity = Vector2(1.0, -0.2)
 var rotation_speed = 20
 
 

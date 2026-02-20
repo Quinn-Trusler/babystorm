@@ -34,5 +34,10 @@ func get_scene_unlock():
 func next_scene():
 	unlock()
 	scene_index +=1
+	# Worlds must elegent code:
+	if scene_index == 2:
+		TransitionScreen.play_final()	
+	if scene_index == 3:
+		TransitionScreen.play_win()
 func get_scene_name():
 	return scenes[scene_index]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://825fmkwke1y8"
+path="res://.godot/imported/evolve baby end.wav-7f199434a072fec8a791edfdf754b01e.sample"
+
+[deps]
+
+source_file="res://music/evolve baby end.wav"
+dest_files=["res://.godot/imported/evolve baby end.wav-7f199434a072fec8a791edfdf754b01e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
