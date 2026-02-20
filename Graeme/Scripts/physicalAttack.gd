@@ -1,10 +1,8 @@
-extends Node
+extends Node2D
+class_name PhysicalAttack
 
+var damage_amount = 30
 
-
-
-var main_arm_body_part = "default main"
-var secondary_arm_body_part = "default secondary"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

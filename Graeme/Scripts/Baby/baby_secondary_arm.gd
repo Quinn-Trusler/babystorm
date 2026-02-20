@@ -33,6 +33,13 @@ func swap_body_part(body_part):
 	if body_part == DEFAULT_NAME or body_part == ICE_NAME or body_part == FIRE_NAME:
 		current_type = body_part
 		GameManager.secondary_arm_body_part = body_part
+	
+	if current_type == DEFAULT_NAME:
+		secondary_arm_animated_sprite_2d.play("defaultStatic")
+	if current_type == ICE_NAME:
+		secondary_arm_animated_sprite_2d.play("iceStatic")
+	if current_type == FIRE_NAME:
+		secondary_arm_animated_sprite_2d.play("fireStatic")
 		
 	
 func attack():
@@ -46,17 +53,21 @@ func attack():
 			var default_projectile_attack_instance = DEFAULT_PROJECTILE_ATTACK.instantiate()
 			spawn_projectile(default_projectile_attack_instance)
 			default_projectile_attack_instance.set_direction(attack_direction)
+			secondary_arm_animated_sprite_2d.play("defaultThrow")
 			
 		if current_type == ICE_NAME:
 			var ice_projectile_attack_instance = ICE_PROJECTILE.instantiate()
 			spawn_projectile(ice_projectile_attack_instance)
 			ice_projectile_attack_instance.set_direction(attack_direction)
+			secondary_arm_animated_sprite_2d.play("iceThrow")
+			
 		if current_type == FIRE_NAME:
 			var fire_projectile_attack_instance = FIRE_PROJECTILE.instantiate()
 			spawn_projectile(fire_projectile_attack_instance)
 			fire_projectile_attack_instance.set_direction(attack_direction)
+			secondary_arm_animated_sprite_2d.play("fireThrow")
 			
-	secondary_arm_animated_sprite_2d.play("secondaryArmPunch")
+	
 		
 func spawn_projectile(projectile_attack_instance):
 	
@@ -71,7 +82,12 @@ func change_attack_direction(direction):
 	if direction == 1 and attack_spawn_point.position.x < 0 or direction == -1 and attack_spawn_point.position.x > 0:
 		attack_spawn_point.position.x *= -1
 	
-	flip_sprite(direction, secondary_arm_animated_sprite_2d, right_facing_position, left_facing_position)
+	if direction < 0:
+		secondary_arm_animated_sprite_2d.flip_h = true
+	else:
+		secondary_arm_animated_sprite_2d.flip_h = false
+	
+	
 	attack_direction = direction
 
 func _on_attack_cool_down_timer_timeout() -> void:

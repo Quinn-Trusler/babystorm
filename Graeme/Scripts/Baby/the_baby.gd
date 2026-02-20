@@ -5,6 +5,7 @@ signal on_toggle_move(is_moving: bool)
 signal on_change_direction(direction: int)
 signal on_swapped_body_part(body_part: String)
 signal on_health_changed(health)
+signal on_toggle_jump(has_jumped)
 
 @onready var legs: Node2D = $Legs
 @onready var torso: Node2D = $Torso
@@ -34,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
+	
 	if move_direction:
 		velocity.x = move_direction * legs.speed
 	else:
@@ -43,6 +45,10 @@ func _physics_process(delta: float) -> void:
 	
 func swap_body_part(body_part):
 	on_swapped_body_part.emit(body_part)
+
+var secondary_arm_testing_count = 0
+var main_arm_testing_count = 0
+var testing = false
 
 func _input(event):
 	# movement animations
@@ -63,6 +69,8 @@ func _input(event):
 		
 	if event.is_action_pressed("ui_accept") and is_on_floor():
 		velocity.y = legs.jump_velocity
+		on_toggle_jump.emit(true)
+		
 		
 	# Attack animations
 	if event is InputEventMouseButton:
@@ -72,6 +80,23 @@ func _input(event):
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			print("Right mouse button pressed!")
 			secondary_arm.attack()
+			
+	if event is InputEventKey and event.pressed and testing:
+		if event.keycode == KEY_E:
+			if secondary_arm_testing_count == 0:
+				swap_body_part("ice secondary")
+			elif secondary_arm_testing_count == 1:
+				swap_body_part("fire secondary")
+			else: 
+				swap_body_part("default secondary")
+			secondary_arm_testing_count += 1
+		if event.keycode == KEY_F:
+			if main_arm_testing_count == 0:
+				swap_body_part("strong main")
+			elif main_arm_testing_count == 1:
+				swap_body_part("default main")
+			
+			main_arm_testing_count += 1
 		
 func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
 	print("Apply damage and force to player")

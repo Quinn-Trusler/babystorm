@@ -13,6 +13,7 @@
 script = ExtResource("3_h2uov")
 consecutiveHits = 1
 attackDistance = 180.0
+anim_speed_add = 0.0
 basicAttackAnims = Array[String](["LeftPunch", "RightPunch"])
 cooldownTime = 0.0
 allowFirst = false

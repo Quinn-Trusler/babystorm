@@ -1,5 +1,5 @@
 extends PhysicalAttack
-class_name DefaultAttack
+class_name StrongAttack
 
 @export var attack_hang_time: float = 0.1
 @export var damage: float = 1
@@ -16,7 +16,7 @@ var _hitCalc: HitCalculator = HitCalculator.new()
 func _ready() -> void:
 	attack_duration_timer.wait_time = attack_hang_time
 	attack_duration_timer.start()
-	
+	damage_amount = 80
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,8 +35,6 @@ func _on_attack_duration_timer_timeout() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == instigator:
 		return	
-	
-	#print(body)
 	
 	if body is CharacterBase:
 		var characterBase: CharacterBase = body
