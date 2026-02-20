@@ -15,16 +15,16 @@ var play_animations_backwards = false
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("NextScene") and not in_transition:# Letter n
 		in_transition = true
-		fade_in(["fire", "strength"],"ice","res://Quinn/quinn_test_scene2.tscn")
+		fade_in()
 
-func fade_in(powerups_owned, new_powerup, next_scene_):
+func fade_in():
 	play_animations_backwards = false
 	get_tree().paused = true
-	next_scene = next_scene_
 	visible = true
-	$PowerupImage.play(new_powerup)
-	$PowerUpName.text = new_powerup + " gene unlocked!"
+	$PowerupImage.play(GameManager.get_scene_unlock())
+	$PowerUpName.text = GameManager.get_scene_unlock() + " gene unlocked!"
 	$AnimationPlayer.play("fade_in")
+	print("start fade in")
 	
 func fade_out():
 	play_animations_backwards = true
@@ -47,6 +47,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	
 func _on_continue_button_pressed() -> void:
 	if not play_animations_backwards:
-		get_tree().change_scene_to_file(next_scene)
+		GameManager.next_scene()
+		get_tree().change_scene_to_file(GameManager.get_scene_name())
 		fade_out()
 	

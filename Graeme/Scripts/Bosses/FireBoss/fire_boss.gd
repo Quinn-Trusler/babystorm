@@ -59,7 +59,7 @@ func take_damage(damage_amount):
 	if health <= 0:
 		print("boss has died")
 		var player : TheBaby = get_tree().get_first_node_in_group("player")	
-		player.swap_body_part("fire secondary")
+		TransitionScreen.fade_in()
 		queue_free()
 		
 	on_health_updated.emit(health)

@@ -70,10 +70,10 @@ func attack():
 	
 		
 func spawn_projectile(projectile_attack_instance):
-	
+	projectile_attack_instance.instigator = the_baby # This was a fun bug :(
 	if projectile_attack_instance is DefaultProjectile:
 		var projectile: DefaultProjectile = projectile_attack_instance
-		projectile.instigator = the_baby
+		
 				
 	get_tree().current_scene.add_child(projectile_attack_instance)
 	projectile_attack_instance.global_position = attack_spawn_point.global_position

@@ -11,7 +11,7 @@
 collision_layer = 128
 collision_mask = 128
 script = ExtResource("1_tfbke")
-damage = 3.0
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1548207932]
 shape = SubResource("CircleShape2D_oe6df")
@@ -27,3 +27,5 @@ texture = ExtResource("2_nohic")
 shape = SubResource("CircleShape2D_bthn7")
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
+[connection signal="area_entered" from="HitArea2D" to="." method="_on_hit_area_2d_area_entered"]
+[connection signal="body_entered" from="HitArea2D" to="." method="_on_hit_area_2d_body_entered"]

@@ -23,10 +23,20 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="IceBoss2d" parent="." unique_id=2054299605 node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("2_npaks")]
 position = Vector2(221, 30)
+skipDamagedState = null
 SPEED = 150.0
+attackTime = null
+maxStamina = null
+staminaRecFactor = null
+staminaDepFactor = null
+staminaThreshold_min = null
+staminaThreshold_max = null
 target = NodePath("../TheBabyAbyss")
 nearDistanceToTarget = 300.0
+maxHealth = null
 healthLayer = NodePath("../HealthLayer")
+fallAnim = null
+damagedAnim = null
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]
 script = ExtResource("5_thapu")
