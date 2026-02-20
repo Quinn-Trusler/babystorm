@@ -48,6 +48,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		damageInfo.amount = damage
 		
-		characterBase.ApplyDamageAndForce(damage_amount, forceInfo)
+		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
 		GlobalSignal.projectile_damage_registered.emit(self, body, damageInfo)
 	pass # Replace with function body.

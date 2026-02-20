@@ -58,7 +58,6 @@ func attack():
 	if can_attack:
 		can_attack = false
 		attack_cool_down_timer.start()
-		
 		if current_type == DEFAULT_NAME:
 			var default_attack_instance = DEFAULT_ATTACK.instantiate()
 			if default_attack_instance is DefaultAttack:
