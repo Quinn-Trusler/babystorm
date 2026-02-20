@@ -67,3 +67,5 @@ func _on_hit_area_2d_body_entered(body: Node2D) -> void:
 		
 		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
 		GlobalSignal.projectile_damage_registered.emit(self, body, damageInfo)
+		queue_free()
+		print("hi i'm ice and i killed myself")

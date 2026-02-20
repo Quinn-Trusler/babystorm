@@ -18,4 +18,5 @@ func _process(delta: float) -> void:
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is TheBaby:
-		body.take_damage(20)
+		body.take_damage(10)
+		queue_free()
