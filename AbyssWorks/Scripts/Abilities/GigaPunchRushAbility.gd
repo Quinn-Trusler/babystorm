@@ -31,7 +31,8 @@ var _canDash: bool = false
 var _cooldownTimer: float = 0
 
 func External_Ready():
-	damageAmount = AbilityDamageAmount.gigaDashPunchDamage
+	damageAmount = AbilitySettings.gigaDashPunchDamage
+	cooldownTime = AbilitySettings.gigaDashPunchCooldown
 	
 	characterBody2D = _variable_dict["char_body"]
 	customForce2D = _variable_dict["custom_force"]

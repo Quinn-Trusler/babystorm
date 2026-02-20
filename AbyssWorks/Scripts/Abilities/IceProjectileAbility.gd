@@ -29,7 +29,8 @@ var spawnLocation: Node2D = null
 const ICE_PROJECTILE_ATTACK = preload("res://AbyssWorks/Prefabs/Projectiles/IceShootProjectile.tscn")
 
 func External_Ready() -> void:
-	damageAmount = AbilityDamageAmount.iceProjectileDamage
+	damageAmount = AbilitySettings.iceProjectileDamage
+	cooldownTime = AbilitySettings.iceProjectileCooldown
 	
 	characterBody2D = _variable_dict["char_body"]
 	anim_subsc = _variable_dict["anim_subsc"]

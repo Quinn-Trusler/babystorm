@@ -1,14 +1,14 @@
-[gd_scene load_steps=87 format=3 uid="uid://ulp6peon4ldn"]
+[gd_scene format=3 uid="uid://ulp6peon4ldn"]
 
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/the_baby.gd" id="1_rd01h"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_head.gd" id="2_ej0j6"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_torso.gd" id="3_e2hms"]
+[ext_resource type="Script" uid="uid://3tp1qx7unn0d" path="res://Graeme/Scripts/Baby/the_baby.gd" id="1_rd01h"]
+[ext_resource type="Script" uid="uid://bvakx3jmco0p1" path="res://Graeme/Scripts/Baby/baby_head.gd" id="2_ej0j6"]
+[ext_resource type="Script" uid="uid://dm0uu4h5t3gaa" path="res://Graeme/Scripts/Baby/baby_torso.gd" id="3_e2hms"]
 [ext_resource type="Texture2D" uid="uid://b5772rcb0x81b" path="res://assets/sprites/baby/baby_head_jumpwalk_idle.png" id="3_odic7"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_main_arm.gd" id="5_jwkfu"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_secondary_arm.gd" id="6_5en4v"]
+[ext_resource type="Script" uid="uid://c7ulp0jtbv4cr" path="res://Graeme/Scripts/Baby/baby_main_arm.gd" id="5_jwkfu"]
+[ext_resource type="Script" uid="uid://bcb7q27dghprp" path="res://Graeme/Scripts/Baby/baby_secondary_arm.gd" id="6_5en4v"]
 [ext_resource type="Texture2D" uid="uid://dug4sty7vj12s" path="res://assets/sprites/baby/baby_push_jumpwalk_idle.png" id="7_2gqkr"]
 [ext_resource type="Texture2D" uid="uid://danxvf23c2hf1" path="res://assets/sprites/baby/baby_punch_jumpwalk_anim.png" id="7_4bwsl"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Baby/baby_legs.gd" id="7_euptn"]
+[ext_resource type="Script" uid="uid://c7f6eodpxk0po" path="res://Graeme/Scripts/Baby/baby_legs.gd" id="7_euptn"]
 [ext_resource type="Texture2D" uid="uid://bi6up6on5j0l1" path="res://assets/sprites/baby/baby_punch_jumpwalk_idle.png" id="8_8lpx5"]
 [ext_resource type="Texture2D" uid="uid://ddkibcq1n2fx5" path="res://assets/sprites/baby/baby_luchaarm_jumpwalk_anim.png" id="8_f2a2l"]
 [ext_resource type="Texture2D" uid="uid://bifs5f3f730g7" path="res://assets/sprites/baby/baby_firearm_jumpwalk_anim.png" id="9_gbud1"]
@@ -546,74 +546,76 @@ animations = [{
 radius = 16.0
 height = 66.0
 
-[node name="TheBaby" type="CharacterBody2D"]
+[node name="TheBaby" type="CharacterBody2D" unique_id=893376789]
+platform_on_leave = 2
+platform_floor_layers = 4294901760
 script = ExtResource("1_rd01h")
 
-[node name="Head" type="Node2D" parent="."]
+[node name="Head" type="Node2D" parent="." unique_id=2054222562]
 position = Vector2(8, -5)
 script = ExtResource("2_ej0j6")
 
-[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Head"]
+[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Head" unique_id=1685353766]
 texture_filter = 1
 position = Vector2(-8, 8)
 sprite_frames = SubResource("SpriteFrames_yyjfj")
 animation = &"walk"
 flip_h = true
 
-[node name="Torso" type="Node2D" parent="."]
+[node name="Torso" type="Node2D" parent="." unique_id=935661571]
 visible = false
 script = ExtResource("3_e2hms")
 
-[node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="Torso"]
+[node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="Torso" unique_id=1067877383]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s6hnl")
 
-[node name="MainArm" type="Node2D" parent="."]
+[node name="MainArm" type="Node2D" parent="." unique_id=1258880410]
 z_index = 1
 position = Vector2(-4, 6)
 script = ExtResource("5_jwkfu")
 
-[node name="MainArmAnimatedSprite2D" type="AnimatedSprite2D" parent="MainArm"]
+[node name="MainArmAnimatedSprite2D" type="AnimatedSprite2D" parent="MainArm" unique_id=909911393]
 texture_filter = 1
 position = Vector2(4, -2)
 sprite_frames = SubResource("SpriteFrames_h1fl5")
 animation = &"strongMainStatic"
 flip_h = true
 
-[node name="AttackSpawnPoint" type="Node2D" parent="MainArm"]
+[node name="AttackSpawnPoint" type="Node2D" parent="MainArm" unique_id=766357618]
 position = Vector2(-34, -6)
 
-[node name="AttackCoolDownTimer" type="Timer" parent="MainArm"]
+[node name="AttackCoolDownTimer" type="Timer" parent="MainArm" unique_id=1115649442]
 
-[node name="SecondaryArm" type="Node2D" parent="."]
+[node name="SecondaryArm" type="Node2D" parent="." unique_id=698164327]
 position = Vector2(3, 3)
 script = ExtResource("6_5en4v")
 
-[node name="SecondaryArmAnimatedSprite2D" type="AnimatedSprite2D" parent="SecondaryArm"]
+[node name="SecondaryArmAnimatedSprite2D" type="AnimatedSprite2D" parent="SecondaryArm" unique_id=1719898884]
 texture_filter = 1
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_626s4")
 animation = &"defaultThrow"
 flip_h = true
 
-[node name="AttackCoolDownTimer" type="Timer" parent="SecondaryArm"]
+[node name="AttackCoolDownTimer" type="Timer" parent="SecondaryArm" unique_id=1516526108]
 wait_time = 0.1
 
-[node name="AttackSpawnPoint" type="Node2D" parent="SecondaryArm"]
+[node name="AttackSpawnPoint" type="Node2D" parent="SecondaryArm" unique_id=400752836]
 position = Vector2(-22, -13)
 
-[node name="Legs" type="Node2D" parent="."]
+[node name="Legs" type="Node2D" parent="." unique_id=257853671]
 position = Vector2(8, -4)
 script = ExtResource("7_euptn")
 
-[node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="Legs"]
+[node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="Legs" unique_id=863587767]
 texture_filter = 1
 position = Vector2(-8, 7)
 sprite_frames = SubResource("SpriteFrames_qa4qn")
 animation = &"jump"
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2053114806]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_paxpy")
 
