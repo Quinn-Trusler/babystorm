@@ -3,7 +3,8 @@ class_name TheBaby
 
 signal on_toggle_move(is_moving: bool)
 signal on_change_direction(direction: int)
-signal on_item_picked_up(body_part: String)
+signal on_swapped_body_part(body_part: String)
+signal on_health_changed(health)
 
 @onready var legs: Node2D = $Legs
 @onready var torso: Node2D = $Torso
@@ -14,6 +15,16 @@ const JUMP_VELOCITY = -400.0
 
 var move_direction: float = 0
 
+func _ready() -> void:
+	set_body_parts(GameManager.main_arm_body_part, GameManager.secondary_arm_body_part)
+
+func set_body_parts(main_body_part, secondary_body_part):
+	swap_body_part(main_body_part)
+	swap_body_part(secondary_body_part)
+
+# returns array of string of body parts. first is main arm and second is secondary arm
+func get_body_parts():
+	return [main_arm.current_type, secondary_arm.current_type]
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -27,23 +38,23 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-func item_picked_up(body_part):
-	on_item_picked_up.emit(body_part)
+func swap_body_part(body_part):
+	on_swapped_body_part.emit(body_part)
 
 func _input(event):
 	# movement animations
-	if event.is_action_pressed("ui_left"):
+	if event.is_action_pressed("move_left"):
 		move_direction = -1
 		#rotation = deg_to_rad(180)
 		on_toggle_move.emit(true)
 		on_change_direction.emit(-1)
-	elif event.is_action_pressed("ui_right"):
+	elif event.is_action_pressed("move_right"):
 		move_direction = 1
 		rotation = deg_to_rad(0)
 		on_toggle_move.emit(true)
 		on_change_direction.emit(1)
 		
-	if event.is_action_released("ui_left") or event.is_action_released("ui_right"):
+	if event.is_action_released("move_left") or event.is_action_released("move_right"):
 		move_direction = 0
 		on_toggle_move.emit(false)
 		
@@ -63,5 +74,10 @@ func _input(event):
 		
 func take_damage(damage: int):
 	torso.take_damage(damage)
+	print(torso.health)
+	on_health_changed.emit(torso.health)
 	if torso.health <= 0:
 		print("you have died :()")
+		
+func get_health():
+	return torso.health

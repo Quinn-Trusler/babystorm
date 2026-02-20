@@ -3,7 +3,7 @@ extends Node2D
 
 
 var direction: Vector2 = Vector2.ONE
-var speed: float = 500
+var speed: float = 300
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,3 +16,6 @@ func initialize(_direction: Vector2):
 func _process(delta: float) -> void:
 	global_position += delta * direction * speed
 	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is TheBaby:
+		body.take_damage(20)

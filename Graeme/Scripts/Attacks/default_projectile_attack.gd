@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Projectile
 class_name DefaultProjectile
 
 var direction: int = -1

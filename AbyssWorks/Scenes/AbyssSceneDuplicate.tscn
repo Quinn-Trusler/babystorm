@@ -1,44 +1,33 @@
-[gd_scene format=3 uid="uid://dqrdaevj6m06v"]
+[gd_scene load_steps=5 format=3 uid="uid://dqrdaevj6m06v"]
 
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_mq04c"]
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_r0mba"]
-[ext_resource type="Script" uid="uid://c7xkca3cn7tdh" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="3_snxnv"]
-[ext_resource type="Script" uid="uid://d3u3i5wacwbqi" path="res://AbyssWorks/Scripts/Abilities/IceProjectileAbility.gd" id="4_k7qp4"]
-[ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_ody6q"]
+[ext_resource type="Script" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_ody6q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
 size = Vector2(1209, 49)
 
-[sub_resource type="Resource" id="Resource_thapu"]
-script = ExtResource("4_k7qp4")
-attackDistance = 800.0
-iceAttackAnims = Array[String](["Push"])
-cooldownTime = 5.0
-allowFirst = true
-metadata/_custom_type_script = "uid://d3u3i5wacwbqi"
+[node name="AbyssScene" type="Node2D"]
 
-[node name="AbyssScene" type="Node2D" unique_id=1795464032]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=813667751]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=245884970]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_npaks")
 
-[node name="TheBaby" parent="." unique_id=24734658 instance=ExtResource("1_mq04c")]
+[node name="TheBaby" parent="." instance=ExtResource("1_mq04c")]
 position = Vector2(2, -109)
 platform_floor_layers = 4294967040
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1715551278]
+[node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
-[node name="IceBoss2d" parent="." unique_id=2054299605 node_paths=PackedStringArray("target") instance=ExtResource("2_r0mba")]
+[node name="IceBoss2d" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_r0mba")]
 position = Vector2(192, -40)
 SPEED = 150.0
-target = NodePath("../TheBaby")
 nearDistanceToTarget = 300.0
-abilities = Array[ExtResource("3_snxnv")]([SubResource("Resource_thapu")])
+target = NodePath("../TheBaby")
 
-[node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]
+[node name="QuickCheck" type="Node2D" parent="."]
 script = ExtResource("5_ody6q")

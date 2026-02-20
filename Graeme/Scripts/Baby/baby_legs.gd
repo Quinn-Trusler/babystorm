@@ -33,7 +33,7 @@ var left_facing_position: Vector2 = Vector2(8, -4)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	the_baby.on_toggle_move.connect(toggle_movement)
-	the_baby.on_item_picked_up.connect(swap_part)
+	#the_baby.on_item_picked_up.connect(swap_part)
 	the_baby.on_change_direction.connect(change_direction)
 	
 func change_direction(direction: int):
