@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://c061j5lttj5fv" path="res://AbyssWorks/Scripts/Abilities/GigaPunchRushAbility.gd" id="5_r064l"]
 [ext_resource type="Script" uid="uid://iwx2vvu1vn7o" path="res://AbyssWorks/Scripts/Abilities/BottleProjectileAbility.gd" id="6_ugfyu"]
 [ext_resource type="Script" uid="uid://bp5v2xq70nsfd" path="res://AbyssWorks/Scripts/Abilities/LaMirageAbility.gd" id="7_smfg6"]
-[ext_resource type="Texture2D" uid="uid://dupasxw3xbrbd" path="res://assets/sprites/baby/baby_push_jumpwalk_anim.png" id="9_ixjc5"]
+[ext_resource type="Texture2D" uid="uid://baruq0yeh1jyk" path="res://assets/sprites/boss baby - level 2 boss 2/boss_pusharm_walk_idle.png" id="8_ixjc5"]
+[ext_resource type="Texture2D" uid="uid://db072rgxdequj" path="res://assets/sprites/boss baby - level 2 boss 2/boss_pusharm_walk_anim.png" id="9_s8xpo"]
 [ext_resource type="Script" uid="uid://ibxgg123333m" path="res://AbyssWorks/Scripts/Misc/AnimationSubscriber.gd" id="10_0uucp"]
 [ext_resource type="Texture2D" uid="uid://hlno4s7s7kbs" path="res://assets/sprites/boss baby - level 2 boss 2/boss_head_walk_idle.png" id="10_ixjc5"]
 [ext_resource type="Script" uid="uid://cwkcfx3jr2rp4" path="res://AbyssWorks/Scripts/Hitbox.gd" id="10_r064l"]
-[ext_resource type="Texture2D" uid="uid://dug4sty7vj12s" path="res://assets/sprites/baby/baby_push_jumpwalk_idle.png" id="10_s8xpo"]
 [ext_resource type="Texture2D" uid="uid://bcgegcv4jp1fj" path="res://assets/sprites/boss baby - level 2 boss 2/boss_torso_walk_anim.png" id="11_ixjc5"]
 [ext_resource type="Texture2D" uid="uid://b2grasnqwmu8o" path="res://assets/sprites/boss baby - level 2 boss 2/boss_puncharm_walk_idle.png" id="12_s8xpo"]
 [ext_resource type="Texture2D" uid="uid://ch1aw3rv5rmrv" path="res://assets/sprites/boss baby - level 2 boss 2/boss_puncharm_walk_anim.png" id="13_s8xpo"]
@@ -71,63 +71,63 @@ radius = 16.0
 height = 66.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ep5i4"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_txt3x"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("9_s8xpo")
 region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxeq8"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("9_s8xpo")
 region = Rect2(80, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt224"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("9_s8xpo")
 region = Rect2(160, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3isiw"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("9_s8xpo")
 region = Rect2(0, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2u0n"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("9_s8xpo")
 region = Rect2(80, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfbnk"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("9_s8xpo")
 region = Rect2(160, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_raj32"]
-atlas = ExtResource("9_ixjc5")
+atlas = ExtResource("9_s8xpo")
 region = Rect2(0, 160, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03quk"]
-atlas = ExtResource("10_s8xpo")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kmuo"]
-atlas = ExtResource("10_s8xpo")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(80, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b7x3a"]
-atlas = ExtResource("10_s8xpo")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(160, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbs3p"]
-atlas = ExtResource("10_s8xpo")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(0, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfrr5"]
-atlas = ExtResource("10_s8xpo")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(80, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ueeve"]
-atlas = ExtResource("10_s8xpo")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(160, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_edqt3"]
-atlas = ExtResource("10_s8xpo")
+atlas = ExtResource("8_ixjc5")
 region = Rect2(0, 160, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7kt58"]
