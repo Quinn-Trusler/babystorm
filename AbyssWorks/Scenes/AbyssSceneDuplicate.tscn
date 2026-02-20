@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_mq04c"]
 [ext_resource type="Texture2D" uid="uid://in55q8gkmh5f" path="res://Quinn/art/baby_ring_bg.png" id="1_r0mba"]
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_r0mba"]
-[ext_resource type="Script" uid="uid://c7xkca3cn7tdh" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="3_mq04c"]
 [ext_resource type="PackedScene" uid="uid://drpmr8uqsehup" path="res://Quinn/health_layer.tscn" id="4_abovt"]
 [ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_ody6q"]
 
@@ -51,7 +50,6 @@ SPEED = 150.0
 target = NodePath("../TheBaby")
 nearDistanceToTarget = 300.0
 healthLayer = NodePath("../HealthLayer")
-abilities = Array[ExtResource("3_mq04c")]([])
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=1365066266]
 script = ExtResource("5_ody6q")
