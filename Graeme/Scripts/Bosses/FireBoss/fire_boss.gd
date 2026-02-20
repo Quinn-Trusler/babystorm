@@ -33,7 +33,7 @@ func _process(delta):
 	
 	# Move toward target
 	var direction = to_target.normalized()
-	global_position += direction * speed * delta
+	#global_position += direction * speed * delta
 	
 
 func get_random_point() -> Vector2:
@@ -47,6 +47,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	var area_parent = area.get_node("../")
 	if area_parent and area_parent is Projectile:
 		take_damage(area_parent.damage_amount)
+	if area_parent and area_parent is PhysicalAttack:
+		take_damage(area_parent.damage_amount)
+	
 		
 func take_damage(damage_amount):
 	health -= damage_amount

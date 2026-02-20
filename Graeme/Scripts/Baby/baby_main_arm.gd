@@ -1,6 +1,7 @@
 extends BabyBodyPart
 
 const DEFAULT_ATTACK = preload("res://Graeme/Scenes/Attacks/default_attack.tscn")
+const STRONG_ATTACK = preload("res://Graeme/Scenes/Attacks/strong_attack.tscn")
 
 @onready var the_baby: TheBaby = $".."
 
@@ -13,7 +14,7 @@ const STRONG_NAME = "strong main"
 
 @export var attack_cooldown: float = 0.5
 
-var current_type: String = DEFAULT_NAME
+var current_type: String = STRONG_NAME
 var can_attack = true
 
 var right_facing_position: Vector2 = Vector2(6, 10)
@@ -29,6 +30,13 @@ func swap_body_part(body_part):
 	if body_part == DEFAULT_NAME or body_part == STRONG_NAME:
 		current_type = body_part
 		GameManager.main_arm_body_part = body_part
+		
+	if current_type == STRONG_NAME:
+		attack_cool_down_timer.wait_time = 1
+		main_arm_animated_sprite_2d.play("strongMainStatic")
+	elif current_type == DEFAULT_NAME:
+		attack_cool_down_timer.wait_time = .2
+		main_arm_animated_sprite_2d.play("defaultMainStatic")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,7 +47,10 @@ func change_attack_direction(direction: int):
 	if direction == 1 and attack_spawn_point.position.x < 0 or direction == -1 and attack_spawn_point.position.x > 0:
 		attack_spawn_point.position.x *= -1
 		
-	flip_sprite(direction, main_arm_animated_sprite_2d, right_facing_position, left_facing_position)
+	if direction < 0:
+		main_arm_animated_sprite_2d.flip_h = true
+	else:
+		main_arm_animated_sprite_2d.flip_h = false
 		
 	
 func attack():
@@ -56,7 +67,16 @@ func attack():
 				
 			add_child(default_attack_instance)
 			default_attack_instance.global_position = attack_spawn_point.global_position
-			main_arm_animated_sprite_2d.play("mainArmPunch")
+			main_arm_animated_sprite_2d.play("defaultMainPunch")
+		if current_type == STRONG_NAME:
+			var strong_attack_instance = STRONG_ATTACK.instantiate()
+			if strong_attack_instance is StrongAttack:
+				var strong_attack: StrongAttack = strong_attack_instance
+				strong_attack.instigator = the_baby
+				
+			add_child(strong_attack_instance)
+			strong_attack_instance.global_position = attack_spawn_point.global_position
+			main_arm_animated_sprite_2d.play("strongMainPunch")
 
 
 func _on_attack_cool_down_timer_timeout() -> void:

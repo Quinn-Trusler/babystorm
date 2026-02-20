@@ -35,9 +35,15 @@ func _ready() -> void:
 	the_baby.on_toggle_move.connect(toggle_movement)
 	#the_baby.on_item_picked_up.connect(swap_part)
 	the_baby.on_change_direction.connect(change_direction)
+	the_baby.on_toggle_jump.connect(toggle_jump)
+	
 	
 func change_direction(direction: int):
-	flip_sprite(direction, legs_animated_sprite_2d, right_facing_position, left_facing_position)
+	#flip_sprite(direction, legs_animated_sprite_2d, right_facing_position, left_facing_position)
+	if direction < 0:
+		legs_animated_sprite_2d.flip_h = true
+	else:
+		legs_animated_sprite_2d.flip_h = false
 	
 func swap_part(body_part: String):
 	if (body_part == DEFAULT_NAME):
@@ -49,19 +55,23 @@ func swap_part(body_part: String):
 	
 	print(speed)
 	
-	
+func toggle_jump(has_jumped):
+	if (has_jumped):
+		legs_animated_sprite_2d.play("jump")
+	else:
+		legs_animated_sprite_2d.play("idle")
 	
 func toggle_movement(is_moving: bool):
 	
 	#TODO: add in once we have animation sprites
-	'''
+	
 	if (is_moving):
-		# play walking animation
-		if (leg_type == DEFAULT_TYPE):
-			legs_animated_sprite_2d.play(DEFAULT_MOVING_ANIMATION_STRING)
-		elif (leg_type == STROLLER_TYPE):
-			legs_animated_sprite_2d.play(STROLLER_MOVING_ANIMATION_STRING)
+		# play walking animationif (leg_type == DEFAULT_TYPE):
+		legs_animated_sprite_2d.play("walk")
+	else:
+		legs_animated_sprite_2d.play("idle")
 	# if not moving
+	'''
 	else:
 		if (leg_type == DEFAULT_TYPE):
 			legs_animated_sprite_2d.play(DEFAULT_MOVING_ANIMATION_STRING)

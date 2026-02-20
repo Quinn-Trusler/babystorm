@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckl6ub1xp630w"
-path="res://.godot/imported/lucha_puncharm_walk_anim.png-4f08d298162b11d3e7e882e1c5fdd475.ctex"
+uid="uid://hlno4s7s7kbs"
+path="res://.godot/imported/boss_head_walk_idle.png-1e0cfb20b71a1e35c7cf55668c319351.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/luchador - level 1 boss 1/lucha_puncharm_walk_anim.png"
-dest_files=["res://.godot/imported/lucha_puncharm_walk_anim.png-4f08d298162b11d3e7e882e1c5fdd475.ctex"]
+source_file="res://assets/sprites/boss baby - level 2 boss 2/boss_head_walk_idle.png"
+dest_files=["res://.godot/imported/boss_head_walk_idle.png-1e0cfb20b71a1e35c7cf55668c319351.ctex"]
 
 [params]
 
