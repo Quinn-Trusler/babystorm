@@ -3,6 +3,7 @@ class_name BasicPunchAbility
 
 @export_range(1, 100) var consecutiveHits: int = 1
 @export var attackDistance: float = 180
+@export var anim_speed_add: float = 0
 @export var basicAttackAnims: Array[String] = []
 
 var anim_player: AnimationPlayer = null
@@ -34,6 +35,8 @@ func Trigger():
 	if (anim_player and basicAttackAnims.size() > 0):
 		_enable_hitboxes(true)
 		_reset_hitboxes()
+		anim_player.speed_scale += anim_speed_add
+		
 		
 		isExecuting = true
 		_cooldownTimer = cooldownTime
@@ -42,7 +45,12 @@ func Trigger():
 	pass
 	
 func ExecutionCancel():
+	if not isExecuting:
+		return
+		
 	isExecuting = false
+	if anim_player:
+		anim_player.speed_scale -= anim_speed_add
 	_enable_hitboxes(false)
 	_reset_hitboxes()
 	pass
@@ -74,8 +82,12 @@ func External_PhysicsProcess(delta):
 		if _consecutiveCount >= consecutiveHits:
 			_enable_hitboxes(false)
 			isExecuting = false
+			
+			anim_player.speed_scale -= anim_speed_add
 			return
 		_consecutiveCount+=1
+		_turn_of_damage_hitboxes(false)
+		_reset_hitboxes()
 		anim_player.play(basicAttackAnims.pick_random())
 	
 	pass
@@ -91,6 +103,13 @@ func _enable_hitboxes(status: bool):
 		for hitbox: Hitbox in hitboxes:
 			if hitbox:
 				hitbox._set_enabled_status(status)
+				pass
+				
+func _turn_of_damage_hitboxes(status: bool):
+	if hitboxes:
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox.canDealDamage = false
 				pass
 				
 func _reset_hitboxes():

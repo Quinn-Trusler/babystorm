@@ -18,6 +18,7 @@ var _forceInfo: ForceInfo = null
 
 var _hitObjects: Array[Node2D] = []
 
+var _hitCalc: HitCalculator = HitCalculator.new()
 var onModifyDamageAndForceInfo: Callable = Callable();
 
 func _set_enabled_status(status: bool) -> void:
@@ -37,7 +38,6 @@ func _physics_process(delta: float) -> void:
 	for body: Node2D in overlappingBodies:
 		if body == instigator or _hitObjects.has(body):
 			continue	
-	
 		if body is CharacterBase:
 			_hitObjects.append(body)
 			var characterBase: CharacterBase = body
@@ -46,11 +46,18 @@ func _physics_process(delta: float) -> void:
 			
 			_damageInfo.instigator = instigator
 			
+			var hit: HitCalculator.Hit2D = _hitCalc.calculateHit2D(self, body)
+		
+			if hit != null:
+				_damageInfo.hitPoint = hit.hit_point
+				_damageInfo.hitNormal = hit.hit_normal
+			
 			if onModifyDamageAndForceInfo.is_valid():
 				onModifyDamageAndForceInfo.call(body, _damageInfo, _forceInfo)
 				onModifyDamageAndForceInfo = Callable()
 			
 			characterBase.ApplyDamageAndForce(_damageInfo, _forceInfo)
+			GlobalSignal.projectile_damage_registered.emit(self, body, _damageInfo)
 			
 	pass
 
