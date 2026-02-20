@@ -24,6 +24,8 @@ var spawnLocation: Node2D = null
 const BOTTLE_PROJECTILE_ATTACK = preload("res://Graeme/Scenes/Attacks/default_projectile_attack.tscn")
 
 func External_Ready() -> void:
+	damageAmount = AbilityDamageAmount.bottleProjectileDamage
+	
 	characterBody2D = _variable_dict["char_body"]
 	anim_subsc = _variable_dict["anim_subsc"]
 	spawn_dict = _variable_dict["spawn_dict"]
@@ -108,6 +110,7 @@ func _spawn_projectile(spawnPoint: Node2D):
 	var default_projectile_attack_instance = BOTTLE_PROJECTILE_ATTACK.instantiate()
 	if default_projectile_attack_instance is DefaultProjectile:
 		var default_projectile: DefaultProjectile = default_projectile_attack_instance
+		default_projectile.damage = damageAmount
 		default_projectile.instigator = characterBody2D
 		
 	characterBody2D.get_tree().current_scene.add_child(default_projectile_attack_instance)

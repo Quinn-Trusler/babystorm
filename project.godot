@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Babystorm"
 run/main_scene="uid://blyr0c0um8rej"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 TransitionScreen="*uid://c8b5ks8w5xxvh"
 GlobalSignal="*uid://b6i04vpqjtft"
 GameManager="*res://Graeme/Scripts/game_manager.gd"
+AbilityDamageAmount="*uid://cvcuim01kr7nx"
 
 [display]
 

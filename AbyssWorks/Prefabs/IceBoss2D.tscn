@@ -1,15 +1,33 @@
-[gd_scene load_steps=62 format=3 uid="uid://7k51n5v3jnxl"]
+[gd_scene format=3 uid="uid://7k51n5v3jnxl"]
 
 [ext_resource type="Texture2D" uid="uid://dmtiifc5gp7me" path="res://assets/sprites/ice - level 1 boss 2/ice_torso_walk_anim.png" id="1_8b5fo"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/Bosses/AutomatedBoss.gd" id="1_hbubl"]
+[ext_resource type="Script" uid="uid://cihpsji3jdbjo" path="res://AbyssWorks/Scripts/Bosses/AutomatedBoss.gd" id="1_hbubl"]
 [ext_resource type="Resource" uid="uid://dvw5ane5ynyql" path="res://AbyssWorks/ResourceBehaviours/TweakedCustomForce.tres" id="2_vfqvq"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="3_cwv1l"]
+[ext_resource type="Script" uid="uid://c7xkca3cn7tdh" path="res://AbyssWorks/Scripts/BaseClasses/Ability.gd" id="3_cwv1l"]
 [ext_resource type="Texture2D" uid="uid://dm637bjc6p0cc" path="res://assets/sprites/ice - level 1 boss 2/ice_head_jumpwalk_idle.png" id="3_tah1y"]
+[ext_resource type="Script" uid="uid://d3u3i5wacwbqi" path="res://AbyssWorks/Scripts/Abilities/IceProjectileAbility.gd" id="4_w6al8"]
 [ext_resource type="Texture2D" uid="uid://81dnyn8u2edw" path="res://assets/sprites/baby/baby_icearm_jumpwalk_anim.png" id="5_cwv1l"]
+[ext_resource type="Script" uid="uid://3kqsayg0g50j" path="res://AbyssWorks/Scripts/Abilities/IceHailStormAbility.gd" id="5_hb1y2"]
 [ext_resource type="Texture2D" uid="uid://lce7ax30owgg" path="res://assets/sprites/ice - level 1 boss 2/ice_icearm_jumpwalk_anim.png" id="6_cwv1l"]
 [ext_resource type="Texture2D" uid="uid://xl84xvwjtgit" path="res://assets/sprites/ice - level 1 boss 2/ice_backarm_jumpwalk_idle.png" id="6_hb1y2"]
 [ext_resource type="Texture2D" uid="uid://2wjsdy2e41ud" path="res://assets/sprites/ice - level 1 boss 2/ice_icearm_jumpwalk_idle.png" id="7_58p5u"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/Misc/AnimationSubscriber.gd" id="7_tah1y"]
+[ext_resource type="Script" uid="uid://ibxgg123333m" path="res://AbyssWorks/Scripts/Misc/AnimationSubscriber.gd" id="7_tah1y"]
+
+[sub_resource type="Resource" id="Resource_hb1y2"]
+script = ExtResource("4_w6al8")
+iceAttackAnims = Array[String](["Right_Push"])
+damageAmount = 10.0
+cooldownTime = 3.0
+metadata/_custom_type_script = "uid://d3u3i5wacwbqi"
+
+[sub_resource type="Resource" id="Resource_gld6p"]
+script = ExtResource("5_hb1y2")
+iceAttackAnim = "Left_Push"
+effectDuration = 5.0
+spawnInterval = 0.5
+damageAmount = 5.0
+cooldownTime = 15.0
+metadata/_custom_type_script = "uid://3kqsayg0g50j"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5txj4"]
 radius = 16.0
@@ -399,40 +417,462 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="IceBoss2d" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_tah1y"]
+resource_name = "Idle"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadAS:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SecondaryArm/SecondaryArmAS:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso/TorsoAS:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainArm/MainArmAS:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_3lqct"]
+resource_name = "Left_Push"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadAS:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SecondaryArm/SecondaryArmAS:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"push"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso/TorsoAS:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainArm/MainArmAS:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SecondaryArm/SecondaryArmAS:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Launch"],
+"method": &"TriggerCallable"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_58p5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadAS:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SecondaryArm/SecondaryArmAS:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso/TorsoAS:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainArm/MainArmAS:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/HeadAS:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SecondaryArm/SecondaryArmAS:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Torso/TorsoAS:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainArm/MainArmAS:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n54vx"]
+resource_name = "Right_Push"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadAS:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SecondaryArm/SecondaryArmAS:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso/TorsoAS:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainArm/MainArmAS:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"push"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainArm/MainArmAS:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Launch"],
+"method": &"TriggerCallable"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cwv1l"]
+resource_name = "Walk"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadAS:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/HeadAS:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SecondaryArm/SecondaryArmAS:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SecondaryArm/SecondaryArmAS:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Torso/TorsoAS:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Torso/TorsoAS:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainArm/MainArmAS:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainArm/MainArmAS:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cwv1l"]
+_data = {
+&"Idle": SubResource("Animation_tah1y"),
+&"Left_Push": SubResource("Animation_3lqct"),
+&"RESET": SubResource("Animation_58p5u"),
+&"Right_Push": SubResource("Animation_n54vx"),
+&"Walk": SubResource("Animation_cwv1l")
+}
+
+[node name="IceBoss2d" type="CharacterBody2D" unique_id=1108462971 node_paths=PackedStringArray("spawnPoints")]
 script = ExtResource("1_hbubl")
 customForce2D = ExtResource("2_vfqvq")
 idleAnim = "Idle"
 moveAnim = "Walk"
 spawnNames = Array[String](["IceProjectileSP"])
-abilities = Array[ExtResource("3_cwv1l")]([])
+spawnPoints = [NodePath("MainArm/SpawnPoint")]
+abilities = Array[ExtResource("3_cwv1l")]([SubResource("Resource_hb1y2"), SubResource("Resource_gld6p")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1226889364]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_5txj4")
 
-[node name="SecondaryArm" type="Node2D" parent="."]
+[node name="SecondaryArm" type="Node2D" parent="." unique_id=1553861263]
 
-[node name="SecondaryArmAS" type="AnimatedSprite2D" parent="SecondaryArm"]
+[node name="SecondaryArmAS" type="AnimatedSprite2D" parent="SecondaryArm" unique_id=2127826146]
 sprite_frames = SubResource("SpriteFrames_7kt58")
 
-[node name="Head" type="Node2D" parent="."]
+[node name="Head" type="Node2D" parent="." unique_id=641483114]
 
-[node name="HeadAS" type="AnimatedSprite2D" parent="Head"]
+[node name="HeadAS" type="AnimatedSprite2D" parent="Head" unique_id=987026119]
 sprite_frames = SubResource("SpriteFrames_5txj4")
 
-[node name="Torso" type="Node2D" parent="."]
+[node name="Torso" type="Node2D" parent="." unique_id=255710511]
 
-[node name="TorsoAS" type="AnimatedSprite2D" parent="Torso"]
+[node name="TorsoAS" type="AnimatedSprite2D" parent="Torso" unique_id=583099524]
 sprite_frames = SubResource("SpriteFrames_m4w2e")
 
-[node name="MainArm" type="Node2D" parent="."]
+[node name="MainArm" type="Node2D" parent="." unique_id=2017403609]
 
-[node name="MainArmAS" type="AnimatedSprite2D" parent="MainArm"]
+[node name="MainArmAS" type="AnimatedSprite2D" parent="MainArm" unique_id=1814623608]
 sprite_frames = SubResource("SpriteFrames_is1x7")
 
-[node name="SpawnPoint" type="Node2D" parent="MainArm"]
+[node name="SpawnPoint" type="Node2D" parent="MainArm" unique_id=1821159187]
 position = Vector2(19.14, -14.89)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=466488310]
+libraries/ = SubResource("AnimationLibrary_cwv1l")
 script = ExtResource("7_tah1y")
