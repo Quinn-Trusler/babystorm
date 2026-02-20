@@ -1,21 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg3eyg34krk0y"]
+[gd_scene format=3 uid="uid://cg3eyg34krk0y"]
 
-[ext_resource type="Texture2D" uid="uid://be4dhef45wd7r" path="res://assets/sprites/IMG_7412.png" id="1_hdrcd"]
-[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_projectile.gd" id="1_qy6ag"]
+[ext_resource type="Script" uid="uid://nlkr8g1yiutc" path="res://Graeme/Scripts/Bosses/FireBoss/fire_projectile.gd" id="1_qy6ag"]
+[ext_resource type="Texture2D" uid="uid://db8hv2bv2m8d3" path="res://assets/sprites/fire_projectile_small.png" id="2_6badh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m45x2"]
 radius = 9.05539
 
-[node name="FireProjectile" type="Node2D"]
+[node name="FireProjectile" type="Node2D" unique_id=1114802440]
 script = ExtResource("1_qy6ag")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1949694753]
 scale = Vector2(0.52, 0.52)
-texture = ExtResource("1_hdrcd")
+texture = ExtResource("2_6badh")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1449883928]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1686318713]
 shape = SubResource("CircleShape2D_m45x2")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
