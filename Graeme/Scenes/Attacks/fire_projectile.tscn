@@ -2,8 +2,57 @@
 
 [ext_resource type="Script" uid="uid://o7htyi4pwoeu" path="res://Graeme/Scripts/Attacks/fire_projectile.gd" id="1_tfbke"]
 [ext_resource type="Texture2D" uid="uid://db8hv2bv2m8d3" path="res://assets/sprites/fire_projectile_small.png" id="2_nohic"]
+[ext_resource type="Texture2D" uid="uid://ch1vttmhkgjfp" path="res://assets/sprites/fire_particle_small.png" id="3_uif4j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oe6df"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_btb2x"]
+
+[sub_resource type="Curve" id="Curve_glsfo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.28691983, 1), 0.0, 0.0, 0, 0, Vector2(0.36427566, 0.5517242), 0.0, 0.0, 0, 0, Vector2(0.51336145, 0.66219974), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ae1mn"]
+curve = SubResource("Curve_glsfo")
+
+[sub_resource type="Curve" id="Curve_k71k7"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 1.711944, 0, 0, Vector2(0.38818565, -0.49991822), 0.0, 0.0, 0, 0, Vector2(0.8241912, -1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_cbv2i"]
+curve = SubResource("Curve_k71k7")
+
+[sub_resource type="Curve" id="Curve_3ytnl"]
+_data = [Vector2(0.009845287, 1), 0.0, 13.163289, 0, 0, Vector2(0.23909986, 0.8725282), 6.591456, 6.591456, 0, 0, Vector2(0.38537273, 0.7493055), 0.0, 0.0, 0, 0, Vector2(0.6300984, 0.5241053), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_i23es"]
+curve = SubResource("Curve_3ytnl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3sbac"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.5, 0.1, 0.5)
+emission_shape = 1
+emission_sphere_radius = 19.54
+angle_min = -105.79999
+angle_max = 594.7
+direction = Vector3(-1, 0, 0)
+spread = 27.211
+flatness = 0.097
+initial_velocity_min = 119.7
+initial_velocity_max = 204.23
+radial_velocity_min = 134.49997
+radial_velocity_max = 163.73997
+gravity = Vector3(0, -98, 0)
+radial_accel_min = -100.0
+radial_accel_max = -90.9
+radial_accel_curve = SubResource("CurveTexture_cbv2i")
+damping_min = 82.705
+damping_max = 82.705
+damping_curve = SubResource("CurveTexture_ae1mn")
+scale_curve = SubResource("CurveTexture_i23es")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bthn7"]
 
@@ -18,6 +67,18 @@ shape = SubResource("CircleShape2D_oe6df")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="." unique_id=1942642794]
 texture = ExtResource("2_nohic")
+
+[node name="ParticlesFire" type="GPUParticles2D" parent="ProjectileSprite" unique_id=110815006]
+show_behind_parent = true
+texture_filter = 3
+material = SubResource("CanvasItemMaterial_btb2x")
+scale = Vector2(0.45, 0.4)
+amount = 100
+texture = ExtResource("3_uif4j")
+lifetime = 0.41000000000000003
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3sbac")
 
 [node name="DespawnTimer" type="Timer" parent="." unique_id=1639747568]
 
