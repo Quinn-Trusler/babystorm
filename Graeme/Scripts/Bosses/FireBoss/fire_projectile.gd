@@ -16,3 +16,6 @@ func initialize(_direction: Vector2):
 func _process(delta: float) -> void:
 	global_position += delta * direction * speed
 	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is TheBaby:
+		body.take_damage(20)

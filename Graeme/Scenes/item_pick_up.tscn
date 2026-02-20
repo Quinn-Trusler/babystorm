@@ -1,26 +1,26 @@
-[gd_scene format=3 uid="uid://bl2o6eyu8beo4"]
+[gd_scene load_steps=4 format=3 uid="uid://bl2o6eyu8beo4"]
 
-[ext_resource type="Script" uid="uid://ctkv65nn7o5a7" path="res://Graeme/Scripts/item_pick_up.gd" id="1_i5wsc"]
+[ext_resource type="Script" path="res://Graeme/Scripts/item_pick_up.gd" id="1_i5wsc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d5ay1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rabn3"]
 radius = 11.0
 
-[node name="ItemPickUp" type="Node2D" unique_id=1328168829]
+[node name="ItemPickUp" type="Node2D"]
 script = ExtResource("1_i5wsc")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=341073731]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=522553787]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_d5ay1")
 
-[node name="Area2D" type="Area2D" parent="RigidBody2D" unique_id=881865325]
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D" unique_id=1604299346]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
 shape = SubResource("CircleShape2D_rabn3")
 
-[node name="TextureRect" type="TextureRect" parent="RigidBody2D" unique_id=226197146]
+[node name="TextureRect" type="TextureRect" parent="RigidBody2D"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

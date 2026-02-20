@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c2qgiin5h6qle"]
+[gd_scene load_steps=24 format=3 uid="uid://c2qgiin5h6qle"]
 
 [ext_resource type="Texture2D" uid="uid://ct7gk82o40167" path="res://assets/sprites/baby/back_arm_small.png" id="1_a301i"]
 [ext_resource type="Texture2D" uid="uid://dvww2c5vhejei" path="res://assets/sprites/baby/baby_body_small.png" id="2_civo6"]
@@ -137,32 +137,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_civo6"]
-resource_name = "Idle"
+[node name="CharacterBody2D" type="CharacterBody2D"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6pntw"]
-_data = {
-&"Idle": SubResource("Animation_civo6")
-}
-
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=835825331]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=753410350]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v424x")
 
-[node name="backHandAS2D" type="AnimatedSprite2D" parent="." unique_id=1181748419]
+[node name="backHandAS2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m701d")
-frame_progress = 0.66888046
+frame_progress = 0.66888
 
-[node name="bodyAS2D" type="AnimatedSprite2D" parent="." unique_id=2069196428]
+[node name="bodyAS2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yrpdm")
 
-[node name="headAS2D" type="AnimatedSprite2D" parent="." unique_id=1355151968]
+[node name="headAS2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wk2nm")
 
-[node name="frontHandAS2D2" type="AnimatedSprite2D" parent="." unique_id=1622486561]
+[node name="frontHandAS2D2" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2m6it")
-frame_progress = 0.97616005
+frame_progress = 0.97616
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=529230079]
-libraries/ = SubResource("AnimationLibrary_6pntw")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

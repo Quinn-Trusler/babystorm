@@ -16,7 +16,6 @@ func _ready() -> void:
 func enter() -> void:
 	special_state_timer.start()
 	special_attack_timer.start()
-	print("entering special attack")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,5 +39,6 @@ func _on_special_attack_timer_timeout() -> void:
 		get_tree().current_scene.add_child(fire_projectile_instance)
 		fire_projectile_instance.global_position = fire_boss.global_position
 		fire_projectile_instance.initialize(dir)
-		fire_boss_state_machine.set_next_state()
+	
+	fire_boss_state_machine.set_next_state()
 		

@@ -11,9 +11,10 @@ size = Vector2(870, 20)
 [node name="TheBaby" parent="." groups=["player"] instance=ExtResource("1_hmkqi")]
 
 [node name="FireBoss" parent="." instance=ExtResource("2_5eubn")]
-position = Vector2(-353, -213)
+position = Vector2(-1, -185)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.25, 1.25)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 76)
