@@ -42,5 +42,5 @@ region_rect = Rect2(0, 0, 576, 324)
 [node name="BabyRingBg" type="Sprite2D" parent="." unique_id=2146329754]
 z_index = -1
 position = Vector2(0.500015, -66.5)
-scale = Vector2(1.99479, 1.98457)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_p7hrs")
