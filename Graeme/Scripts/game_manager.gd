@@ -12,7 +12,7 @@ var secondary_arm_body_part = "default secondary"
 var scene_index = 0
 var scenes = ["res://AbyssWorks/Scenes/AbyssSceneDuplicate.tscn",
 "res://Graeme/Scenes/Bosses/FireBoss/fire_boss_scene.tscn",
-"res://AbyssWorks/Scenes/AbyssScenePhysicalBoss.tscn",""]
+"res://AbyssWorks/Scenes/AbyssScenePhysicalBoss.tscn","res://Quinn/win_screen.tscn"]
 var scene_unlocks = ["ice", "fire", "strength"]
 
 # Called when the node enters the scene tree for the first time.
