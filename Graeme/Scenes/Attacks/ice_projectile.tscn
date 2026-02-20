@@ -4,13 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://e6jg86clmuub" path="res://assets/sprites/ice_projectile_small.png" id="2_nxedv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_85jgk"]
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xr7b3"]
+radius = 18.0
 
 [node name="IceProjectile" type="RigidBody2D" unique_id=808292730]
 scale = Vector2(0.5, 0.5)
 collision_layer = 128
 collision_mask = 128
+mass = 3.0
+gravity_scale = 0.7
 script = ExtResource("1_jvgfw")
 damage = 3.0
 
@@ -19,7 +23,6 @@ shape = SubResource("CircleShape2D_85jgk")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="." unique_id=523724550]
 rotation = -0.785398
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_nxedv")
 
 [node name="DespawnTimer" type="Timer" parent="." unique_id=1879354327]
