@@ -33,7 +33,8 @@ var _gigaDashAbility: GigaPunchRushAbility = null
 const MIRAGE_DASH_ATTACK = preload("res://AbyssWorks/Prefabs/MiragePBoss.tscn")
 
 func External_Ready() -> void:
-	damageAmount = AbilityDamageAmount.mirageDamage
+	damageAmount = AbilitySettings.mirageDamage
+	cooldownTime = AbilitySettings.mirageCooldown
 	
 	characterBody2D = _variable_dict["char_body"]
 	anim_subsc = _variable_dict["anim_subsc"]

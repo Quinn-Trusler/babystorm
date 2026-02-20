@@ -24,7 +24,8 @@ var spawnLocation: Node2D = null
 const BOTTLE_PROJECTILE_ATTACK = preload("res://Graeme/Scenes/Attacks/default_projectile_attack.tscn")
 
 func External_Ready() -> void:
-	damageAmount = AbilityDamageAmount.bottleProjectileDamage
+	damageAmount = AbilitySettings.bottleProjectileDamage
+	cooldownTime = AbilitySettings.bottleProjectileCooldown
 	
 	characterBody2D = _variable_dict["char_body"]
 	anim_subsc = _variable_dict["anim_subsc"]

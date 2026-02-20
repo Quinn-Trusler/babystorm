@@ -19,7 +19,11 @@ var isExecuting: bool = false
 var _consecutiveCount: int = 1
 
 func External_Ready():
-	damageAmount = AbilityDamageAmount.punchAbilityDamage
+	damageAmount = AbilitySettings.punchAbilityDamage
+	if consecutiveHits > 1:
+		cooldownTime = AbilitySettings.consecutivePunchCooldown
+	else:
+		cooldownTime = AbilitySettings.punchAbilityCooldown
 	
 	anim_player = _variable_dict["anim_player"]
 	hitboxes = _variable_dict["hitboxes"]
