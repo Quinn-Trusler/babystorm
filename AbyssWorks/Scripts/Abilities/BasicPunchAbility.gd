@@ -6,6 +6,10 @@ class_name BasicPunchAbility
 @export var anim_speed_add: float = 0
 @export var basicAttackAnims: Array[String] = []
 
+@export_group("Damage")
+@export var damageAmount: float = 0
+@export var damageType: DamageInfo.DamageType = DamageInfo.DamageType.Physical
+
 var anim_player: AnimationPlayer = null
 var hitboxes: Array[Hitbox] = []
 
@@ -15,6 +19,8 @@ var isExecuting: bool = false
 var _consecutiveCount: int = 1
 
 func External_Ready():
+	damageAmount = AbilityDamageAmount.punchAbilityDamage
+	
 	anim_player = _variable_dict["anim_player"]
 	hitboxes = _variable_dict["hitboxes"]
 	
@@ -25,6 +31,11 @@ func External_Ready():
 	
 	pass
 	
+func _modifyDamageAndForceInfo(_body: Node2D, damageInfo: DamageInfo, _forceInfo: ForceInfo):
+	damageInfo.amount = damageAmount
+	damageInfo.damageType = damageType		
+	pass	
+
 func IsExecuting():
 	return isExecuting
 	
@@ -37,6 +48,9 @@ func Trigger():
 		_reset_hitboxes()
 		anim_player.speed_scale += anim_speed_add
 		
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox.onModifyDamageAndForceInfo = self._modifyDamageAndForceInfo
 		
 		isExecuting = true
 		_cooldownTimer = cooldownTime
@@ -88,6 +102,11 @@ func External_PhysicsProcess(delta):
 		_consecutiveCount+=1
 		_turn_of_damage_hitboxes(false)
 		_reset_hitboxes()
+		
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox.onModifyDamageAndForceInfo = self._modifyDamageAndForceInfo
+				
 		anim_player.play(basicAttackAnims.pick_random())
 	
 	pass

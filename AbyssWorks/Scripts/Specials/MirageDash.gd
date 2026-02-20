@@ -21,6 +21,7 @@ var _color: Color = Color()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if hitbox:
+		hitbox.instigator = instigator
 		hitbox.onModifyDamageAndForceInfo = self._modifyDamageAndForceInfo
 		
 	_current_speed = move_speed

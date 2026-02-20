@@ -37,11 +37,10 @@ staminaRecFactor = null
 staminaDepFactor = null
 staminaThreshold_min = null
 staminaThreshold_max = null
+target = NodePath("../TheBabyAbyss")
 maxHealth = null
+healthLayer = NodePath("../HealthLayer")
 fallAnim = null
 damagedAnim = null
-player_gain = null
-target = NodePath("../TheBabyAbyss")
-healthLayer = NodePath("../HealthLayer")
 
 [node name="HealthLayer" parent="." unique_id=1729308208 instance=ExtResource("4_4dckt")]

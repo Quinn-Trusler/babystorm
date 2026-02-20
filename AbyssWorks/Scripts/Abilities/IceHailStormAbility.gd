@@ -25,6 +25,8 @@ var isExecuting: bool = false
 const ICE_HAIL_STORM = preload("res://AbyssWorks/Prefabs/Specials/IceHailStorm.tscn")
 
 func External_Ready() -> void:
+	damageAmount = AbilityDamageAmount.iceHailDamage
+	
 	characterBody2D = _variable_dict["char_body"]
 	anim_player = _variable_dict["anim_player"]
 	
