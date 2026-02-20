@@ -97,7 +97,7 @@ texture = ExtResource("3_bqmpb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea2D" unique_id=443762463]
 shape = SubResource("RectangleShape2D_vao0r")
 
-[node name="AutomatedBossAnim" parent="." unique_id=2043273011 node_paths=PackedStringArray("target", "animSpawnPoints") instance=ExtResource("8_p63bm")]
+[node name="AutomatedBossAnim" parent="." unique_id=2043273011 node_paths=PackedStringArray("target", "spawnPoints") instance=ExtResource("8_p63bm")]
 position = Vector2(898, 495)
 script = ExtResource("9_tufmu")
 skipDamagedState = true
@@ -111,8 +111,9 @@ staminaThreshold_min = 3.0
 staminaThreshold_max = 8.0
 target = NodePath("../SimpleBossAnim")
 nearDistanceToTarget = 150.0
-animSpawnNames = Array[String]([])
-animSpawnPoints = Array[String]([])
+maxHealth = 100.0
+spawnNames = Array[String]([])
+spawnPoints = Array[String]([])
 abilities = Array[ExtResource("10_ukbhy")]([SubResource("Resource_6gfrr"), ExtResource("11_w5cow")])
 metadata/bodyColor = Color(0.0883331, 0.600824, 0.672148, 1)
 metadata/rhColor = Color(0, 0.579148, 0.176489, 1)

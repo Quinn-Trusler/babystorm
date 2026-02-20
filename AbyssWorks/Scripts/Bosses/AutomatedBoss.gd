@@ -1,4 +1,5 @@
 extends CharacterBase
+class_name AutomatedBoss
 
 @export var skipDamagedState: bool = true
 @export var SPEED: float = 300.0

@@ -47,6 +47,8 @@ func External_Ready():
 	pass
 
 func _start_dash():
+	if not isExecuting:
+		return
 	_dashTimer = dashTime
 	_canDash = true
 
@@ -70,16 +72,16 @@ func CanTrigger():
 func Trigger():
 	if animationSubscriber:
 		animationSubscriber.play(gigaAnimName)
-	isExecuting = true
-	_enable_hitboxes(true)
-	_reset_hitboxes()
-	
-	for hitbox: Hitbox in hitboxes:
-		if hitbox:
-			hitbox.onModifyDamageAndForceInfo = self._modifyDamageAndForceInfo
-			
-	_cooldownTimer = cooldownTime
-	
+		isExecuting = true
+		_enable_hitboxes(true)
+		_reset_hitboxes()
+		
+		for hitbox: Hitbox in hitboxes:
+			if hitbox:
+				hitbox.onModifyDamageAndForceInfo = self._modifyDamageAndForceInfo
+				
+		_cooldownTimer = cooldownTime
+		
 	pass
 
 func ExecutionCancel():
@@ -113,7 +115,7 @@ func External_PhysicsProcess(delta):
 	if usePhysicsDelta:
 		_condition_cooldown(delta)
 				
-	
+	#print(_dashTimer)
 	if _dashTimer > 0:
 		if characterBody2D:
 			characterBody2D.velocity = Vector2(sign(characterBody2D.transform.x.x) * dashSpeed, 0)
