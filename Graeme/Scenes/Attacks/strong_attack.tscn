@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4ea80rw0j6lh"]
 
-[ext_resource type="Script" uid="uid://db0vgkxppjquq" path="res://Graeme/Scripts/Attacks/strong_attack.gd" id="1_o3as4"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Attacks/strong_attack.gd" id="1_o3as4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nkwfe"]
 radius = 16.0
@@ -8,7 +8,7 @@ height = 60.0
 
 [node name="StrongAttack" type="Node2D" unique_id=1061696421]
 script = ExtResource("1_o3as4")
-damage = 8.0
+damage = 10.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=704644587]
 

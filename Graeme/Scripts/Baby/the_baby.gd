@@ -67,7 +67,7 @@ func _input(event):
 		move_direction = 0
 		on_toggle_move.emit(false)
 		
-	if event.is_action_pressed("ui_accept") and is_on_floor():
+	if (event.is_action_pressed("ui_accept") or event.is_action_pressed("jump")) and is_on_floor():
 		velocity.y = legs.jump_velocity
 		on_toggle_jump.emit(true)
 		

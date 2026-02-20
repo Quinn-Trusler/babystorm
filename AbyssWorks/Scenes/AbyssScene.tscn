@@ -15,7 +15,7 @@ size = Vector2(6, 346)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4isqn"]
 size = Vector2(17, 335)
 
-[node name="AbyssScene" type="Node2D" unique_id=1795464032]
+[node name="AbyssScene2" type="Node2D" unique_id=1795464032]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=160994898]
 scale = Vector2(1.5, 1.5)
@@ -49,7 +49,7 @@ position = Vector2(221, 30)
 SPEED = 150.0
 attackTime = 7.0
 target = NodePath("../TheBaby")
-nearDistanceToTarget = 130.0
+nearDistanceToTarget = 150.0
 healthLayer = NodePath("../HealthLayer")
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]
