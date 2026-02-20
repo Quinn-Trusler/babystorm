@@ -29,11 +29,11 @@ func _process(delta):
 	# Pick a new point when close
 	if to_target.length() < arrive_distance:
 		target_pos = get_random_point()
-		return
+		#return
 	
 	# Move toward target
 	var direction = to_target.normalized()
-	#global_position += direction * speed * delta
+	global_position += direction * speed * delta
 	
 
 func get_random_point() -> Vector2:

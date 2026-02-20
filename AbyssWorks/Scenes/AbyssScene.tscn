@@ -1,22 +1,41 @@
 [gd_scene format=3 uid="uid://dexaj628qynhm"]
 
+[ext_resource type="Texture2D" uid="uid://in55q8gkmh5f" path="res://Quinn/art/baby_ring_bg.png" id="1_jvgeq"]
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_l5ewk"]
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_npaks"]
 [ext_resource type="PackedScene" uid="uid://drpmr8uqsehup" path="res://Quinn/health_layer.tscn" id="4_l5ewk"]
 [ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_thapu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
-size = Vector2(1209, 49)
+size = Vector2(1315, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvgeq"]
+size = Vector2(6, 346)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4isqn"]
+size = Vector2(17, 335)
 
 [node name="AbyssScene" type="Node2D" unique_id=1795464032]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=160994898]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_jvgeq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=813667751]
 position = Vector2(0, 113)
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=245884970]
-position = Vector2(11.5, 14.5)
+position = Vector2(29.5, 36)
 shape = SubResource("RectangleShape2D_npaks")
+
+[node name="WallLeft" type="CollisionShape2D" parent="StaticBody2D" unique_id=1994985496]
+position = Vector2(-389, -154)
+shape = SubResource("RectangleShape2D_jvgeq")
+
+[node name="WallRight" type="CollisionShape2D" parent="StaticBody2D" unique_id=1139899163]
+position = Vector2(400.5, -149.5)
+shape = SubResource("RectangleShape2D_4isqn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1715551278]
 zoom = Vector2(1.5, 1.5)

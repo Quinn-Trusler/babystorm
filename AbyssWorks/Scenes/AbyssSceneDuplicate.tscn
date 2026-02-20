@@ -1,38 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqrdaevj6m06v"]
+[gd_scene format=3 uid="uid://dqrdaevj6m06v"]
 
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_mq04c"]
+[ext_resource type="Texture2D" uid="uid://in55q8gkmh5f" path="res://Quinn/art/baby_ring_bg.png" id="1_r0mba"]
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_r0mba"]
 [ext_resource type="PackedScene" uid="uid://drpmr8uqsehup" path="res://Quinn/health_layer.tscn" id="4_abovt"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_ody6q"]
+[ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_ody6q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
 size = Vector2(1209, 49)
 
-[node name="AbyssScene" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0mba"]
+size = Vector2(6, 346)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snxnv"]
+size = Vector2(17, 335)
+
+[node name="AbyssScene" type="Node2D" unique_id=767094001]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=934299298]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_r0mba")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1436683727]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(11.5, 14.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2022679604]
+position = Vector2(-2, 159)
 shape = SubResource("RectangleShape2D_npaks")
 
-[node name="TheBaby" parent="." node_paths=PackedStringArray("health_layer") instance=ExtResource("1_mq04c")]
+[node name="WallLeft" type="CollisionShape2D" parent="StaticBody2D" unique_id=1507381967]
+position = Vector2(-389, -154)
+shape = SubResource("RectangleShape2D_r0mba")
+
+[node name="WallRight" type="CollisionShape2D" parent="StaticBody2D" unique_id=1294376518]
+position = Vector2(400.5, -149.5)
+shape = SubResource("RectangleShape2D_snxnv")
+
+[node name="TheBaby" parent="." unique_id=1747377995 node_paths=PackedStringArray("health_layer") instance=ExtResource("1_mq04c")]
 position = Vector2(2, -109)
 platform_floor_layers = 4294967040
 health_layer = NodePath("../HealthLayer")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=738303164]
 zoom = Vector2(1.5, 1.5)
 
-[node name="IceBoss2d" parent="." node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("2_r0mba")]
+[node name="IceBoss2d" parent="." unique_id=1448338136 node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("2_r0mba")]
 position = Vector2(192, -40)
 SPEED = 150.0
-nearDistanceToTarget = 300.0
 target = NodePath("../TheBaby")
+nearDistanceToTarget = 300.0
 healthLayer = NodePath("../HealthLayer")
 
-[node name="QuickCheck" type="Node2D" parent="."]
+[node name="QuickCheck" type="Node2D" parent="." unique_id=1365066266]
 script = ExtResource("5_ody6q")
 
-[node name="HealthLayer" parent="." instance=ExtResource("4_abovt")]
+[node name="HealthLayer" parent="." unique_id=153707579 instance=ExtResource("4_abovt")]

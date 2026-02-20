@@ -4,11 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://dub487wghhows" path="res://AbyssWorks/Prefabs/PhysicalBoss2D.tscn" id="3_jl4it"]
 [ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="3_rblab"]
 [ext_resource type="PackedScene" uid="uid://drpmr8uqsehup" path="res://Quinn/health_layer.tscn" id="4_4dckt"]
+[ext_resource type="Texture2D" uid="uid://c1mdw6vqj7six" path="res://Quinn/art/baby_boxing_ring.png" id="5_rblab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
 size = Vector2(1209, 49)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rblab"]
+size = Vector2(6, 346)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djpx0"]
+size = Vector2(17, 335)
+
 [node name="AbyssScene" type="Node2D" unique_id=1795464032]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1585548967]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_rblab")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=813667751]
 position = Vector2(0, 113)
@@ -17,6 +28,14 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=245884970]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_npaks")
+
+[node name="WallLeft" type="CollisionShape2D" parent="StaticBody2D" unique_id=930855966]
+position = Vector2(-389, -154)
+shape = SubResource("RectangleShape2D_rblab")
+
+[node name="WallRight" type="CollisionShape2D" parent="StaticBody2D" unique_id=1873033410]
+position = Vector2(400.5, -149.5)
+shape = SubResource("RectangleShape2D_djpx0")
 
 [node name="TheBaby" parent="." unique_id=20420007 node_paths=PackedStringArray("health_layer") instance=ExtResource("1_4dckt")]
 position = Vector2(-239, 44)
