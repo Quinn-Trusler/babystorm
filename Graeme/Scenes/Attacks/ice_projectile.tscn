@@ -1,31 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bec03e6q5k1k3"]
+[gd_scene format=3 uid="uid://bec03e6q5k1k3"]
 
-[ext_resource type="Script" path="res://Graeme/Scripts/Attacks/ice_projectile.gd" id="1_jvgfw"]
+[ext_resource type="Script" uid="uid://gvdpb4vrm3fa" path="res://Graeme/Scripts/Attacks/ice_projectile.gd" id="1_jvgfw"]
 [ext_resource type="Texture2D" uid="uid://e6jg86clmuub" path="res://assets/sprites/ice_projectile_small.png" id="2_nxedv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_85jgk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xr7b3"]
 
-[node name="IceProjectile" type="RigidBody2D"]
+[node name="IceProjectile" type="RigidBody2D" unique_id=808292730]
 collision_layer = 128
 collision_mask = 128
 script = ExtResource("1_jvgfw")
+damage = 3.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1433572069]
 shape = SubResource("CircleShape2D_85jgk")
 
-[node name="ProjectileSprite" type="Sprite2D" parent="."]
+[node name="ProjectileSprite" type="Sprite2D" parent="." unique_id=523724550]
 rotation = -0.785398
 texture = ExtResource("2_nxedv")
 
-[node name="DespawnTimer" type="Timer" parent="."]
+[node name="DespawnTimer" type="Timer" parent="." unique_id=1879354327]
 wait_time = 5.0
 one_shot = true
 
-[node name="HitArea2D" type="Area2D" parent="."]
+[node name="HitArea2D" type="Area2D" parent="." unique_id=1143157296]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D" unique_id=291468249]
 shape = SubResource("CircleShape2D_xr7b3")
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

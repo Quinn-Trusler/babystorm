@@ -2,6 +2,7 @@ extends Node2D
 class_name DefaultAttack
 
 @export var attack_hang_time: float = 0.1
+@export var damage: float = 1
 
 @onready var attack_duration_timer: Timer = $AttackDurationTimer
 
@@ -46,6 +47,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if hit != null:
 			damageInfo.hitPoint = hit.hit_point
 			damageInfo.hitNormal = hit.hit_normal
+		
+		damageInfo.amount = damage
 		
 		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
 		GlobalSignal.projectile_damage_registered.emit(self, body, damageInfo)

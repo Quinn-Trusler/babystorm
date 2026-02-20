@@ -10,12 +10,15 @@ signal on_health_changed(health)
 @onready var torso: Node2D = $Torso
 @onready var main_arm: Node2D = $MainArm
 @onready var secondary_arm: Node2D = $SecondaryArm
+@export var health_layer: CanvasLayer
 
 const JUMP_VELOCITY = -400.0
 
 var move_direction: float = 0
 
 func _ready() -> void:
+	if health_layer != null:
+		health_layer.set_player_max_health(torso.health)
 	set_body_parts(GameManager.main_arm_body_part, GameManager.secondary_arm_body_part)
 
 func set_body_parts(main_body_part, secondary_body_part):
@@ -70,11 +73,15 @@ func _input(event):
 			print("Right mouse button pressed!")
 			secondary_arm.attack()
 		
-
+func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
+	print("Apply damage and force to player")
+	print(damageInfo.amount)
+	take_damage(damageInfo.amount)
 		
 func take_damage(damage: int):
 	torso.take_damage(damage)
-	print(torso.health)
+	if health_layer != null:
+		health_layer.update_player_health_bar(torso.health)
 	on_health_changed.emit(torso.health)
 	if torso.health <= 0:
 		print("you have died :()")

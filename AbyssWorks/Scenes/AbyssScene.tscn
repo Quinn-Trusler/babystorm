@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_npaks"]
 [ext_resource type="PackedScene" uid="uid://chpyoilxgve17" path="res://AbyssWorks/Prefabs/the_baby_abyss.tscn" id="3_5qv5h"]
+[ext_resource type="PackedScene" uid="uid://drpmr8uqsehup" path="res://Quinn/health_layer.tscn" id="4_l5ewk"]
 [ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_thapu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
@@ -20,15 +21,19 @@ shape = SubResource("RectangleShape2D_npaks")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1715551278]
 zoom = Vector2(1.5, 1.5)
 
-[node name="IceBoss2d" parent="." unique_id=2054299605 node_paths=PackedStringArray("target") instance=ExtResource("2_npaks")]
+[node name="IceBoss2d" parent="." unique_id=2054299605 node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("2_npaks")]
 position = Vector2(221, 30)
 SPEED = 150.0
 target = NodePath("../TheBabyAbyss")
 nearDistanceToTarget = 300.0
+healthLayer = NodePath("../HealthLayer")
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]
 script = ExtResource("5_thapu")
 
-[node name="TheBabyAbyss" parent="." unique_id=1874315572 instance=ExtResource("3_5qv5h")]
+[node name="TheBabyAbyss" parent="." unique_id=1874315572 node_paths=PackedStringArray("health_layer") instance=ExtResource("3_5qv5h")]
 position = Vector2(-232, 51)
 platform_on_leave = 2
+health_layer = NodePath("../HealthLayer")
+
+[node name="HealthLayer" parent="." unique_id=515093480 instance=ExtResource("4_l5ewk")]
