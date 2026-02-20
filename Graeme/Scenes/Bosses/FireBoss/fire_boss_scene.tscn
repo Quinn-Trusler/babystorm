@@ -1,24 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://blyr0c0um8rej"]
+[gd_scene load_steps=7 format=3 uid="uid://blyr0c0um8rej"]
 
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_hmkqi"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_scene.gd" id="1_s75nn"]
 [ext_resource type="PackedScene" uid="uid://b83cwi4ha4qvk" path="res://Graeme/Scenes/Bosses/FireBoss/fire_boss.tscn" id="2_5eubn"]
+[ext_resource type="PackedScene" uid="uid://drpmr8uqsehup" path="res://Quinn/health_layer.tscn" id="4_yxvdf"]
+[ext_resource type="Texture2D" uid="uid://in55q8gkmh5f" path="res://Quinn/art/baby_ring_bg.png" id="5_p7hrs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghvri"]
-size = Vector2(870, 20)
+size = Vector2(1165, 20)
 
 [node name="FireBossScene" type="Node2D"]
+script = ExtResource("1_s75nn")
 
 [node name="TheBaby" parent="." groups=["player"] instance=ExtResource("1_hmkqi")]
 
 [node name="FireBoss" parent="." instance=ExtResource("2_5eubn")]
-position = Vector2(-1, -185)
+position = Vector2(-195, -4)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.25, 1.25)
+position = Vector2(0, -64)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 76)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(69, 0)
+position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_ghvri")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-1, -64)
+scale = Vector2(2, 2)
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 324)
+
+[node name="HealthLayer" parent="." instance=ExtResource("4_yxvdf")]
+
+[node name="BabyRingBg" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0.500015, -66.5)
+scale = Vector2(1.99479, 1.98457)
+texture = ExtResource("5_p7hrs")

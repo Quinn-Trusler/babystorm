@@ -1,22 +1,22 @@
-[gd_scene format=3 uid="uid://drpmr8uqsehup"]
+[gd_scene load_steps=6 format=3 uid="uid://drpmr8uqsehup"]
 
 [ext_resource type="Script" path="res://Quinn/health_layer.gd" id="1_1nbg0"]
-[ext_resource type="PackedScene" path="res://Quinn/health_bar.tscn" id="1_4ahf8"]
+[ext_resource type="PackedScene" uid="uid://d1y6vvju5qlhb" path="res://Quinn/health_bar.tscn" id="1_4ahf8"]
 [ext_resource type="Texture2D" uid="uid://dcctieyd2qlll" path="res://Quinn/art/UI/mana_bar_large_fill.png" id="3_1dfdn"]
 [ext_resource type="Texture2D" uid="uid://bnw3ml8yoj4ab" path="res://Quinn/art/UI/hp_bar_large_flipped.png" id="3_4ifm6"]
 [ext_resource type="Texture2D" uid="uid://bnpxns3bt42vb" path="res://Quinn/art/UI/hp_bar_large_fill_flipped.png" id="4_1dfdn"]
 
-[node name="HealthLayer" type="CanvasLayer" unique_id=1995912341]
+[node name="HealthLayer" type="CanvasLayer"]
 script = ExtResource("1_1nbg0")
 
-[node name="PlayerHealthBar" parent="." unique_id=1740155163 instance=ExtResource("1_4ahf8")]
+[node name="PlayerHealthBar" parent="." instance=ExtResource("1_4ahf8")]
 offset_left = 47.0
 offset_top = 38.0
 offset_right = 270.0
 offset_bottom = 60.0
 scale = Vector2(2, 2)
 
-[node name="PlayerManaBar" parent="." unique_id=322260347 instance=ExtResource("1_4ahf8")]
+[node name="PlayerManaBar" parent="." instance=ExtResource("1_4ahf8")]
 offset_left = 48.0
 offset_top = 97.0
 offset_right = 271.0
@@ -24,7 +24,7 @@ offset_bottom = 119.0
 scale = Vector2(2, 2)
 texture_progress = ExtResource("3_1dfdn")
 
-[node name="EnemyHealthBar" parent="." unique_id=547386614 instance=ExtResource("1_4ahf8")]
+[node name="EnemyHealthBar" parent="." instance=ExtResource("1_4ahf8")]
 offset_left = 636.0
 offset_top = 42.0
 offset_right = 859.0

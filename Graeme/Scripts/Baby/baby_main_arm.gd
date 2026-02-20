@@ -2,16 +2,14 @@ extends BabyBodyPart
 
 const DEFAULT_ATTACK = preload("res://Graeme/Scenes/Attacks/default_attack.tscn")
 
-
-
 @onready var the_baby: TheBaby = $".."
 
 @onready var attack_cool_down_timer: Timer = $AttackCoolDownTimer
 @onready var attack_spawn_point: Node2D = $AttackSpawnPoint
 @onready var main_arm_animated_sprite_2d: AnimatedSprite2D = $MainArmAnimatedSprite2D
 
-const DEFAULT_NAME = "default"
-const PROJECTILE_NAME = "projectile" 
+const DEFAULT_NAME = "default main"
+const STRONG_NAME = "strong main"
 
 @export var attack_cooldown: float = 0.5
 
@@ -24,8 +22,12 @@ var left_facing_position: Vector2 = Vector2(-4, 6)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	the_baby.on_change_direction.connect(change_attack_direction)
+	the_baby.on_swapped_body_part.connect(swap_body_part)
 	attack_cool_down_timer.wait_time = attack_cooldown
 	
+func swap_body_part(body_part):
+	if body_part == DEFAULT_NAME or body_part == STRONG_NAME:
+		current_type = body_part
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -309,6 +309,7 @@ sprite_frames = SubResource("SpriteFrames_by5kb")
 [node name="WingsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
 sprite_frames = SubResource("SpriteFrames_6pk1g")
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="FireBossStateMachine/LightAttack/lightStateTimer" to="FireBossStateMachine/LightAttack" method="_on_light_state_timer_timeout"]
 [connection signal="timeout" from="FireBossStateMachine/LightAttack/attackTimer" to="FireBossStateMachine/LightAttack" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="FireBossStateMachine/HeavyAttack/heavyStateTimer" to="FireBossStateMachine/HeavyAttack" method="_on_heavy_state_timer_timeout"]
