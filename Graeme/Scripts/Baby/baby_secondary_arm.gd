@@ -4,9 +4,9 @@ const FIRE_PROJECTILE = preload("res://Graeme/Scenes/Attacks/fire_projectile.tsc
 const DEFAULT_PROJECTILE_ATTACK = preload("res://Graeme/Scenes/Attacks/default_projectile_attack.tscn")
 const ICE_PROJECTILE = preload("res://Graeme/Scenes/Attacks/ice_projectile.tscn")
 
-const DEFAULT_NAME: String = "default"
-const FIRE_NAME: String = "fire"
-const ICE_NAME: String = "ice"
+const DEFAULT_NAME: String = "default secondary"
+const FIRE_NAME: String = "fire secondary"
+const ICE_NAME: String = "ice secondary"
 
 @onready var the_baby: TheBaby = $".."
 
@@ -14,10 +14,8 @@ const ICE_NAME: String = "ice"
 @onready var attack_spawn_point: Node2D = $AttackSpawnPoint
 @onready var secondary_arm_animated_sprite_2d: AnimatedSprite2D = $SecondaryArmAnimatedSprite2D
 
-
-
 var can_attack: bool = true
-var current_type: String = FIRE_NAME
+var current_type: String = DEFAULT_NAME
 var attack_direction = -1
 
 var right_facing_position: Vector2 = Vector2(-2, 4)
@@ -25,12 +23,18 @@ var left_facing_position: Vector2 = Vector2(3, 3)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	the_baby.on_change_direction.connect(change_attack_direction)
+	the_baby.on_swapped_body_part.connect(swap_body_part)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-
+func swap_body_part(body_part):
+	if body_part == DEFAULT_NAME or body_part == ICE_NAME or body_part == FIRE_NAME:
+		current_type = body_part
+		GameManager.secondary_arm_body_part = body_part
+		
+	
 func attack():
 
 	if can_attack:
