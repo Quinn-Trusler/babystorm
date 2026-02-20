@@ -1,38 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqrdaevj6m06v"]
+[gd_scene format=3 uid="uid://dqrdaevj6m06v"]
 
 [ext_resource type="PackedScene" uid="uid://ulp6peon4ldn" path="res://Graeme/Scenes/the_baby.tscn" id="1_mq04c"]
 [ext_resource type="PackedScene" uid="uid://7k51n5v3jnxl" path="res://AbyssWorks/Prefabs/IceBoss2D.tscn" id="2_r0mba"]
 [ext_resource type="PackedScene" uid="uid://drpmr8uqsehup" path="res://Quinn/health_layer.tscn" id="4_abovt"]
-[ext_resource type="Script" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_ody6q"]
+[ext_resource type="Script" uid="uid://ddwp5wvy2kbkj" path="res://AbyssWorks/Scripts/quick_check.gd" id="5_ody6q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
 size = Vector2(1209, 49)
 
-[node name="AbyssScene" type="Node2D"]
+[node name="AbyssScene" type="Node2D" unique_id=1236452125]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=724688072]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=927243889]
 position = Vector2(11.5, 14.5)
 shape = SubResource("RectangleShape2D_npaks")
 
-[node name="TheBaby" parent="." node_paths=PackedStringArray("health_layer") instance=ExtResource("1_mq04c")]
+[node name="TheBaby" parent="." unique_id=1063866243 node_paths=PackedStringArray("health_layer") instance=ExtResource("1_mq04c")]
 position = Vector2(2, -109)
 platform_floor_layers = 4294967040
 health_layer = NodePath("../HealthLayer")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2043231435]
 zoom = Vector2(1.5, 1.5)
 
-[node name="IceBoss2d" parent="." node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("2_r0mba")]
+[node name="IceBoss2d" parent="." unique_id=1768575747 node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("2_r0mba")]
 position = Vector2(192, -40)
 SPEED = 150.0
-nearDistanceToTarget = 300.0
 target = NodePath("../TheBaby")
+nearDistanceToTarget = 300.0
 healthLayer = NodePath("../HealthLayer")
 
-[node name="QuickCheck" type="Node2D" parent="."]
+[node name="QuickCheck" type="Node2D" parent="." unique_id=1421537836]
 script = ExtResource("5_ody6q")
 
-[node name="HealthLayer" parent="." instance=ExtResource("4_abovt")]
+[node name="HealthLayer" parent="." unique_id=834321996 instance=ExtResource("4_abovt")]
