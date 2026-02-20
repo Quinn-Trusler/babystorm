@@ -28,6 +28,9 @@ func External_Ready() -> void:
 	characterBody2D = _variable_dict["char_body"]
 	anim_player = _variable_dict["anim_player"]
 	
+	if anim_player:
+		anim_player.SubscribeCallable("Launch", self._spawn_hail)
+	
 	if not allowFirst:
 		_cooldownTimer = cooldownTime
 		
@@ -40,8 +43,6 @@ func CanTrigger():
 	return not isExecuting and _cooldownTimer <= 0
 
 func Trigger():
-	_spawn_hail()
-	
 	if (anim_player and iceAttackAnim != ""):
 		isExecuting = true
 		_cooldownTimer = cooldownTime
@@ -86,6 +87,9 @@ func _condition_cooldown(delta):
 		_cooldownTimer = cooldownTime
 		
 func _spawn_hail():
+	if not isExecuting:
+		return
+	
 	if not characterBody2D:
 		return
 	

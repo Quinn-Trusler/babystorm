@@ -34,13 +34,23 @@ func _physics_process(delta: float) -> void:
 	_customForce2D._simulate_forces(false, delta)
 	pass
 
-func _on_area_entered(_area2D: Area2D) -> void:
+func _on_area_entered(area2D: Area2D) -> void:
+	if area2D is ShootProjectile:
+		var shootProj: ShootProjectile = area2D
+		if instigator == shootProj.instigator:
+			return
+			
 	queue_free()
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
 	if body == instigator:
 		return
+	
+	if body is DefaultProjectile:
+		var defaultProj = body
+		if instigator == defaultProj.instigator:
+			return
 	
 	if body is CharacterBase:
 		#print(body.global_position, " ", Hit.new().calculateHit2D(self, body))
