@@ -31,13 +31,12 @@ staminaRecFactor = null
 staminaDepFactor = null
 staminaThreshold_min = null
 staminaThreshold_max = null
+target = NodePath("../TheBabyAbyss")
 nearDistanceToTarget = 300.0
 maxHealth = null
+healthLayer = NodePath("../HealthLayer")
 fallAnim = null
 damagedAnim = null
-player_gain = null
-target = NodePath("../TheBabyAbyss")
-healthLayer = NodePath("../HealthLayer")
 
 [node name="QuickCheck" type="Node2D" parent="." unique_id=14448153]
 script = ExtResource("5_thapu")

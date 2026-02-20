@@ -30,3 +30,4 @@ one_shot = true
 shape = SubResource("CircleShape2D_xr7b3")
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
+[connection signal="body_entered" from="HitArea2D" to="." method="_on_hit_area_2d_body_entered"]

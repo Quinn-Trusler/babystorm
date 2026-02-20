@@ -18,7 +18,7 @@ var _hitCalc: HitCalculator = HitCalculator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	damage_amount = 40
+	pass
 
 func set_direction(_direction: int):
 	
@@ -47,6 +47,7 @@ func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_hit_area_2d_body_entered(body: Node2D) -> void:
 	# does damage on enemy with rigid body
+	
 	if body == instigator:
 		return	
 		
@@ -64,5 +65,5 @@ func _on_hit_area_2d_body_entered(body: Node2D) -> void:
 		
 		damageInfo.amount = damage
 		
-		characterBase.ApplyDamageAndForce(damage_amount, forceInfo)
+		characterBase.ApplyDamageAndForce(damageInfo, forceInfo)
 		GlobalSignal.projectile_damage_registered.emit(self, body, damageInfo)
