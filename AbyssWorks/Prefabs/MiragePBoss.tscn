@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://m4b0fpiqpjdx"]
 
 [ext_resource type="Script" uid="uid://b8hvsrw402etx" path="res://AbyssWorks/Scripts/Specials/MirageDash.gd" id="1_y3bhg"]
-[ext_resource type="Texture2D" uid="uid://b5772rcb0x81b" path="res://assets/sprites/baby/baby_head_jumpwalk_idle.png" id="2_dl152"]
+[ext_resource type="Texture2D" uid="uid://hlno4s7s7kbs" path="res://assets/sprites/boss baby - level 2 boss 2/boss_head_walk_idle.png" id="3_dl152"]
 [ext_resource type="Texture2D" uid="uid://dug4sty7vj12s" path="res://assets/sprites/baby/baby_push_jumpwalk_idle.png" id="3_y3bhg"]
-[ext_resource type="Texture2D" uid="uid://danxvf23c2hf1" path="res://assets/sprites/baby/baby_punch_jumpwalk_anim.png" id="5_u3a5p"]
-[ext_resource type="Texture2D" uid="uid://464se3boffcn" path="res://assets/sprites/baby/baby_torso_walk_anim.png" id="9_vi83o"]
+[ext_resource type="Texture2D" uid="uid://bcgegcv4jp1fj" path="res://assets/sprites/boss baby - level 2 boss 2/boss_torso_walk_anim.png" id="4_dl152"]
+[ext_resource type="Texture2D" uid="uid://ch1aw3rv5rmrv" path="res://assets/sprites/boss baby - level 2 boss 2/boss_puncharm_walk_anim.png" id="5_dl152"]
 [ext_resource type="Script" uid="uid://cwkcfx3jr2rp4" path="res://AbyssWorks/Scripts/Hitbox.gd" id="11_5notn"]
 
 [sub_resource type="Curve" id="Curve_dl152"]
@@ -26,15 +26,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dl152"]
-atlas = ExtResource("2_dl152")
-region = Rect2(160, 0, 80, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3a5p"]
+atlas = ExtResource("3_dl152")
+region = Rect2(80, 0, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5txj4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dl152")
+"texture": SubResource("AtlasTexture_u3a5p")
 }],
 "loop": true,
 "name": &"default",
@@ -42,7 +42,7 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3bhg"]
-atlas = ExtResource("9_vi83o")
+atlas = ExtResource("4_dl152")
 region = Rect2(80, 0, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m4w2e"]
@@ -56,15 +56,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fmaxi"]
-atlas = ExtResource("5_u3a5p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir783"]
+atlas = ExtResource("5_dl152")
 region = Rect2(80, 80, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_is1x7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fmaxi")
+"texture": SubResource("AtlasTexture_ir783")
 }],
 "loop": true,
 "name": &"default",
@@ -75,7 +75,7 @@ animations = [{
 size = Vector2(45, 12)
 
 [node name="MiragePBoss" type="Node2D" unique_id=399316795 node_paths=PackedStringArray("hitbox")]
-modulate = Color(1, 0, 0, 0.7058824)
+modulate = Color(1, 1, 1, 0.7058824)
 script = ExtResource("1_y3bhg")
 curve = SubResource("Curve_dl152")
 hitbox = NodePath("MainArm/HitboxArea2D")
