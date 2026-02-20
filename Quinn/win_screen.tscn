@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://b2tk0tycxlxie"]
+
+[ext_resource type="Script" uid="uid://ctk7hfpcmmcwb" path="res://Quinn/win_screen.gd" id="1_snrke"]
+[ext_resource type="FontFile" uid="uid://d0fml67pkspne" path="res://Quinn/font/yoster.ttf" id="1_v4jsk"]
+[ext_resource type="Texture2D" uid="uid://cftspy47exx7e" path="res://Quinn/art/dna/fire_dna.png" id="2_cvh2m"]
+[ext_resource type="Texture2D" uid="uid://1rwsro8v5emv" path="res://Quinn/art/dna/ice_dna.png" id="3_snrke"]
+[ext_resource type="Texture2D" uid="uid://c4kgl2jmfk1t3" path="res://Quinn/art/dna/strength_dna.png" id="4_81pqi"]
+
+[sub_resource type="Animation" id="Animation_cvh2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_snrke"]
+resource_name = "scale_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.05, 0.05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81pqi"]
+_data = {
+&"RESET": SubResource("Animation_cvh2m"),
+&"scale_up": SubResource("Animation_snrke")
+}
+
+[node name="WinScreen" type="Node2D" unique_id=668876101]
+process_mode = 3
+script = ExtResource("1_snrke")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=821865501]
+offset_left = -16.0
+offset_top = -13.0
+offset_right = 1166.0
+offset_bottom = 668.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1657404296]
+visible = false
+position = Vector2(576, 324)
+
+[node name="FireDna" type="Sprite2D" parent="Node2D" unique_id=513192524]
+position = Vector2(179, 60)
+scale = Vector2(2, 2)
+texture = ExtResource("2_cvh2m")
+
+[node name="IceDna" type="Sprite2D" parent="Node2D" unique_id=1799155141]
+position = Vector2(-187, 63)
+scale = Vector2(2, 2)
+texture = ExtResource("3_snrke")
+
+[node name="StrengthDna" type="Sprite2D" parent="Node2D" unique_id=1922526851]
+position = Vector2(3, -122)
+scale = Vector2(2, 2)
+texture = ExtResource("4_81pqi")
+
+[node name="YouWin" type="Label" parent="Node2D" unique_id=1881163942]
+offset_left = -576.0
+offset_top = 182.0
+offset_right = 580.0
+offset_bottom = 271.0
+theme_override_fonts/font = ExtResource("1_v4jsk")
+theme_override_font_sizes/font_size = 48
+text = "You are the Whiniest!"
+horizontal_alignment = 1
+
+[node name="AllDna" type="Label" parent="Node2D" unique_id=28554181]
+offset_left = -578.0
+offset_top = -296.0
+offset_right = 574.0
+offset_bottom = -182.0
+theme_override_fonts/font = ExtResource("1_v4jsk")
+theme_override_font_sizes/font_size = 48
+text = "All DNA collected"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2094918254]
+libraries/ = SubResource("AnimationLibrary_81pqi")
