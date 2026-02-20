@@ -98,7 +98,8 @@ func _condition_cooldown(delta):
 		_cooldownTimer = cooldownTime
 		
 func _spawn_on_current_anim():
-	_spawn_projectile(spawnLocation)
+	if isExecuting:
+		_spawn_projectile(spawnLocation)
 
 func _spawn_projectile(spawnPoint: Node2D):
 	if not characterBody2D and not spawnPoint:

@@ -8,5 +8,5 @@ func _ready() -> void:
 
 	
 func _projectile_damage_registered(projectile: Node2D, collided: Node2D, damageInfo: DamageInfo):
-	print(projectile, " ", collided, " ", damageInfo)
+	#print(projectile, " ", collided, " ", damageInfo)
 	pass

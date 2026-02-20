@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cjokroqrnot71" path="res://assets/sprites/baby/baby_head.png" id="6_e4yxi"]
 [ext_resource type="Script" uid="uid://iwx2vvu1vn7o" path="res://AbyssWorks/Scripts/Abilities/BottleProjectileAbility.gd" id="6_ugfyu"]
 [ext_resource type="Texture2D" uid="uid://ct7gk82o40167" path="res://assets/sprites/baby/back_arm_small.png" id="7_e4yxi"]
+[ext_resource type="Script" uid="uid://bp5v2xq70nsfd" path="res://AbyssWorks/Scripts/Abilities/LaMirageAbility.gd" id="7_smfg6"]
 [ext_resource type="Texture2D" uid="uid://cv3u0ts2dr74t" path="res://assets/sprites/baby/baby_torso_walk_anim.png" id="8_e4yxi"]
 [ext_resource type="Texture2D" uid="uid://bvqb2me5us57i" path="res://assets/sprites/baby/front_arm_punch_small.png" id="9_r064l"]
 [ext_resource type="Script" uid="uid://ibxgg123333m" path="res://AbyssWorks/Scripts/Misc/AnimationSubscriber.gd" id="10_0uucp"]
@@ -44,6 +45,25 @@ consecutiveHits = 3
 bottleAttackAnims = Array[String](["Push"])
 cooldownTime = 15.0
 metadata/_custom_type_script = "uid://iwx2vvu1vn7o"
+
+[sub_resource type="Resource" id="Resource_ixjc5"]
+script = ExtResource("5_r064l")
+gigaAnimName = "GigaPunch"
+dashTime = 0.25
+dashSpeed = 1200.0
+damageAmount = 10.0
+metadata/_custom_type_script = "uid://c061j5lttj5fv"
+
+[sub_resource type="Resource" id="Resource_s8xpo"]
+script = ExtResource("7_smfg6")
+mirageAttackAnim = "Push"
+gigaPunchRushAbility = SubResource("Resource_ixjc5")
+spawningDuration = 1.0
+spawningInterval = 0.2
+damageAmount = 10.0
+cooldownTime = 2.0
+allowFirst = true
+metadata/_custom_type_script = "uid://bp5v2xq70nsfd"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5txj4"]
 radius = 16.0
@@ -791,7 +811,7 @@ idleAnim = "Idle"
 moveAnim = "Walk"
 spawnNames = Array[String](["BottleProjectileSP"])
 spawnPoints = [NodePath("SecondaryArm/SpawnPoint")]
-abilities = Array[ExtResource("3_ugfyu")]([SubResource("Resource_r064l"), SubResource("Resource_ugfyu"), SubResource("Resource_smfg6"), SubResource("Resource_8erfc")])
+abilities = Array[ExtResource("3_ugfyu")]([SubResource("Resource_r064l"), SubResource("Resource_ugfyu"), SubResource("Resource_smfg6"), SubResource("Resource_8erfc"), SubResource("Resource_s8xpo")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=261172196]
 position = Vector2(0, -2)
