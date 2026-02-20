@@ -9,6 +9,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghvri"]
 size = Vector2(1165, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l07hr"]
+size = Vector2(6, 346)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vo0w"]
+size = Vector2(17, 335)
+
 [node name="FireBossScene" type="Node2D" unique_id=931761376]
 script = ExtResource("1_s75nn")
 
@@ -29,6 +35,14 @@ position = Vector2(0, 76)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1066721856]
 position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_ghvri")
+
+[node name="WallLeft" type="CollisionShape2D" parent="StaticBody2D" unique_id=1772962210]
+position = Vector2(-389, -154)
+shape = SubResource("RectangleShape2D_l07hr")
+
+[node name="WallRight" type="CollisionShape2D" parent="StaticBody2D" unique_id=1898178358]
+position = Vector2(400.5, -149.5)
+shape = SubResource("RectangleShape2D_7vo0w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1986144625]
 z_index = -1

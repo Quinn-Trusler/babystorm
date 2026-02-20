@@ -10,6 +10,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npaks"]
 size = Vector2(1315, 49)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvgeq"]
+size = Vector2(6, 346)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4isqn"]
+size = Vector2(17, 335)
+
 [node name="AbyssScene" type="Node2D" unique_id=1795464032]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=160994898]
@@ -23,6 +29,14 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=245884970]
 position = Vector2(29.5, 36)
 shape = SubResource("RectangleShape2D_npaks")
+
+[node name="WallLeft" type="CollisionShape2D" parent="StaticBody2D" unique_id=1994985496]
+position = Vector2(-389, -154)
+shape = SubResource("RectangleShape2D_jvgeq")
+
+[node name="WallRight" type="CollisionShape2D" parent="StaticBody2D" unique_id=1139899163]
+position = Vector2(400.5, -149.5)
+shape = SubResource("RectangleShape2D_4isqn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1715551278]
 zoom = Vector2(1.5, 1.5)
