@@ -47,7 +47,7 @@ func attack():
 	if can_attack:
 		can_attack = false
 		attack_cool_down_timer.start()
-		
+		$throwSound.play()
 		if current_type == DEFAULT_NAME:
 			#spawn projectile
 			var default_projectile_attack_instance = DEFAULT_PROJECTILE_ATTACK.instantiate()

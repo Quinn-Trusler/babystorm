@@ -24,6 +24,7 @@ func fade_in():
 	$PowerupImage.play(GameManager.get_scene_unlock())
 	$PowerUpName.text = GameManager.get_scene_unlock() + " gene unlocked!"
 	$AnimationPlayer.play("fade_in")
+	$WinBossBattle.play()
 	print("start fade in")
 	
 func fade_out():
@@ -50,4 +51,14 @@ func _on_continue_button_pressed() -> void:
 		GameManager.next_scene()
 		get_tree().change_scene_to_file(GameManager.get_scene_name())
 		fade_out()
+		$WinBossBattle.stop()
+		$Play.play()
+func play_final():
+	$Music1.stop()
+	$Music2.play()
+func play_win():
+	$Music2.stop()
+	$Win.play()
+func play_death():
+	$Death.play()
 	
