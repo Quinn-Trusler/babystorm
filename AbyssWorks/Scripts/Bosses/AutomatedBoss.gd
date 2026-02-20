@@ -302,6 +302,8 @@ func DamagedState(stateExecutionType: StateExecutionType):
 func ApplyDamageAndForce(damageInfo: DamageInfo, forceInfo: ForceInfo):
 	if damageInfo != null:
 		_health = maxf(_health - damageInfo.amount, 0)
+		if _health == 0:
+			TransitionScreen.fade_in()
 	
 	if healthLayer:
 		healthLayer.update_boss_health_bar(_health)

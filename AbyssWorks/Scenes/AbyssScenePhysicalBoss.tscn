@@ -29,7 +29,18 @@ script = ExtResource("3_rblab")
 
 [node name="PhysicalBoss2d" parent="." unique_id=2054299605 node_paths=PackedStringArray("target", "healthLayer") instance=ExtResource("3_jl4it")]
 position = Vector2(108, 63)
+skipDamagedState = null
 SPEED = 150.0
+attackTime = null
+maxStamina = null
+staminaRecFactor = null
+staminaDepFactor = null
+staminaThreshold_min = null
+staminaThreshold_max = null
+maxHealth = null
+fallAnim = null
+damagedAnim = null
+player_gain = null
 target = NodePath("../TheBabyAbyss")
 healthLayer = NodePath("../HealthLayer")
 

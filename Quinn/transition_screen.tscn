@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8b5ks8w5xxvh"]
+[gd_scene format=3 uid="uid://c8b5ks8w5xxvh"]
 
-[ext_resource type="Script" path="res://Quinn/transition_screen.gd" id="1_77mk1"]
+[ext_resource type="Script" uid="uid://hvci7u4b4iar" path="res://Quinn/transition_screen.gd" id="1_77mk1"]
 [ext_resource type="Texture2D" uid="uid://cftspy47exx7e" path="res://Quinn/art/dna/fire_dna.png" id="2_fo4h7"]
 [ext_resource type="Texture2D" uid="uid://1rwsro8v5emv" path="res://Quinn/art/dna/ice_dna.png" id="3_4rvue"]
 [ext_resource type="FontFile" uid="uid://d0fml67pkspne" path="res://Quinn/font/yoster.ttf" id="3_f0yyg"]
 [ext_resource type="Texture2D" uid="uid://co7jxatl6trnd" path="res://Quinn/art/UI/continue_button.png" id="4_3lbym"]
 [ext_resource type="Texture2D" uid="uid://c4kgl2jmfk1t3" path="res://Quinn/art/dna/strength_dna.png" id="4_kma34"]
 [ext_resource type="Texture2D" uid="uid://p53dfax5quuf" path="res://Quinn/art/UI/continue_button_hover.png" id="5_6i8ac"]
-[ext_resource type="Script" path="res://Quinn/music.gd" id="5_f0yyg"]
+[ext_resource type="Script" uid="uid://71h2qqc6so5i" path="res://Quinn/music.gd" id="5_f0yyg"]
 [ext_resource type="Texture2D" uid="uid://8gjk4257cba0" path="res://Quinn/art/UI/continue_button_pressed.png" id="5_llslp"]
 [ext_resource type="AudioStream" uid="uid://w6jd8lqbgyh3" path="res://music/Babystorm music short.wav" id="6_3lbym"]
 
@@ -38,25 +38,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TransitionScreen" type="CanvasLayer"]
+[node name="TransitionScreen" type="CanvasLayer" unique_id=59703486]
 process_mode = 3
 script = ExtResource("1_77mk1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1387574146]
 self_modulate = Color(0, 0, 0, 0)
 offset_right = 1154.0
 offset_bottom = 646.0
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=649292350]
 
-[node name="PowerupImage" type="AnimatedSprite2D" parent="."]
+[node name="PowerupImage" type="AnimatedSprite2D" parent="." unique_id=1221938826]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(576, 286)
 sprite_frames = SubResource("SpriteFrames_voa77")
 animation = &"strength"
 
-[node name="PowerUpName" type="Label" parent="."]
+[node name="PowerUpName" type="Label" parent="." unique_id=1864910841]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 310.0
 offset_top = 77.0
@@ -69,7 +69,7 @@ theme_override_font_sizes/font_size = 48
 text = "Fire gene unlocked!"
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="TextureButton" parent="."]
+[node name="ContinueButton" type="TextureButton" parent="." unique_id=563992859]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 557.0
 offset_top = 468.0
@@ -80,7 +80,7 @@ texture_normal = ExtResource("4_3lbym")
 texture_pressed = ExtResource("5_llslp")
 texture_hover = ExtResource("5_6i8ac")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1427518722]
 stream = ExtResource("6_3lbym")
 autoplay = true
 script = ExtResource("5_f0yyg")
