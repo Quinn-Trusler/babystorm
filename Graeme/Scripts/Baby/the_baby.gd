@@ -84,7 +84,7 @@ func take_damage(damage: int):
 		health_layer.update_player_health_bar(torso.health)
 	on_health_changed.emit(torso.health)
 	if torso.health <= 0:
-		print("you have died :()")
+		get_tree().reload_current_scene()
 		
 func get_health():
 	return torso.health
