@@ -15,6 +15,9 @@ const JUMP_VELOCITY = -400.0
 
 var move_direction: float = 0
 
+func _ready() -> void:
+	set_body_parts(GameManager.main_arm_body_part, GameManager.secondary_arm_body_part)
+
 func set_body_parts(main_body_part, secondary_body_part):
 	swap_body_part(main_body_part)
 	swap_body_part(secondary_body_part)

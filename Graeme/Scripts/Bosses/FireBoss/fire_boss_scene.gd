@@ -20,8 +20,8 @@ func _process(delta: float) -> void:
 
 func update_boss_health_ui(health):
 	if health <= 0:
-		boss_defeated.emit()
-		
+		get_tree().change_scene_to_file("res://AbyssWorks/Prefabs/IceBoss2D.tscn")
+				
 	health_layer.update_boss_health_bar(health)
 	
 func update_player_health_ui(health):

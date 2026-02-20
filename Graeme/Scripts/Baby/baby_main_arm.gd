@@ -28,6 +28,7 @@ func _ready() -> void:
 func swap_body_part(body_part):
 	if body_part == DEFAULT_NAME or body_part == STRONG_NAME:
 		current_type = body_part
+		GameManager.main_arm_body_part = body_part
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

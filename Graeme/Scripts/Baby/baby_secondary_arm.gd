@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 func swap_body_part(body_part):
 	if body_part == DEFAULT_NAME or body_part == ICE_NAME or body_part == FIRE_NAME:
 		current_type = body_part
+		GameManager.secondary_arm_body_part = body_part
 		
 	
 func attack():

@@ -47,7 +47,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 func take_damage(damage_amount):
 	health -= damage_amount
-	on_health_updated.emit(health)
+	
 	print(health)
 	if health <= 0:
 		print("boss has died")
@@ -55,3 +55,4 @@ func take_damage(damage_amount):
 		player.swap_body_part("fire secondary")
 		queue_free()
 		
+	on_health_updated.emit(health)
