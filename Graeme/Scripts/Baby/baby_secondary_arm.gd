@@ -7,6 +7,7 @@ const ICE_PROJECTILE = preload("res://Graeme/Scenes/Attacks/ice_projectile.tscn"
 const DEFAULT_NAME: String = "default secondary"
 const FIRE_NAME: String = "fire secondary"
 const ICE_NAME: String = "ice secondary"
+const FIRE_PROJECTILE_OFFSET = 30 #Y offeste between multiple fire projectiles
 
 @onready var the_baby: TheBaby = $".."
 
@@ -62,21 +63,23 @@ func attack():
 			secondary_arm_animated_sprite_2d.play("iceThrow")
 			
 		if current_type == FIRE_NAME:
-			var fire_projectile_attack_instance = FIRE_PROJECTILE.instantiate()
-			spawn_projectile(fire_projectile_attack_instance)
-			fire_projectile_attack_instance.set_direction(attack_direction)
+			for i in range(3):
+				var fire_projectile_attack_instance = FIRE_PROJECTILE.instantiate()
+				spawn_projectile(fire_projectile_attack_instance, FIRE_PROJECTILE_OFFSET*(i -1))
+				fire_projectile_attack_instance.set_direction(attack_direction)
+				
 			secondary_arm_animated_sprite_2d.play("fireThrow")
 			
 	
 		
-func spawn_projectile(projectile_attack_instance):
+func spawn_projectile(projectile_attack_instance, y_offset = 0):
 	projectile_attack_instance.instigator = the_baby # This was a fun bug :(
 	if projectile_attack_instance is DefaultProjectile:
 		var projectile: DefaultProjectile = projectile_attack_instance
 		
 				
 	get_tree().current_scene.add_child(projectile_attack_instance)
-	projectile_attack_instance.global_position = attack_spawn_point.global_position
+	projectile_attack_instance.global_position = attack_spawn_point.global_position + Vector2(0, y_offset)
 
 func change_attack_direction(direction):
 	if direction == 1 and attack_spawn_point.position.x < 0 or direction == -1 and attack_spawn_point.position.x > 0:

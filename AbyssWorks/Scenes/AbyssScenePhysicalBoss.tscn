@@ -51,6 +51,7 @@ script = ExtResource("3_rblab")
 position = Vector2(108, 63)
 SPEED = 150.0
 target = NodePath("../TheBaby")
+maxHealth = 300.0
 healthLayer = NodePath("../HealthLayer")
 
 [node name="HealthLayer" parent="." unique_id=1729308208 instance=ExtResource("4_4dckt")]

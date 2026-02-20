@@ -562,7 +562,7 @@ script = ExtResource("2_ej0j6")
 texture_filter = 1
 position = Vector2(-8, 8)
 sprite_frames = SubResource("SpriteFrames_yyjfj")
-animation = &"walk"
+animation = &"idle"
 flip_h = true
 
 [node name="Torso" type="Node2D" parent="." unique_id=935661571]
@@ -582,13 +582,14 @@ script = ExtResource("5_jwkfu")
 texture_filter = 1
 position = Vector2(4, -2)
 sprite_frames = SubResource("SpriteFrames_h1fl5")
-animation = &"strongMainStatic"
+animation = &"defaultMainStatic"
 flip_h = true
 
 [node name="AttackSpawnPoint" type="Node2D" parent="MainArm" unique_id=766357618]
 position = Vector2(-34, -6)
 
 [node name="AttackCoolDownTimer" type="Timer" parent="MainArm" unique_id=1115649442]
+wait_time = 3.0
 
 [node name="punchSound" type="AudioStreamPlayer" parent="MainArm" unique_id=838363782]
 stream = ExtResource("11_h8h2a")
@@ -606,7 +607,7 @@ animation = &"defaultThrow"
 flip_h = true
 
 [node name="AttackCoolDownTimer" type="Timer" parent="SecondaryArm" unique_id=1516526108]
-wait_time = 0.1
+wait_time = 0.5
 
 [node name="AttackSpawnPoint" type="Node2D" parent="SecondaryArm" unique_id=400752836]
 position = Vector2(-22, -13)
@@ -623,7 +624,7 @@ script = ExtResource("7_euptn")
 texture_filter = 1
 position = Vector2(-8, 7)
 sprite_frames = SubResource("SpriteFrames_qa4qn")
-animation = &"jump"
+animation = &"idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2053114806]

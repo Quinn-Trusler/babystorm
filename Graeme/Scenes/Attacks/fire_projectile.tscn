@@ -10,13 +10,15 @@
 [node name="FireProjectile" type="RigidBody2D" unique_id=1462998635]
 collision_layer = 128
 collision_mask = 128
+gravity_scale = 0.0
 script = ExtResource("1_tfbke")
-damage = 5.0
+damage = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1548207932]
 shape = SubResource("CircleShape2D_oe6df")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="." unique_id=1942642794]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_nohic")
 
 [node name="DespawnTimer" type="Timer" parent="." unique_id=1639747568]
