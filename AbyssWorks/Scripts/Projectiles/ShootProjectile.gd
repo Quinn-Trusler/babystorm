@@ -16,6 +16,8 @@ var _customForce2D: CustomForce2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	shootDirection.y *= 0.12 # make it shallower 
+	shootDirection = shootDirection.normalized()
 	rotate(shootDirection.angle())
 	
 	area_entered.connect(self._on_area_entered)
