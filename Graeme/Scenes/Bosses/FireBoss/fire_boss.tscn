@@ -235,17 +235,15 @@ sprite_frames = SubResource("SpriteFrames_rd508")
 animation = &"idle"
 
 [node name="ArmsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=1794815256]
-z_index = 1
+z_index = 3
 z_as_relative = false
 position = Vector2(-5, -12)
-rotation = -0.15882497
 sprite_frames = ExtResource("11_jltbu")
 
 [node name="ArmsAnimatedSprite2D2" type="AnimatedSprite2D" parent="Animations" unique_id=246441043]
 z_index = 1
 z_as_relative = false
-position = Vector2(14, -13)
-rotation = -6.2831855
+position = Vector2(13.000001, -13)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("11_jltbu")
 

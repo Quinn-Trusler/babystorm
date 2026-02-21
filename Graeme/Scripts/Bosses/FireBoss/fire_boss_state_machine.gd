@@ -17,6 +17,7 @@ func define_states():
 		if child is BossAttackState:
 			states[child.name.to_lower()] = child
 			
+			
 	
 	current_state = states[states.keys()[current_state_index]]
 	current_state.enter()
