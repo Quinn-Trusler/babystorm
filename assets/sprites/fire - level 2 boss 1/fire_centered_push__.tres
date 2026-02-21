@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dhx8o1jx3lqim"]
+
+[ext_resource type="Texture2D" uid="uid://cn2ymme6jivxk" path="res://assets/sprites/fire - level 2 boss 1/fire_both_arms_push_centered__.png" id="1_mf512"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d5gp"]
+atlas = ExtResource("1_mf512")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g31go"]
+atlas = ExtResource("1_mf512")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51r5g"]
+atlas = ExtResource("1_mf512")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg472"]
+atlas = ExtResource("1_mf512")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpbs3"]
+atlas = ExtResource("1_mf512")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn2qk"]
+atlas = ExtResource("1_mf512")
+region = Rect2(160, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klg05"]
+atlas = ExtResource("1_mf512")
+region = Rect2(0, 160, 80, 80)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d5gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g31go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51r5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg472")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpbs3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn2qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klg05")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

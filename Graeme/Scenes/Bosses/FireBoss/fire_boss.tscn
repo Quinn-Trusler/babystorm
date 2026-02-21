@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bhvs7120f5rrd" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_jump_anim.png" id="8_kd4e1"]
 [ext_resource type="Texture2D" uid="uid://2hps2ek1rb5a" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_freeze_frame.png" id="8_xmpwk"]
 [ext_resource type="Texture2D" uid="uid://cll844a88i1sy" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_walk_anim.png" id="9_rwsw6"]
-[ext_resource type="Texture2D" uid="uid://cj0ot0ylkgg7k" path="res://assets/sprites/fire - level 2 boss 1/fire_pivotable_arm.png" id="10_3lhq1"]
+[ext_resource type="SpriteFrames" uid="uid://dhx8o1jx3lqim" path="res://assets/sprites/fire - level 2 boss 1/fire_centered_push__.tres" id="11_jltbu"]
 [ext_resource type="Texture2D" uid="uid://cmy4c867b0xtw" path="res://assets/sprites/fire - level 2 boss 1/fire_baby_head.png" id="12_jltbu"]
 [ext_resource type="Texture2D" uid="uid://c8leognruefe7" path="res://assets/sprites/fire - level 2 boss 1/fire_wings_idle.png" id="13_yquij"]
 
@@ -156,63 +156,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ioso6"]
-atlas = ExtResource("10_3lhq1")
-region = Rect2(0, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w5ri2"]
-atlas = ExtResource("10_3lhq1")
-region = Rect2(80, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpnkt"]
-atlas = ExtResource("10_3lhq1")
-region = Rect2(160, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjp3c"]
-atlas = ExtResource("10_3lhq1")
-region = Rect2(0, 80, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8s783"]
-atlas = ExtResource("10_3lhq1")
-region = Rect2(80, 80, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y76ww"]
-atlas = ExtResource("10_3lhq1")
-region = Rect2(160, 80, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8nha"]
-atlas = ExtResource("10_3lhq1")
-region = Rect2(0, 160, 80, 80)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8fske"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ioso6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w5ri2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gpnkt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sjp3c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8s783")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y76ww")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s8nha")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_by5kb"]
 animations = [{
 "frames": [{
@@ -292,11 +235,11 @@ sprite_frames = SubResource("SpriteFrames_rd508")
 animation = &"idle"
 
 [node name="ArmsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=1794815256]
-position = Vector2(-2, -3)
+z_index = 1
+z_as_relative = false
+position = Vector2(-5, -12)
 rotation = 0.0758349
-sprite_frames = SubResource("SpriteFrames_8fske")
-frame = 1
-frame_progress = 0.70598
+sprite_frames = ExtResource("11_jltbu")
 
 [node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=35106668]
 position = Vector2(-2, 0)
