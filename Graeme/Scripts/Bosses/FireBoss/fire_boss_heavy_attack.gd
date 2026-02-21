@@ -6,6 +6,8 @@ const FIRE_PROJECTILE = preload("res://Graeme/Scenes/Bosses/FireBoss/fire_projec
 @onready var fire_boss_state_machine: FireBossStateMachine = $".."
 @onready var heavy_state_timer: Timer = $heavyStateTimer
 @onready var heavy_attack_timer: Timer = $heavyAttackTimer
+@onready var arms_animated_sprite_2d_2: AnimatedSprite2D = $"../../Animations/ArmsAnimatedSprite2D2"
+@onready var animation_timer: Timer = $"../../animationTimer"
 
 var player: TheBaby = null
 
@@ -16,6 +18,7 @@ func _ready() -> void:
 func enter() -> void:
 	heavy_state_timer.start()
 	heavy_attack_timer.start()
+	animation_timer.start()
 	print("entering heavy attack")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,4 +52,10 @@ func _on_heavy_attack_timer_timeout() -> void:
 	fire_projectile_instance_2.initialize(player_direction.rotated(deg_to_rad(20)))
 	fire_projectile_instance_3.initialize(player_direction.rotated(deg_to_rad(-20)))
 	
+	#arms_animated_sprite_2d_2.play("static")
+	
 	fire_boss_state_machine.set_next_state()
+
+
+func _on_animation_timer_timeout() -> void:
+	arms_animated_sprite_2d_2.play("default")

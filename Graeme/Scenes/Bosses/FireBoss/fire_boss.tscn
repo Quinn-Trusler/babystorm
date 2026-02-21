@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://b83cwi4ha4qvk"]
+[gd_scene load_steps=36 format=3 uid="uid://b83cwi4ha4qvk"]
 
 [ext_resource type="Texture2D" uid="uid://b5772rcb0x81b" path="res://assets/sprites/baby/baby_head_jumpwalk_idle.png" id="1_ab43v"]
-[ext_resource type="Script" uid="uid://cgbwsutxvuqgv" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss.gd" id="1_e1n56"]
-[ext_resource type="Script" uid="uid://vheugv802s2u" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_state_machine.gd" id="3_408is"]
-[ext_resource type="Script" uid="uid://cpueqhoqcjidy" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_light_attack.gd" id="4_fqbqx"]
-[ext_resource type="Script" uid="uid://cm033kqowi626" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_heavy_attack.gd" id="5_c1akg"]
-[ext_resource type="Script" uid="uid://c2d5l52b0mu8b" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_special_attack.gd" id="6_pr3xb"]
-[ext_resource type="Script" uid="uid://dctdskeetdpfv" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_animations.gd" id="7_iatj6"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss.gd" id="1_e1n56"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_state_machine.gd" id="3_408is"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_light_attack.gd" id="4_fqbqx"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_heavy_attack.gd" id="5_c1akg"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_special_attack.gd" id="6_pr3xb"]
+[ext_resource type="Script" path="res://Graeme/Scripts/Bosses/FireBoss/fire_boss_animations.gd" id="7_iatj6"]
 [ext_resource type="Texture2D" uid="uid://bhvs7120f5rrd" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_jump_anim.png" id="8_kd4e1"]
 [ext_resource type="Texture2D" uid="uid://2hps2ek1rb5a" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_freeze_frame.png" id="8_xmpwk"]
 [ext_resource type="Texture2D" uid="uid://cll844a88i1sy" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_walk_anim.png" id="9_rwsw6"]
@@ -186,74 +186,78 @@ animations = [{
 skew = 0.75049156
 script = ExtResource("1_e1n56")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1570595443]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1754883466]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_8w5ko")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827814397]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 25)
 sprite_frames = SubResource("SpriteFrames_qtv15")
 
-[node name="FireBossStateMachine" type="Node" parent="." unique_id=1152426765]
+[node name="FireBossStateMachine" type="Node" parent="."]
 script = ExtResource("3_408is")
 
-[node name="LightAttack" type="Node2D" parent="FireBossStateMachine" unique_id=776777270]
+[node name="LightAttack" type="Node2D" parent="FireBossStateMachine"]
 script = ExtResource("4_fqbqx")
 
-[node name="lightStateTimer" type="Timer" parent="FireBossStateMachine/LightAttack" unique_id=1633424965]
+[node name="lightStateTimer" type="Timer" parent="FireBossStateMachine/LightAttack"]
 wait_time = 3.0
 one_shot = true
 
-[node name="attackTimer" type="Timer" parent="FireBossStateMachine/LightAttack" unique_id=475260202]
-wait_time = 2.0
+[node name="attackTimer" type="Timer" parent="FireBossStateMachine/LightAttack"]
 one_shot = true
 
-[node name="HeavyAttack" type="Node2D" parent="FireBossStateMachine" unique_id=884610234]
+[node name="HeavyAttack" type="Node2D" parent="FireBossStateMachine"]
 script = ExtResource("5_c1akg")
 
-[node name="heavyStateTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack" unique_id=1234973921]
+[node name="heavyStateTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack"]
 one_shot = true
 
-[node name="heavyAttackTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack" unique_id=1433955010]
+[node name="heavyAttackTimer" type="Timer" parent="FireBossStateMachine/HeavyAttack"]
 one_shot = true
 
-[node name="SpecialAttack" type="Node2D" parent="FireBossStateMachine" unique_id=105269356]
+[node name="SpecialAttack" type="Node2D" parent="FireBossStateMachine"]
 script = ExtResource("6_pr3xb")
 
-[node name="specialStateTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack" unique_id=1990050766]
+[node name="specialStateTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack"]
 wait_time = 3.0
 one_shot = true
 
-[node name="specialAttackTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack" unique_id=640291657]
+[node name="specialAttackTimer" type="Timer" parent="FireBossStateMachine/SpecialAttack"]
 one_shot = true
 
-[node name="Animations" type="Node2D" parent="." unique_id=704874499]
+[node name="Animations" type="Node2D" parent="."]
 script = ExtResource("7_iatj6")
 
-[node name="BodyAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=1513950468]
+[node name="BodyAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
 sprite_frames = SubResource("SpriteFrames_rd508")
 animation = &"idle"
 
-[node name="ArmsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=1794815256]
+[node name="ArmsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
 z_index = 3
 z_as_relative = false
 position = Vector2(-5, -12)
 sprite_frames = ExtResource("11_jltbu")
+animation = &"static"
 
-[node name="ArmsAnimatedSprite2D2" type="AnimatedSprite2D" parent="Animations" unique_id=246441043]
+[node name="ArmsAnimatedSprite2D2" type="AnimatedSprite2D" parent="Animations"]
 z_index = 1
 z_as_relative = false
-position = Vector2(13.000001, -13)
+position = Vector2(13, -13)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("11_jltbu")
+animation = &"static"
 
-[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=35106668]
+[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_by5kb")
 
-[node name="WingsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations" unique_id=1510912392]
+[node name="WingsAnimatedSprite2D" type="AnimatedSprite2D" parent="Animations"]
 sprite_frames = SubResource("SpriteFrames_6pk1g")
+
+[node name="animationTimer" type="Timer" parent="."]
+wait_time = 0.8
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="FireBossStateMachine/LightAttack/lightStateTimer" to="FireBossStateMachine/LightAttack" method="_on_light_state_timer_timeout"]
@@ -262,3 +266,6 @@ sprite_frames = SubResource("SpriteFrames_6pk1g")
 [connection signal="timeout" from="FireBossStateMachine/HeavyAttack/heavyAttackTimer" to="FireBossStateMachine/HeavyAttack" method="_on_heavy_attack_timer_timeout"]
 [connection signal="timeout" from="FireBossStateMachine/SpecialAttack/specialStateTimer" to="FireBossStateMachine/SpecialAttack" method="_on_special_state_timer_timeout"]
 [connection signal="timeout" from="FireBossStateMachine/SpecialAttack/specialAttackTimer" to="FireBossStateMachine/SpecialAttack" method="_on_special_attack_timer_timeout"]
+[connection signal="timeout" from="animationTimer" to="FireBossStateMachine/LightAttack" method="_on_animation_timer_timeout"]
+[connection signal="timeout" from="animationTimer" to="FireBossStateMachine/HeavyAttack" method="_on_animation_timer_timeout"]
+[connection signal="timeout" from="animationTimer" to="FireBossStateMachine/SpecialAttack" method="_on_animation_timer_timeout"]

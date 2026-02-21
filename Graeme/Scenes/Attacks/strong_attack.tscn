@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c4ea80rw0j6lh"]
+[gd_scene load_steps=3 format=3 uid="uid://c4ea80rw0j6lh"]
 
 [ext_resource type="Script" path="res://Graeme/Scripts/Attacks/strong_attack.gd" id="1_o3as4"]
 
@@ -6,17 +6,17 @@
 radius = 16.0
 height = 60.0
 
-[node name="StrongAttack" type="Node2D" unique_id=1061696421]
+[node name="StrongAttack" type="Node2D"]
 script = ExtResource("1_o3as4")
 damage = 10.0
 
-[node name="Area2D" type="Area2D" parent="." unique_id=704644587]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=675128862]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nkwfe")
 
-[node name="AttackDurationTimer" type="Timer" parent="." unique_id=1943086735]
+[node name="AttackDurationTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 autostart = true
