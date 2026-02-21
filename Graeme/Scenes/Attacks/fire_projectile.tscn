@@ -8,9 +8,16 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_btb2x"]
 
+[sub_resource type="Gradient" id="Gradient_uif4j"]
+offsets = PackedFloat32Array(0.04754829, 0.27340266, 0.36701337, 0.717682, 0.99554235, 1)
+colors = PackedColorArray(1, 1, 0.24705882, 1, 1, 0.63529414, 0.007843138, 1, 1, 0.63529414, 0.28235295, 1, 0.9958281, 0.6202754, 0.27567795, 1, 0.8235294, 0, 0, 1, 0.7237528, 0, 0, 0.9083005)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_btb2x"]
+gradient = SubResource("Gradient_uif4j")
+
 [sub_resource type="Curve" id="Curve_glsfo"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.28691983, 1), 0.0, 0.0, 0, 0, Vector2(0.36427566, 0.5517242), 0.0, 0.0, 0, 0, Vector2(0.51336145, 0.66219974), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.017743979, 0.68804455), 0.0, 0.0, 0, 0, Vector2(0.37262353, 0.5097843), -5.201021, -5.201021, 0, 0, Vector2(0.45754114, 0.25539207), 0.0, 0.0, 0, 0, Vector2(0.50823826, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="CurveTexture" id="CurveTexture_ae1mn"]
 curve = SubResource("Curve_glsfo")
@@ -33,13 +40,14 @@ curve = SubResource("Curve_3ytnl")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3sbac"]
 lifetime_randomness = 0.3
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(0.5, 0.1, 0.5)
+emission_shape_offset = Vector3(-14, 0, 0)
+emission_shape_scale = Vector3(0.1, 0.1, 0.5)
 emission_shape = 1
 emission_sphere_radius = 19.54
 angle_min = -105.79999
 angle_max = 594.7
-direction = Vector3(-1, 0, 0)
-spread = 27.211
+direction = Vector3(-1, 0, 0.1)
+spread = 2.05
 flatness = 0.097
 initial_velocity_min = 119.7
 initial_velocity_max = 204.23
@@ -52,7 +60,13 @@ radial_accel_curve = SubResource("CurveTexture_cbv2i")
 damping_min = 82.705
 damping_max = 82.705
 damping_curve = SubResource("CurveTexture_ae1mn")
+scale_min = 1.1
+scale_max = 1.1999999
 scale_curve = SubResource("CurveTexture_i23es")
+color_ramp = SubResource("GradientTexture1D_btb2x")
+anim_offset_max = 1.0
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 0.864
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bthn7"]
 
@@ -77,7 +91,7 @@ material = SubResource("CanvasItemMaterial_btb2x")
 scale = Vector2(0.45, 0.4)
 amount = 100
 texture = ExtResource("3_uif4j")
-lifetime = 0.41000000000000003
+lifetime = 0.32
 randomness = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_3sbac")
