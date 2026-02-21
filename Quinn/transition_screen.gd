@@ -12,10 +12,10 @@ var in_transition : bool = false
 var play_animations_backwards = false
 
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("NextScene") and not in_transition:# Letter n
-		in_transition = true
-		fade_in()
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed("NextScene") and not in_transition:# Letter n
+		#in_transition = true
+		#fade_in()
 
 func fade_in():
 	play_animations_backwards = false
