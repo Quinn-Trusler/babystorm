@@ -6,6 +6,8 @@ const FIRE_PROJECTILE = preload("res://Graeme/Scenes/Bosses/FireBoss/fire_projec
 @onready var fire_boss_state_machine: FireBossStateMachine = $".."
 @onready var light_state_timer: Timer = $lightStateTimer
 @onready var attack_timer: Timer = $attackTimer
+@onready var arms_animated_sprite_2d: AnimatedSprite2D = $"../../Animations/ArmsAnimatedSprite2D"
+@onready var animation_timer: Timer = $"../../animationTimer"
 
 var player: TheBaby = null
 
@@ -16,6 +18,7 @@ func _ready() -> void:
 func enter() -> void:
 	light_state_timer.start()
 	attack_timer.start()
+	animation_timer.start()
 	print("entering light attack")
 
 func exit():
@@ -31,9 +34,14 @@ func _on_light_state_timer_timeout() -> void:
 	pass
 
 func _on_attack_timer_timeout() -> void:
-	print("an attack")
+
 	var fire_projectile_instance = FIRE_PROJECTILE.instantiate()
 	get_tree().current_scene.add_child(fire_projectile_instance)
 	fire_projectile_instance.global_position = fire_boss.global_position
 	fire_projectile_instance.initialize((player.global_position - fire_boss.global_position).normalized())
 	fire_boss_state_machine.set_next_state()
+	#arms_animated_sprite_2d.play("default")
+
+
+func _on_animation_timer_timeout() -> void:
+	arms_animated_sprite_2d.play("default")

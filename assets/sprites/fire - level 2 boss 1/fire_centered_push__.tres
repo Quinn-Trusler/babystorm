@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://bbswa8gyogba0"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://bbswa8gyogba0"]
 
 [ext_resource type="Texture2D" uid="uid://cn2ymme6jivxk" path="res://assets/sprites/fire - level 2 boss 1/fire_both_arms_push_centered__.png" id="1_mf512"]
+[ext_resource type="Texture2D" uid="uid://dno7nddk2fa64" path="res://assets/sprites/fire - level 2 boss 1/fire_pivotable_arm_centered.png" id="2_nwkq1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d5gp"]
 atlas = ExtResource("1_mf512")
@@ -30,6 +31,10 @@ region = Rect2(160, 80, 80, 80)
 atlas = ExtResource("1_mf512")
 region = Rect2(0, 160, 80, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mniwa"]
+atlas = ExtResource("2_nwkq1")
+region = Rect2(0, 0, 80, 80)
+
 [resource]
 animations = [{
 "frames": [{
@@ -54,7 +59,15 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_klg05")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mniwa")
+}],
+"loop": false,
+"name": &"static",
 "speed": 5.0
 }]
