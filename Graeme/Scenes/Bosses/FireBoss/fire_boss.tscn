@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bhvs7120f5rrd" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_jump_anim.png" id="8_kd4e1"]
 [ext_resource type="Texture2D" uid="uid://2hps2ek1rb5a" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_freeze_frame.png" id="8_xmpwk"]
 [ext_resource type="Texture2D" uid="uid://cll844a88i1sy" path="res://assets/sprites/fire - level 2 boss 1/fire_torso_walk_anim.png" id="9_rwsw6"]
-[ext_resource type="SpriteFrames" uid="uid://dhx8o1jx3lqim" path="res://assets/sprites/fire - level 2 boss 1/fire_centered_push__.tres" id="11_jltbu"]
+[ext_resource type="SpriteFrames" uid="uid://bbswa8gyogba0" path="res://assets/sprites/fire - level 2 boss 1/fire_centered_push__.tres" id="11_jltbu"]
 [ext_resource type="Texture2D" uid="uid://cmy4c867b0xtw" path="res://assets/sprites/fire - level 2 boss 1/fire_baby_head.png" id="12_jltbu"]
 [ext_resource type="Texture2D" uid="uid://c8leognruefe7" path="res://assets/sprites/fire - level 2 boss 1/fire_wings_idle.png" id="13_yquij"]
 
@@ -183,6 +183,7 @@ animations = [{
 }]
 
 [node name="FireBoss" type="Node2D" unique_id=1275064561]
+skew = 0.75049156
 script = ExtResource("1_e1n56")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1570595443]
